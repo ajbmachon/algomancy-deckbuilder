@@ -2,9 +2,11 @@
   import CardPicker from '$lib/CardPicker.svelte';
 
   let cards = [
-    {name:"Rook", selected:false, inflight:false},
-    {name:"Abduct", selected:false, inflight:false},
-    {name:"Aggressive One", selected:false, inflight:false}
+    {name:"Rook", faction:"earth"},
+    {name:"Abduct", faction:"wood"},
+    {name:"Aggressive One", faction:"fire"},
+    {name:"Astralith", faction:"metal"},
+    {name:"Bulging Bolus", faction:"water"},
   ];
 
   let selected = [];

@@ -45,7 +45,7 @@
     outroend={arrived}
     {send} {receive}
     let:item>
-    <Card name={item.card.name} on:click={toggle_selected(item)} />
+    <Card name={item.card.name} faction={item.card.faction} on:click={toggle_selected(item)} />
   </Pool>
 </div>
 
@@ -55,7 +55,7 @@
     outroend={arrived}
     {send} {receive}
     let:item>
-    <Card name={item.card.name} on:click={toggle_selected(item)} />
+    <Card name={item.card.name} faction={item.card.faction} on:click={toggle_selected(item)} />
   </Pool>
 </div>
 
