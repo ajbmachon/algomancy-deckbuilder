@@ -1,30 +1,23 @@
 <script>
-  let fetching = fetch("http://127.0.0.1:8080/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({ query: "{ cards { id, name, imageUrl } }" }),
-  })
-      .then(r => r.json());
+  import CardPicker from '$lib/CardPicker.svelte';
+
+  let cards = [
+    {name:"Rook", selected:false, inflight:false},
+    {name:"Abduct", selected:false, inflight:false},
+    {name:"Aggressive One", selected:false, inflight:false}
+  ];
+
+  let selected = [];
 </script>
 
 <h1>Algomancy Deck Builder</h1>
 
-{#await fetching}
-  <pre>Loading cards...</pre>
 
-{:then rsp}
-  <div>
-    {#each rsp.data.cards as card}
-      <h3>{card.name}</h3>
-      <img src="{card.imageUrl}" width=300 style="border-radius: 16px" />
-    {/each}
+Picked:
+{#each selected as card}
+  <span>{card.name}</span>,
+{:else}
+  None
+{/each}
 
-  </div>
-  
-{:catch error}
-  <pre>Failed to fetch cards! {error}</pre>
-
-{/await}
+<CardPicker {cards} selected={(selection) => selected = selection} />
