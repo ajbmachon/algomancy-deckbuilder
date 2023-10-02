@@ -1,4 +1,6 @@
 <script>
+	import { base } from '$app/paths';
+
 	export let name;
 	export let faction;
 	export let stacked = 0;
@@ -15,7 +17,7 @@
 		class:stacked
 		style:--height={height_var}
 		style:--margin-bottom={margin_bottom_var}
-		src="card_images/{image_name}.jpg"
+		src="{base}/card_images/{image_name}.jpg"
 	/>
 </div>
 
