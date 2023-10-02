@@ -15,7 +15,7 @@
 		class:stacked
 		style:--height={height_var}
 		style:--margin-bottom={margin_bottom_var}
-		src="/card_images/{image_name}.jpg"
+		src="card_images/{image_name}.jpg"
 	/>
 </div>
 
