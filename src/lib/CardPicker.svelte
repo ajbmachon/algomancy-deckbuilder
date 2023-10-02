@@ -12,14 +12,23 @@
 	export let stacked = 40;
 
 	$: cardpool =
-		cardpool ||
-		cards.map((card, idx) => ({
-			key: idx,
-			selected: false,
-			inflight: false,
-			extras: 0,
-			card
-		}));
+		cardpool && cardpool.length == cards.length
+			? cardpool.map((item) => {
+					const sel = selected.find((e) => e.card.name === item.card.name);
+					if (sel) {
+						item.extras = sel.count - 1;
+						item.selected = true;
+						item.inflight = false;
+					}
+					return item;
+			  })
+			: cards.map((card, idx) => ({
+					key: idx,
+					selected: false,
+					inflight: false,
+					extras: 0,
+					card
+			  }));
 
 	$: partitions = {
 		['Card Pool']: (p) => p.filter((c) => !c.selected),

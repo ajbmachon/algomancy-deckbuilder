@@ -17,6 +17,20 @@
 			(e) => (copy_msg = `Sorry, copy deck to clipboard failed /: ${e}`)
 		);
 	}
+
+	function paste_deck_from_clipboard() {
+		navigator.clipboard.readText().then((text) => {
+			selected = text
+				.split('\n')
+				.map((ln) => /(\d+)x\s+(.*)$/.exec(ln))
+				.filter((m) => !!m)
+				.map((m) => ({
+					card: { name: m[2] },
+					count: parseInt(m[1])
+				}));
+			copy_msg = 'Pasted deck from clipboard!';
+		});
+	}
 </script>
 
 <h1>Algomancy Deck Builder</h1>
@@ -25,6 +39,9 @@
 	Deck: {num_cards} card{num_cards !== 1 ? 's' : ''}
 	<div>
 		<Button on:click={copy_deck_to_clipboard}>Copy deck to clipboard</Button>
+	</div>
+	<div>
+		<Button on:click={paste_deck_from_clipboard}>Paste deck from clipboard</Button>
 	</div>
 	{#if copy_msg}
 		<div>
