@@ -1,8 +1,8 @@
 <script>
-  import cards from '$lib/assets/cards.json';
-  import CardPicker from '$lib/CardPicker.svelte';
+	import cards from '$lib/assets/cards.json';
+	import CardPicker from '$lib/CardPicker.svelte';
 
-  let selected = [];
+	let selected = [];
 </script>
 
 <h1>Algomancy Deck Builder</h1>
