@@ -4,12 +4,13 @@
 	export let partition;
 
 	$: pool = partition.pool;
+	$: pool_size = partition.pool.length;
 </script>
 
 <div class="root">
 	<h2>
 		{partition.id}
-		<small>[{partition.pool.length} cards]</small>
+		<small>[{pool_size} card{pool_size !== 1 ? 's' : ''}]</small>
 	</h2>
 
 	<CardPoolFilter {pool} let:pool={filtered_pool}>

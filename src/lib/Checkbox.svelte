@@ -44,6 +44,11 @@
 				box-shadow: 3px 3px 2px 0px hsl(0deg 0% 0% / 60%),
 					inset 0px 0px 4px 4px hsl(120deg 75% 50% / 60%);
 			}
+
+			&:active {
+				box-shadow: 0px 0px 2px 0px hsl(0deg 0% 0% / 60%),
+					inset 0px 0px 4px 8px hsl(120deg 75% 50% / 60%);
+			}
 		}
 	}
 </style>

@@ -23,7 +23,7 @@
 				animate:flip={{ duration: 500 }}
 				on:outroend={() => outroend && outroend(item)}
 			>
-				<slot {item} />
+				<slot partition_id={part.id} {item} />
 			</div>
 		{:else}
 			<slot name="else" />

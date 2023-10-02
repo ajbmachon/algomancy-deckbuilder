@@ -11,14 +11,16 @@
 	$: margin_bottom_var = `${stacked - height}px`;
 </script>
 
-<div class="card" on:click>
+<div class="card">
 	<img
 		class={faction}
 		class:stacked
 		style:--height={height_var}
 		style:--margin-bottom={margin_bottom_var}
 		src="{base}/card_images/{image_name}.jpg"
+		on:click
 	/>
+	<slot />
 </div>
 
 <style>
@@ -27,7 +29,7 @@
 	}
 	.card img {
 		position: relative;
-		z-index: 0;
+		z-index: 2;
 		height: var(--height, 400px);
 		border-radius: 16px;
 		box-shadow: 10px 10px 10px -5px hsl(0deg 0% 0% / 60%);
@@ -47,7 +49,7 @@
 		}
 	}
 	.card img:hover {
-		z-index: 1;
+		z-index: 3;
 		box-shadow: 0px 0px 15px 5px hsl(0deg 0% 50% / 80%), 10px 10px 10px -5px hsl(0deg 0% 0% / 60%);
 		transform: translate(5px, 5px) perspective(5000px) rotateX(10deg) rotateY(0deg) rotateZ(-1deg);
 		transition: transform 0.25s ease-out;
