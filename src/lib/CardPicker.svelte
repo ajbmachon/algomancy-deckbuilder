@@ -1,5 +1,6 @@
 <script>
   import Card from '$lib/Card.svelte';
+  import CardPickerPartition from '$lib/CardPickerPartition.svelte';
   import Pool from '$lib/Pool.svelte';
   import { create_crossfade } from '$lib/crossfade';
 
@@ -7,15 +8,19 @@
 
   export let cards;
   export let selected;
+  export let stacked = 40;
 
-  $: cardpool = cardpool || cards.map((card, idx) => {
-    return {
-      key: idx,
-      selected: false,
-      inflight: false,
-      card,
-    }
-  });
+  $: cardpool = cardpool || cards.map((card, idx) => ({
+    key: idx,
+    selected: false,
+    inflight: false,
+    card,
+  }));
+
+  $: partitions = {
+    ["Card Pool"]: (p) => p.filter(c => !c.selected),
+    ["Selected Cards"]: (p) => p.filter(c => c.selected),
+  };
 
   function toggle_selected(item) {
     return () => {
@@ -25,9 +30,8 @@
 
       item.inflight = true;
       item.selected = !item.selected;
-      if (selected) {
-	selected(cardpool.filter(c => c.selected).map(item => item.card));
-      }
+      selected = cardpool.filter(c => c.selected).map(item => item.card);
+
       // trigger re-render
       cardpool = cardpool;
     }
@@ -39,29 +43,16 @@
 
 </script>
 
-<div class="cardpool">
-  <p>Card Pool</p>
-  <Pool pool={cardpool.filter(c => !c.selected)}
-    outroend={arrived}
-    {send} {receive}
-    let:item>
-    <Card name={item.card.name} faction={item.card.faction} on:click={toggle_selected(item)} />
-  </Pool>
-</div>
-
-<div class="selected">
-  <p>Selected Cards</p>
-  <Pool pool={cardpool.filter(c => c.selected)}
-    outroend={arrived}
-    {send} {receive}
-    let:item>
-    <Card name={item.card.name} faction={item.card.faction} on:click={toggle_selected(item)} />
-  </Pool>
-</div>
-
-<style>
-  .cardpool, .selected {
-    float: left;
-    width: 50%;
-  }
-</style>
+<Pool pool={cardpool}
+      outroend={arrived}
+      {send} {receive}
+      {partitions}
+      PartitionComponent={CardPickerPartition}
+      let:item
+      >
+  <Card name={item.card.name}
+	faction={item.card.factions[0]}
+	{stacked}
+	on:click={toggle_selected(item)}
+	/>
+</Pool>

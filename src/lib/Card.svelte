@@ -1,11 +1,21 @@
 <script>
   export let name;
   export let faction;
+  export let stacked = 0;
+  export let height = 400;
+
   $: image_name = name.replaceAll(",", "").replaceAll(" ", "-");
+  $: height_var = `${height}px`;
+  $: margin_bottom_var = `${stacked - height}px`;
 </script>
 
 <div class="card" on:click>
-  <img class={faction} src="/card_images/{image_name}.jpg" />
+  <img class={faction}
+       class:stacked
+       style:--height={height_var}
+       style:--margin-bottom={margin_bottom_var}
+       src="/card_images/{image_name}.jpg"
+       />
 </div>
 
 <style>
@@ -15,10 +25,11 @@
   .card img {
     position: relative;
     z-index: 0;
-    width: 300px;
+    height: var(--height, 400px);
     border-radius: 16px;
     box-shadow: 10px 10px 10px -5px hsl(0deg 0% 0% / 60%);
-    
+    margin-bottom: 0px;
+
     transition: transform .250s ease-out, box-shadow .5s ease-in;
 
     user-drag: none;
@@ -27,12 +38,17 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+
+    &.stacked {
+      margin-bottom: var(--margin-bottom, initial);
+    }
   }
   .card img:hover {
     z-index: 1;
     box-shadow: 0px 0px 15px 5px hsl(0deg 0% 50% / 80%),
 		10px 10px 10px -5px hsl(0deg 0% 0% / 60%);
-    transform: perspective(5000px) rotateX(10deg) rotateY(0deg) rotateZ(-1deg);
+    transform: translate(5px, 5px)
+	       perspective(5000px) rotateX(10deg) rotateY(0deg) rotateZ(-1deg);
     transition: transform .250s ease-out;
   }
   .card img.earth:hover {
