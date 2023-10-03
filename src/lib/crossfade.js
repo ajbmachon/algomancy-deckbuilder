@@ -9,7 +9,7 @@ export function create_crossfade() {
       const style = getComputedStyle(node);
       const transform = style.transform === 'none' ? '' : style.transform;
       return {
-        duration: 800,
+        duration: 400,
         easing: expoInOut,
         css: (t) => `
            transform: ${transform} scale(${t});
