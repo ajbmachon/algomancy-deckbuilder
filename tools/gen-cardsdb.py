@@ -1,0 +1,128 @@
+from __future__ import annotations
+
+import json
+import click
+import requests
+from dataclasses import dataclass, field, fields, asdict
+from collections import defaultdict
+from functools import partial
+from typing import DefaultDict, Mapping, MutableMapping
+
+
+@dataclass
+class Tags:
+    cloud: DefaultDict[str, set[int]] = field(default_factory=partial(defaultdict, set))
+
+    def add(self, tag: str, key: int) -> None:
+        # We add spaces to the tag to make it easy to search for an exact match while still using
+        # sub-string matching by including the surrounding spaces in the search term as well in that
+        # case.
+        self.cloud[f" {tag} "].add(key)
+
+    def asdict(self) -> Mapping[str, tuple[int]]:
+        return {tag: tuple(values) for tag, values in self.cloud.items()}
+
+
+def searchable(opt: bool=True):
+    return field(metadata=dict(searchable=opt))
+
+
+@dataclass
+class AlgoCard:
+    key: int = searchable(False)
+    name: str = searchable(True)
+    power: int = searchable(True)
+    toughness: int = searchable(True)
+    affinity: str = searchable(True)
+    cost: int = searchable(True)
+    attribute: str = searchable(True)
+    complexity: str = searchable(True)
+    text: str = searchable(True)
+    rev: str = searchable(False)
+    details: str = searchable(False)
+    factions: tuple[str, ...] = searchable(True)
+    rulings: tuple[str, ...] = searchable(False)
+    image_name: str = searchable(False)
+
+    def asdict(self) -> Mapping[str, Any]:
+        return asdict(self)
+
+    @classmethod
+    def from_upstream(cls, key: int, src: Mapping[str, Any]) -> AlgoCard:
+        img_name = src["name"].lower().replace(",", "").replace(" ", "-")
+        return cls(
+            key=key,
+            name=src["name"],
+            power=int(src["power"]),
+            toughness=int(src["toughness"]),
+            affinity=src["cost"],
+            cost=src["total_cost"],
+            attribute=src["type"],
+            complexity=src["complexity"],
+            text=src["text"],
+            rev=src["revision_date_time"],
+            details=src["details"],
+            factions=src["factions"],
+            rulings=src["rulings"],
+            image_name=f'{img_name}.jpg',
+        )
+
+    @classmethod
+    def search_scopes(cls) -> Iterator[str]:
+        for fld in fields(cls):
+            if fld.metadata["searchable"]:
+                yield fld.name
+
+    def search_tags(self, scope: str) -> Iterator[str]:
+        value = getattr(self, scope)
+        if isinstance(value, int):
+            value = str(value)
+        if isinstance(value, str):
+            value = value.split(" ")
+        yield from iter(value)
+
+
+@dataclass
+class AlgoDB:
+    cards: MutableMapping[int, AlgoCard] = field(default_factory=dict)
+    search_scopes: DefaultDict[str, Tags] = field(default_factory=partial(defaultdict, Tags))
+
+    def add_from_upstream(self, key: int, src: Mapping[str, Any]) -> None:
+        card = AlgoCard.from_upstream(key, src)
+        self.cards[key] = card
+        all_tags = self.search_scopes["any"]
+        for scope in AlgoCard.search_scopes():
+            tags = self.search_scopes[scope]
+            for tag in card.search_tags(scope):
+                all_tags.add(tag, card.key)
+                tags.add(tag, card.key)
+
+    def asdict(self) -> Mapping[str, Any]:
+        return dict(
+            cards=[
+                card.asdict() for card in self.cards.values()
+            ],
+            search_scopes={
+                scope: tags.asdict() for scope, tags in self.search_scopes.items()
+            },
+        )
+
+
+@click.command
+@click.option("--upstream-url", default="https://calebgannon.com/wp-content/uploads/algomancy-extras/AlgomancyCards.json")
+def main(upstream_url):
+    upstream_data = requests.get(upstream_url).json()
+    db = AlgoDB()
+
+    for key, [src] in enumerate(upstream_data.values(), start=1001):
+        if src["name"] == "Ephemeral Dreamthief":
+            # Skip -- this card has been remodeled into a different one and is merely a lingering
+            # ghost card by now..
+            continue
+        db.add_from_upstream(key, src)
+
+    click.echo(json.dumps(db.asdict()))
+
+
+if __name__ == "__main__":
+    main()
