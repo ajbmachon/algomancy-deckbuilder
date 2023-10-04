@@ -85,11 +85,14 @@ class AlgoCard:
 @dataclass
 class AlgoDB:
     cards: MutableMapping[int, AlgoCard] = field(default_factory=dict)
+    factions: Sequence[str] = field(default_factory=set)
     search_scopes: DefaultDict[str, Tags] = field(default_factory=partial(defaultdict, Tags))
 
     def add_from_upstream(self, key: int, src: Mapping[str, Any]) -> None:
         card = AlgoCard.from_upstream(key, src)
         self.cards[key] = card
+        self.factions |= set(card.factions)
+
         all_tags = self.search_scopes["any"]
         for scope in AlgoCard.search_scopes():
             tags = self.search_scopes[scope]
@@ -102,6 +105,7 @@ class AlgoDB:
             cards=[
                 card.asdict() for card in self.cards.values()
             ],
+            factions=tuple(self.factions),
             search_scopes={
                 scope: tags.asdict() for scope, tags in self.search_scopes.items()
             },

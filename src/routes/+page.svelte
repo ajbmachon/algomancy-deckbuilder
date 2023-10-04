@@ -82,7 +82,7 @@
 <style>
   .hint {
     border-radius: 8px;
-    border: 1px solid lightgray;
+    border: var(--val, 1px) solid lightgray;
     padding: 8px;
     margin: 12px;
     max-width: 800px;
