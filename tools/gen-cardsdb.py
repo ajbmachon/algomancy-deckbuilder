@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import json
 import click
 import requests
@@ -35,7 +36,8 @@ class AlgoCard:
     toughness: int = searchable(True)
     affinity: str = searchable(True)
     cost: int = searchable(True)
-    attribute: str = searchable(True)
+    type: str = searchable(True)
+    attributes: tuple[str, ...] = searchable(True)
     complexity: str = searchable(True)
     text: str = searchable(True)
     rev: str = searchable(False)
@@ -57,7 +59,8 @@ class AlgoCard:
             toughness=int(src["toughness"]),
             affinity=src["cost"],
             cost=src["total_cost"],
-            attribute=src["type"],
+            type=src["type"],
+            attributes=re.findall(r"{([^}]*)}", src["type"]),
             complexity=src["complexity"],
             text=src["text"],
             rev=src["revision_date_time"],
@@ -79,7 +82,7 @@ class AlgoCard:
             value = str(value)
         if isinstance(value, str):
             value = value.split(" ")
-        yield from iter(value)
+        yield from map(str.strip, map(str.lower, value))
 
 
 @dataclass
@@ -97,6 +100,8 @@ class AlgoDB:
         for scope in AlgoCard.search_scopes():
             tags = self.search_scopes[scope]
             for tag in card.search_tags(scope):
+                if not tag:
+                    continue
                 all_tags.add(tag, card.key)
                 tags.add(tag, card.key)
 
@@ -105,7 +110,7 @@ class AlgoDB:
             cards=[
                 card.asdict() for card in self.cards.values()
             ],
-            factions=tuple(self.factions),
+            factions=sorted(tuple(self.factions), key=lambda f: f == "colorless" and "zzz" or f),
             search_scopes={
                 scope: tags.asdict() for scope, tags in self.search_scopes.items()
             },
