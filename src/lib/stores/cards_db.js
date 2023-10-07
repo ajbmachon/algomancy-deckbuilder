@@ -1,9 +1,34 @@
-import { readable, writable } from 'svelte/store';
+import { readable, writable, derived } from 'svelte/store';
+import { search_filter, filter_card_pool } from '$lib/stores/filter.js';
+import { pool_entry, to_pool_by_key } from '$lib/search.js';
 
 import cards_db from '$lib/assets/cards_db.json';
 
-export default readable(cards_db);
-export const filtered_pool = writable([]);
+export const card_pool = readable(cards_db);
+export const card_pool_by_key = derived(card_pool, ($card_pool) =>
+  to_pool_by_key($card_pool.cards.map(pool_entry))
+);
+
+let filter_timeout;
+export const filtered_pool = derived(
+  [search_filter, card_pool_by_key, card_pool],
+  ([$search_filter, $card_pool_by_key, $card_pool], set) => {
+    if (filter_timeout) {
+      clearTimeout(filter_timeout);
+    }
+    filter_timeout = setTimeout(() => {
+      filter_timeout = undefined;
+      set(filter_card_pool($search_filter, $card_pool_by_key, $card_pool.search_scopes));
+    }, 500);
+    return () => {
+      if (filter_timeout) {
+        clearTimeout(filter_timeout);
+        filter_timeout = undefined;
+      }
+    };
+  },
+  []
+);
 
 export const cards_by_key = cards_db.cards.reduce((acc, card) => {
   acc[card.key] = card;

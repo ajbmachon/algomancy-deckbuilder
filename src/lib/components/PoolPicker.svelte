@@ -1,6 +1,6 @@
 <script>
   import { create_crossfade } from '$lib/crossfade';
-  import { pool_entry } from '$lib/search.js';
+  import { next_card_id } from '$lib/search.js';
 
   import CardList from '$lib/components/CardList.svelte';
 
@@ -10,43 +10,23 @@
   // picked: [{id, card}, ...]
   export let picked;
 
-  let picked_by_key = {};
-
-  function invalidate_picked() {
-    picked = Object.values(picked_by_key).reduce((acc, entries) => {
-      entries.map((entry) => {
-        if (entry.card) {
-          acc.push(entry);
-        }
-      });
-      return acc;
-    }, []);
-    if (picked.length === 0) {
-      picked_by_key = {};
-      pool = pool.map((entry) => pool_entry(entry.card));
-    }
-  }
-
   function pick_card(event) {
     const entry = event.detail;
-    if (picked_by_key[entry.card.key] === undefined) {
-      picked_by_key[entry.card.key] = [];
-    }
-    picked_by_key[entry.card.key].push(entry);
-    pool = pool.map((pe) => {
-      if (pe.id === entry.id) {
-        // Replace picked card with a new copy.
-        return pool_entry(entry.card);
+    picked.push(entry);
+    for (let pool_entry of pool) {
+      if (pool_entry.id === entry.id) {
+        // Update the entry id for the picked card (to get a "replace" effect).
+        pool_entry.id = next_card_id();
+        break;
       }
-      return pe;
-    });
-    invalidate_picked();
+    }
+    picked = picked;
+    pool = pool;
   }
 
   function drop_card(event) {
-    const entry = event.detail;
-    entry.card = null;
-    invalidate_picked();
+    const id = event.detail.id;
+    picked = picked.filter((entry) => entry.id !== id);
   }
 
   const crossfade = create_crossfade();

@@ -1,37 +1,46 @@
 <script>
+  import { popup } from '@skeletonlabs/skeleton';
+
   import Checkbox from '$lib/components/Checkbox.svelte';
   import Search from '$lib/components/Search.svelte';
-  import cards_db from '$lib/stores/cards_db.js';
+  import { card_pool } from '$lib/stores/cards_db.js';
   import { search_terms } from '$lib/search.js';
 
-  export let filter = {};
+  export let filter;
 
-  let factions = {
-    colorless: false
-  };
-  let hybrids_only = false;
-  let search_value = '';
-
-  $: filter = {
-    factions,
-    hybrids_only,
-    search_terms: search_terms(search_value)
-  };
+  $: filter.search_terms = search_terms(filter.search_value);
 </script>
 
 <div>
-  <Search bind:value={search_value} />
+  <Search bind:value={filter.search_value}>
+    <div slot="tooltip" class="max-w-lg">
+      <p>
+        Free form search on part of word(s) found any where on the card by default. Search term may
+        be scoped to a particular part of the card by prefixing it with <code>SCOPE:</code>
+        (i.e. the default <code>SCOPE</code> is <code>any</code>. Available scopes:
+      </p>
+      {#each Object.keys($card_pool.search_scopes) as scope}
+        <pre>{scope}</pre>
+      {/each}
+      <p>
+        The <code>SCOPE</code> may be abbreviated as well. Some example searches:
+      </p>
+      <pre>faction:fire attr:flying</pre>
+      <pre>aff:rrr</pre>
+      <pre>frog power:2 type:virus</pre>
+    </div>
+  </Search>
 
   <div class="factions">
-    {#each $cards_db.factions as faction, tabindex}
+    {#each $card_pool.factions as faction, tabindex}
       <div class="faction">
-        <Checkbox bind:checked={factions[faction]} {tabindex}>
+        <Checkbox bind:checked={filter.factions[faction]} {tabindex}>
           {faction}
         </Checkbox>
       </div>
     {/each}
     <div class="faction">
-      <Checkbox bind:checked={hybrids_only} hybrid tabindex={$cards_db.factions.length}>
+      <Checkbox bind:checked={filter.hybrids_only} hybrid tabindex={$card_pool.factions.length}>
         hybrids only
       </Checkbox>
     </div>

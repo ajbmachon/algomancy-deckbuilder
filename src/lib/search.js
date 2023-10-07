@@ -1,7 +1,4 @@
-import { filtered_pool } from '$lib/stores/cards_db.js';
-import debounce from '$lib/debounce.js';
-
-function next_card_id() {
+export function next_card_id() {
   return (next_card_id.__counter += 1);
 }
 next_card_id.__counter = 0;
@@ -77,47 +74,3 @@ export function from_pool_by_key(pool_by_key) {
     return acc;
   }, []);
 }
-
-function _do_filter_card_pool(filter, pool_by_key, search_scopes) {
-  const init_acc = [];
-  const matched_keys =
-    (filter.search_terms &&
-      filter.search_terms
-        .map(({ scope, term }) =>
-          Object.entries(search_scopes)
-            .filter(([search_scope, _]) => search_scope.includes(scope))
-            .map(([_, search_terms]) =>
-              Object.entries(search_terms)
-                .filter(([search_term, _]) => search_term.includes(term))
-                .reduce((acc, [_, keys]) => acc.concat(keys), [])
-            )
-            .reduce((acc, keys) => acc.concat(keys), [])
-        )
-        .reduce(
-          (acc, keys) => (acc == init_acc ? keys : acc.filter((key) => keys.includes(key))),
-          init_acc
-        )) ||
-    init_acc;
-
-  const new_pool = Object.values(pool_by_key)
-    .filter(([entry]) => {
-      if (matched_keys != init_acc && !matched_keys.includes(entry.card.key)) {
-        return false;
-      }
-      if (filter.hybrids_only && entry.card.factions.length < 2) {
-        return false;
-      }
-      if (filter.factions && !entry.card.factions.every((faction) => filter.factions[faction])) {
-        return false;
-      }
-      return true;
-    })
-    .reduce((acc, [entry]) => {
-      acc.push(pool_entry(entry.card));
-      return acc;
-    }, []);
-  filtered_pool.set(new_pool);
-  return new_pool.length;
-}
-
-export const filter_card_pool = debounce(_do_filter_card_pool, 500);
