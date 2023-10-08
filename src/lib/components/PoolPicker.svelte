@@ -1,6 +1,6 @@
 <script>
   import { create_crossfade } from '$lib/crossfade';
-  import { next_card_id } from '$lib/search.js';
+  import { pool_entry } from '$lib/search.js';
 
   import CardList from '$lib/components/CardList.svelte';
 
@@ -13,15 +13,15 @@
   function pick_card(event) {
     const entry = event.detail;
     picked.push(entry);
-    for (let pool_entry of pool) {
-      if (pool_entry.id === entry.id) {
-        // Update the entry id for the picked card (to get a "replace" effect).
-        pool_entry.id = next_card_id();
-        break;
-      }
-    }
     picked = picked;
-    pool = pool;
+    pool = pool.map((pe) => {
+      if (pe.id === entry.id) {
+        // Update the entry id for the picked card (to get a "replace" effect).
+        return pool_entry(pe.card);
+      } else {
+        return pe;
+      }
+    });
   }
 
   function drop_card(event) {
