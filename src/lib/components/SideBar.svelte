@@ -1,14 +1,15 @@
 <script>
   import { ConicGradient } from '@skeletonlabs/skeleton';
 
+  import { base } from '$app/paths';
   import { page } from '$app/stores';
   import { decklist } from '$lib/stores/decklist.js';
   import { working } from '$lib/stores/cards_db.js';
 
   $: paths = [
-    { name: 'Import decklist', path: '/import' },
-    { name: `Build deck [${$decklist.length}]`, path: '/' },
-    { name: 'Export decklist', path: '/export' }
+    { name: 'Import decklist', path: `${base}/import` },
+    { name: `Build deck [${$decklist.length}]`, path: `${base}/` },
+    { name: 'Export decklist', path: `${base}/export` }
   ];
 
   const conicStops = [
