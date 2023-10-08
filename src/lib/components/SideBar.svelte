@@ -12,6 +12,8 @@
     { name: 'Export decklist', path: `${base}/export` }
   ];
 
+  $: current_path = base + $page.url.pathname;
+
   const conicStops = [
     { color: 'transparent', start: 0, end: 25 },
     { color: 'rgb(var(--color-primary-500))', start: 75, end: 100 }
@@ -22,7 +24,7 @@
   {#each paths as item (item.path)}
     <ul>
       <li>
-        <a href={item.path} class:!bg-primary-50-900-token={item.path == $page.url.pathname}>
+        <a href={item.path} class:!bg-primary-50-900-token={item.path == current_path}>
           <!--<span class="badge bg-primary-500">[x]</span>-->
           <span class="flex-auto">{item.name}</span>
         </a>
