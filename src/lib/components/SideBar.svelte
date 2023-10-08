@@ -8,7 +8,7 @@
 
   $: paths = [
     { name: 'Import decklist', path: `${base}/import` },
-    { name: `Build deck [${$decklist.length}]`, path: `${base}/` },
+    { name: `Build deck [${$decklist.length}]`, path: base || '/' },
     { name: 'Export decklist', path: `${base}/export` }
   ];
 
