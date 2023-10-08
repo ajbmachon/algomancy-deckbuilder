@@ -1,5 +1,6 @@
 <script>
   import { popup } from '@skeletonlabs/skeleton';
+  import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
   import Checkbox from '$lib/components/Checkbox.svelte';
   import Search from '$lib/components/Search.svelte';
@@ -9,6 +10,7 @@
   export let filter;
 
   $: filter.search_terms = search_terms(filter.search_value);
+  $: scopes = Object.keys($card_pool.search_scopes);
 </script>
 
 <div>
@@ -19,7 +21,7 @@
         be scoped to a particular part of the card by prefixing it with <code>SCOPE:</code>
         (i.e. the default <code>SCOPE</code> is <code>any</code>. Available scopes:
       </p>
-      {#each Object.keys($card_pool.search_scopes) as scope}
+      {#each scopes as scope}
         <pre>{scope}</pre>
       {/each}
       <p>
@@ -44,6 +46,14 @@
         hybrids only
       </Checkbox>
     </div>
+  </div>
+
+  <div class="pt-4 capitalize">
+    <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
+      {#each scopes as scope}
+        <RadioItem bind:group={filter.sort_by} name="sort_by" value={scope}>{scope}</RadioItem>
+      {/each}
+    </RadioGroup>
   </div>
 </div>
 

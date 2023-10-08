@@ -1,11 +1,19 @@
 <script>
+  import { ConicGradient } from '@skeletonlabs/skeleton';
+
   import { page } from '$app/stores';
   import { decklist } from '$lib/stores/decklist.js';
+  import { working } from '$lib/stores/cards_db.js';
 
   $: paths = [
     { name: 'Import decklist', path: '/import' },
     { name: `Build deck [${$decklist.length}]`, path: '/' },
     { name: 'Export decklist', path: '/export' }
+  ];
+
+  const conicStops = [
+    { color: 'transparent', start: 0, end: 25 },
+    { color: 'rgb(var(--color-primary-500))', start: 75, end: 100 }
   ];
 </script>
 
@@ -21,3 +29,11 @@
     </ul>
   {/each}
 </nav>
+
+{#if $working}
+  <div>
+    <ConicGradient stops={conicStops} spin width="w-8"
+      ><p class="text-xs font-thin">Sorting cards...</p></ConicGradient
+    >
+  </div>
+{/if}

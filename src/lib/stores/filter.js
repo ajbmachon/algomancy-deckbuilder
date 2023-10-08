@@ -3,10 +3,10 @@ import { writable } from 'svelte/store';
 export const search_filter = writable({
   factions: { colorless: false },
   hybrids_only: false,
-  search_value: ''
+  search_value: '',
+  sort_by: 'any'
 });
 export function filter_card_pool(filter, pool_by_key, search_scopes) {
-  console.log('run filter');
   const init_acc = [];
   const matched_keys =
     (filter.search_terms &&
@@ -45,5 +45,19 @@ export function filter_card_pool(filter, pool_by_key, search_scopes) {
       return acc;
     }, []);
 
+  if (filter.sort_by !== 'any') {
+    new_pool.sort((a, b) => {
+      const a_val = a.card[filter.sort_by];
+      const b_val = b.card[filter.sort_by];
+      // Doing reverse order, to get "biggest" on top!
+      if (a_val > b_val) {
+        return -1;
+      }
+      if (a_val < b_val) {
+        return 1;
+      }
+      return 0;
+    });
+  }
   return new_pool;
 }
