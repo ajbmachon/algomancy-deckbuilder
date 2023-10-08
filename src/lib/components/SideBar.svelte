@@ -8,11 +8,13 @@
 
   $: paths = [
     { name: 'Import decklist', path: `${base}/import` },
-    { name: `Build deck [${$decklist.length}]`, path: base || '/' },
+    { name: `Build deck [${$decklist.length}]`, path: `${base}/` },
     { name: 'Export decklist', path: `${base}/export` }
   ];
 
   $: current_path = base + $page.url.pathname;
+
+  $: console.log({current_path, base, pathname: $page.url.pathname, paths});
 
   const conicStops = [
     { color: 'transparent', start: 0, end: 25 },
@@ -24,7 +26,7 @@
   {#each paths as item (item.path)}
     <ul>
       <li>
-        <a href={item.path} class:!bg-primary-50-900-token={item.path == current_path}>
+        <a href={item.path} class:active={item.path == current_path}>
           <!--<span class="badge bg-primary-500">[x]</span>-->
           <span class="flex-auto">{item.name}</span>
         </a>
@@ -40,3 +42,12 @@
     >
   </div>
 {/if}
+
+<style>
+  .active {
+    background-color: rgb(var(--color-primary-500) / 0.5);
+  }
+  .active:hover {
+    background-color: rgb(var(--color-primary-500) / 0.6) !important;
+  }
+</style>
