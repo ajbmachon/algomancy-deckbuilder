@@ -8,7 +8,8 @@
 
   $: paths = [
     { name: 'Import/Export', path: `${base}/port` },
-    { name: `Build [${$decklist.length}]`, path: base || '/' }
+    { name: `Build [${$decklist.length}]`, path: base || '/' },
+    { name: 'Analyse', path: `${base}/analyse` }
   ];
 
   const conicStops = [

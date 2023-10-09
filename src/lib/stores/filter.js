@@ -61,3 +61,16 @@ export function filter_card_pool(filter, pool_by_key, search_scopes) {
   }
   return new_pool;
 }
+
+export function partition(cards, attr) {
+  return Object.entries(
+    cards.reduce((part, card) => {
+      const value = `${card[attr]}` || '(blank)';
+      if (part[value] === undefined) {
+        part[value] = [];
+      }
+      part[value].push(card);
+      return part;
+    }, {})
+  );
+}
