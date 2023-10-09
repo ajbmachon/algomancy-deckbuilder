@@ -1,11 +1,14 @@
 import { writable } from 'svelte/store';
 
-export const search_filter = writable({
-  factions: { colorless: false },
-  hybrids_only: false,
-  search_value: '',
-  sort_by: 'any'
-});
+export function default_filter() {
+  return {
+    factions: { colorless: false },
+    hybrids_only: false,
+    search_value: '',
+    sort_by: 'any'
+  };
+}
+export const search_filter = writable(default_filter());
 export function filter_card_pool(filter, pool_by_key, search_scopes) {
   const init_acc = [];
   const matched_keys =
@@ -65,12 +68,21 @@ export function filter_card_pool(filter, pool_by_key, search_scopes) {
 export function partition(cards, attr) {
   return Object.entries(
     cards.reduce((part, card) => {
-      const value = `${card[attr]}` || '(blank)';
-      if (part[value] === undefined) {
-        part[value] = [];
+      let values = card[attr];
+      if (!Array.isArray(values)) {
+        values = [values];
+      } else if (attr === 'factions' && values.length > 1) {
+        values = ['hybrid'];
       }
-      part[value].push(card);
+      for (const value of values) {
+        if (part[value] === undefined) {
+          part[value] = [];
+        }
+        part[value].push(card);
+      }
       return part;
     }, {})
   );
 }
+
+export const analyse_scope = writable(null);

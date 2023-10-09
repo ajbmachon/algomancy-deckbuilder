@@ -1,31 +1,36 @@
 <script>
   import { ConicGradient } from '@skeletonlabs/skeleton';
-  import { partition } from '$lib/stores/filter.js';
+  import { partition, analyse_scope } from '$lib/stores/filter.js';
 
   export let cards;
   export let attr;
   export let color_map = {};
 
-  $: conicStops = partition(cards, attr)
-    .toSorted((a, b) => Math.min(1, Math.max(-1, b[1].length - a[1].length)))
-    .reduce(
-      ({ stops, prev }, [label, part]) => {
-        const share = part.length / cards.length;
-        const stop = {
-          label,
-          color: color_map[label] || `hsl(${275 + (360 * prev.end) / 100}deg, 60%, 40%)`,
-          start: prev.end,
-          end: prev.end + 100 * share
-        };
-        stops.push(stop);
-        return { stops, prev: stop };
-      },
-      { stops: [], prev: { end: 0 } }
-    ).stops;
+  $: pies = partition(cards, attr).toSorted((a, b) =>
+    Math.min(1, Math.max(-1, b[1].length - a[1].length))
+  );
+  $: conicStops = pies.reduce(
+    ({ stops, prev }, [label, part]) => {
+      const share = part.length / cards.length;
+      const stop = {
+        label,
+        color: color_map[label] || `hsl(${275 + (300 * prev.end) / 100}deg, 60%, 40%)`,
+        start: prev.end,
+        end: prev.end + 100 * share
+      };
+      stops.push(stop);
+      return { stops, prev: stop };
+    },
+    { stops: [], prev: { end: 0 } }
+  ).stops;
+
+  function clicked(e) {
+    analyse_scope.set({ attr, value: e.target.innerText });
+  }
 </script>
 
 <div>
-  <ConicGradient stops={conicStops} legend>
+  <ConicGradient stops={conicStops} legend on:click={clicked}>
     <slot>
       <span class="capitalize">{attr}</span>
     </slot>
