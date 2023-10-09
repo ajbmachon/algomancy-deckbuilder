@@ -1,10 +1,9 @@
 <script>
   import Button from '$lib/components/Button.svelte';
+  import { CodeBlock } from '@skeletonlabs/skeleton';
   import { decklist } from '$lib/stores/decklist.js';
   import { pool_entry } from '$lib/search.js';
   import { cards_by_name } from '$lib/stores/cards_db.js';
-
-  let copy_msg;
 
   function paste_decklist_from_clipboard() {
     navigator.clipboard.readText().then((text) => {
@@ -19,16 +18,31 @@
           })
           .reduce((acc, entries) => acc.concat(entries), [])
       );
-      copy_msg = 'Pasted decklist from clipboard!';
     });
   }
+
+  function get_decklist_txt(pool) {
+    return Object.values(
+      pool.reduce((acc, entry) => {
+        const key = entry.card.key;
+        if (acc[key] === undefined) {
+          acc[key] = [];
+        }
+        acc[key].push(entry.card);
+        return acc;
+      }, {})
+    )
+      .map((cards) => `${cards.length}x ${cards[0].name}`)
+      .join('\n');
+  }
+
+  $: decklist_txt = get_decklist_txt($decklist);
 </script>
 
 <div class="mt-4 ml-4">
   <Button on:click={paste_decklist_from_clipboard}>Paste decklist from clipboard</Button>
 </div>
-{#if copy_msg}
-  <div>
-    {copy_msg}
-  </div>
-{/if}
+
+{#key decklist_txt}
+  <CodeBlock code={decklist_txt} lineNumbers class="max-w-lg ml-4 mt-4" />
+{/key}

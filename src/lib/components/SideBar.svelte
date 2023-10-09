@@ -7,9 +7,8 @@
   import { working } from '$lib/stores/cards_db.js';
 
   $: paths = [
-    { name: 'Import decklist', path: `${base}/import` },
-    { name: `Build deck [${$decklist.length}]`, path: base || '/' },
-    { name: 'Export decklist', path: `${base}/export` }
+    { name: 'Import/Export', path: `${base}/port` },
+    { name: `Build [${$decklist.length}]`, path: base || '/' }
   ];
 
   const conicStops = [
