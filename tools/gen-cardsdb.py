@@ -60,7 +60,7 @@ class AlgoCard:
             name=src["name"],
             power=str(src["power"]),
             toughness=str(src["toughness"]),
-            affinity=str(src["cost"]),
+            affinity=''.join(sorted(str(src["cost"]))),
             cost=str(src["total_cost"]),
             type=src["type"],
             attributes=re.findall(r"{([^}]*)}", src["type"]),
