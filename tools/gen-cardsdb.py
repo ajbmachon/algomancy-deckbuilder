@@ -52,6 +52,9 @@ class AlgoCard:
     @classmethod
     def from_upstream(cls, key: int, src: Mapping[str, Any]) -> AlgoCard:
         img_name = src["name"].lower().replace(",", "").replace(" ", "-")
+        factions = src["factions"]
+        if len(factions) > 1:
+            factions.append("hybrid")
         return cls(
             key=key,
             name=src["name"],
@@ -65,7 +68,7 @@ class AlgoCard:
             text=src["text"],
             rev=src["revision_date_time"],
             details=src["details"],
-            factions=src["factions"],
+            factions=factions,
             rulings=src["rulings"],
             image_name=f'{img_name}.jpg',
         )
@@ -104,11 +107,15 @@ class AlgoDB:
                 tags.add(tag, card.key)
 
     def asdict(self) -> Mapping[str, Any]:
+        faction_prio = {
+            "hybrid": "zza",
+            "colorless": "zzb",
+        }
         return dict(
             cards=[
                 card.asdict() for card in self.cards.values()
             ],
-            factions=sorted(tuple(self.factions), key=lambda f: f == "colorless" and "zzz" or f),
+            factions=sorted(tuple(self.factions), key=lambda f: faction_prio.get(f, f)),
             search_scopes={
                 scope: tags.asdict() for scope, tags in self.search_scopes.items()
             },

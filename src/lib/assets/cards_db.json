@@ -13,7 +13,7 @@
       "text": "Gain control of target unit with cost [x] or less unless its controller pays  [x].",
       "rev": "2023-09-11 11:45:08.293473",
       "details": "",
-      "factions": ["wood", "metal"],
+      "factions": ["wood", "metal", "hybrid"],
       "rulings": [],
       "image_name": "abduct.jpg"
     },
@@ -81,7 +81,7 @@
       "text": "[Augment] Whenever a nontoken ally spawns, create a Crystal 1.",
       "rev": "2023-09-11 11:45:08.293473",
       "details": "",
-      "factions": ["earth", "wood"],
+      "factions": ["earth", "wood", "hybrid"],
       "rulings": [],
       "image_name": "aether-channeler.jpg"
     },
@@ -98,7 +98,7 @@
       "text": "Whenever you put one or more counters on an ally,  [Switch1] Draw a card.",
       "rev": "2023-09-11 11:45:08.293473",
       "details": "",
-      "factions": ["metal", "earth"],
+      "factions": ["metal", "earth", "hybrid"],
       "rulings": [],
       "image_name": "aether-concentrator.jpg"
     },
@@ -341,7 +341,7 @@
       "text": "[Augment] At the beginning of your main phase, recall all other allies.",
       "rev": "2023-09-11 11:45:08.296104",
       "details": "",
-      "factions": ["water", "wood"],
+      "factions": ["water", "wood", "hybrid"],
       "rulings": [],
       "image_name": "ascendant-mycoid.jpg"
     },
@@ -358,7 +358,7 @@
       "text": "When a player takes non-combat damage,  [Switch1] Draw a card.",
       "rev": "2023-09-11 11:45:08.296104",
       "details": "",
-      "factions": ["fire", "water"],
+      "factions": ["fire", "water", "hybrid"],
       "rulings": ["On the first trigger, this makes a Fireball 0 even if you have no spells."],
       "image_name": "astral-painseeker.jpg"
     },
@@ -409,7 +409,7 @@
       "text": "[Augment] Whenever a player casts a nontoken spell, create a Crystal 1.",
       "rev": "2023-09-11 11:45:08.296104",
       "details": "",
-      "factions": ["water", "earth"],
+      "factions": ["water", "earth", "hybrid"],
       "rulings": [],
       "image_name": "augur-of-augmentation.jpg"
     },
@@ -902,7 +902,7 @@
       "text": "[Switch1] Create a Crystal 1 and a Poison 1.",
       "rev": "2023-09-11 11:45:08.300124",
       "details": "",
-      "factions": ["earth", "wood"],
+      "factions": ["earth", "wood", "hybrid"],
       "rulings": [],
       "image_name": "corroded-alchemy.jpg"
     },
@@ -987,7 +987,7 @@
       "text": "[Switch1] Each player sacrifices two units. If four or more units were sacrificed this way, repeat this.",
       "rev": "2023-09-11 11:45:08.301124",
       "details": "",
-      "factions": ["fire", "metal"],
+      "factions": ["fire", "metal", "hybrid"],
       "rulings": [],
       "image_name": "crumbling-immolation.jpg"
     },
@@ -1089,7 +1089,7 @@
       "text": "[Augment] After combat, if you won combat, draw a card. Otherwise, target opponent gains control of me. {i}(Dealing combat damage to a player or preventing a player from dealing combat damage to you wins combat.)",
       "rev": "2023-09-11 11:45:08.301124",
       "details": "",
-      "factions": ["fire", "metal"],
+      "factions": ["fire", "metal", "hybrid"],
       "rulings": [],
       "image_name": "dailek-the-corrupter.jpg"
     },
@@ -1106,7 +1106,7 @@
       "text": "[Augment] Whenever you cast a spell during com- bat, note its cost as X. Then each player sacrifices a unit with cost X or less.",
       "rev": "2023-09-11 11:45:08.301124",
       "details": "",
-      "factions": ["fire", "water"],
+      "factions": ["fire", "water", "hybrid"],
       "rulings": [],
       "image_name": "death-greeter.jpg"
     },
@@ -1140,7 +1140,7 @@
       "text": "Negate target effect. Its controller Glimpses 3. {i}(Reveal the top three cards of their deck. They may play one of them now, ignoring threshold. Recycle the rest.)",
       "rev": "2023-09-11 11:45:08.302119",
       "details": "",
-      "factions": ["water", "metal"],
+      "factions": ["water", "metal", "hybrid"],
       "rulings": [],
       "image_name": "dematerialize.jpg"
     },
@@ -1276,7 +1276,7 @@
       "text": "[Augment] Whenever a player casts one or more spells targeting me, they copy those spells and may choose new targets for the copies.",
       "rev": "2023-09-11 11:45:08.303115",
       "details": "",
-      "factions": ["wood", "earth"],
+      "factions": ["wood", "earth", "hybrid"],
       "rulings": [
         "A copy of a spell is not created or cast, nor is it a token. This copy effect will not trigger any effects that care about creating tokens or casting spells."
       ],
@@ -1346,7 +1346,7 @@
       "text": "[Augment] Whenever an allied nontoken spell deals damage, create that many 1/1 units.",
       "rev": "2023-09-11 11:45:08.303115",
       "details": "",
-      "factions": ["fire", "wood"],
+      "factions": ["fire", "wood", "hybrid"],
       "rulings": [],
       "image_name": "ember-of-life.jpg"
     },
@@ -1363,7 +1363,7 @@
       "text": "[Augment] Whenever an ally despawns, I deal 1 damage to any target.",
       "rev": "2023-09-11 11:45:08.303115",
       "details": "",
-      "factions": ["water", "fire"],
+      "factions": ["water", "fire", "hybrid"],
       "rulings": [],
       "image_name": "emberdrift-revenant.jpg"
     },
@@ -1618,7 +1618,7 @@
       "text": "[Augment] Units can be played during combat.",
       "rev": "2023-09-11 11:45:08.305111",
       "details": "",
-      "factions": ["water", "metal"],
+      "factions": ["water", "metal", "hybrid"],
       "rulings": [],
       "image_name": "flash-thing.jpg"
     },
@@ -1635,7 +1635,7 @@
       "text": "Choose one — Create X 1/1 units; or allies become base X/X until regroup.",
       "rev": "2023-09-11 11:45:08.305111",
       "details": "",
-      "factions": ["wood", "metal"],
+      "factions": ["wood", "metal", "hybrid"],
       "rulings": [],
       "image_name": "floral-singularity.jpg"
     },
@@ -1720,7 +1720,7 @@
       "text": "Put a number of -1/-1 counters on target unit equal to its health, and that many +1/+1 counters on another target unit controlled by the same player.",
       "rev": "2023-09-11 11:45:08.306108",
       "details": "",
-      "factions": ["wood", "metal"],
+      "factions": ["wood", "metal", "hybrid"],
       "rulings": [],
       "image_name": "forced-germination.jpg"
     },
@@ -1856,7 +1856,7 @@
       "text": "[Switch1] Create a Robot X, where X is the greatest health among units you control.",
       "rev": "2023-09-11 11:45:08.307109",
       "details": "",
-      "factions": ["earth", "metal"],
+      "factions": ["earth", "metal", "hybrid"],
       "rulings": [],
       "image_name": "generate.jpg"
     },
@@ -2266,7 +2266,7 @@
       "text": "[Switch1] /[Sacrifice X units]: Deal X damage to any target.",
       "rev": "2023-09-11 11:45:08.316543",
       "details": "",
-      "factions": ["fire", "wood"],
+      "factions": ["fire", "wood", "hybrid"],
       "rulings": [],
       "image_name": "infernal-cultivation.jpg"
     },
@@ -2436,7 +2436,7 @@
       "text": "Deal 2 damage to each of X target allies and 2X damage divided as you choose among any number of other target units.",
       "rev": "2023-09-11 11:45:08.317541",
       "details": "",
-      "factions": ["earth", "fire"],
+      "factions": ["earth", "fire", "hybrid"],
       "rulings": [],
       "image_name": "landslide.jpg"
     },
@@ -2470,7 +2470,7 @@
       "text": "[Switch1] /[Put a +1/+1 counter on each ally {i1}or put a -1/-1 counter on each enemy.]",
       "rev": "2023-09-11 11:45:08.317541",
       "details": "",
-      "factions": ["wood", "metal"],
+      "factions": ["wood", "metal", "hybrid"],
       "rulings": [],
       "image_name": "life-and-death.jpg"
     },
@@ -2538,7 +2538,7 @@
       "text": "I spawn with three -1/-1 counters on me. {/n}[Augment] Whenever you cast a nontoken spell, you may move a counter from me onto another target unit.",
       "rev": "2023-09-11 11:45:08.318538",
       "details": "",
-      "factions": ["wood", "water"],
+      "factions": ["wood", "water", "hybrid"],
       "rulings": [],
       "image_name": "loob.jpg"
     },
@@ -2572,7 +2572,7 @@
       "text": "Afer combat, [Switch1] Recall up to one target unit with cost less than or equal to the number of units in my formation.",
       "rev": "2023-09-11 11:45:08.318538",
       "details": "",
-      "factions": ["water", "wood"],
+      "factions": ["water", "wood", "hybrid"],
       "rulings": [],
       "image_name": "lumengrove-lurker.jpg"
     },
@@ -2642,7 +2642,7 @@
       "text": "[Augment] Your units and spells are Electric. {i}(Excess damage by electric sources can be directed to an adjacent unit.)",
       "rev": "2023-09-11 11:45:08.318538",
       "details": "",
-      "factions": ["fire", "metal"],
+      "factions": ["fire", "metal", "hybrid"],
       "rulings": [],
       "image_name": "maelstrom-charger.jpg"
     },
@@ -2659,7 +2659,7 @@
       "text": "/[Sacrifice X units]: Negate up to X target effects.",
       "rev": "2023-09-11 11:45:08.319535",
       "details": "",
-      "factions": ["fire", "metal"],
+      "factions": ["fire", "metal", "hybrid"],
       "rulings": [],
       "image_name": "malevolent-machinations.jpg"
     },
@@ -2812,7 +2812,7 @@
       "text": "[Augment] When you are dealt combat damage, target opponent gains control of me.",
       "rev": "2023-09-11 11:45:08.319535",
       "details": "",
-      "factions": ["water", "wood"],
+      "factions": ["water", "wood", "hybrid"],
       "rulings": [],
       "image_name": "mindwarp-sporefrog.jpg"
     },
@@ -2969,7 +2969,7 @@
       "text": "[Augment] After combat, sacrifice another unit.",
       "rev": "2023-09-11 11:45:08.321558",
       "details": "",
-      "factions": ["earth", "fire"],
+      "factions": ["earth", "fire", "hybrid"],
       "rulings": [],
       "image_name": "molten-ritualist.jpg"
     },
@@ -2986,7 +2986,7 @@
       "text": "[Augment] Whenever I survive damage, each oppo- nent sacrifices that many units.",
       "rev": "2023-09-11 11:45:08.321558",
       "details": "",
-      "factions": ["earth", "fire"],
+      "factions": ["earth", "fire", "hybrid"],
       "rulings": [],
       "image_name": "molten-tormentor.jpg"
     },
@@ -3175,7 +3175,7 @@
       "text": "[Augment] Your spells gain all of my attributes.",
       "rev": "2023-09-11 11:45:08.322555",
       "details": "",
-      "factions": ["earth", "fire"],
+      "factions": ["earth", "fire", "hybrid"],
       "rulings": [],
       "image_name": "nyordix.jpg"
     },
@@ -3296,7 +3296,7 @@
       "text": "[Augment] Negate the first spell played by each player in this skirmish.",
       "rev": "2023-09-11 11:45:08.322555",
       "details": "",
-      "factions": ["water", "earth"],
+      "factions": ["water", "earth", "hybrid"],
       "rulings": [],
       "image_name": "origon.jpg"
     },
@@ -3758,7 +3758,7 @@
       "text": "I can't be grafted onto other cards. {/n}After combat,  [Switch] Recall me and all of my modifications. {i}(Put them into your hand).",
       "rev": "2023-09-11 11:45:08.326493",
       "details": "",
-      "factions": ["water", "earth"],
+      "factions": ["water", "earth", "hybrid"],
       "rulings": [],
       "image_name": "reclaimer.jpg"
     },
@@ -3775,7 +3775,7 @@
       "text": "Augment target unit onto another target unit.",
       "rev": "2023-09-11 11:45:08.327489",
       "details": "",
-      "factions": ["earth", "metal"],
+      "factions": ["earth", "metal", "hybrid"],
       "rulings": [],
       "image_name": "reconfigure.jpg"
     },
@@ -4013,7 +4013,7 @@
       "text": "[Augment] You may augment cards from hand and discard during combat as if they were viruses.",
       "rev": "2023-09-11 11:45:08.328486",
       "details": "",
-      "factions": ["metal", "earth"],
+      "factions": ["metal", "earth", "hybrid"],
       "rulings": [],
       "image_name": "rook.jpg"
     },
@@ -4030,7 +4030,7 @@
       "text": "[Augment] Everything is deadly. {i}(Any damage from a deadly source will kill a unit.)",
       "rev": "2023-09-11 11:45:08.328486",
       "details": "",
-      "factions": ["wood", "fire"],
+      "factions": ["wood", "fire", "hybrid"],
       "rulings": [],
       "image_name": "rotspore-herald.jpg"
     },
@@ -4132,7 +4132,7 @@
       "text": "[Battle] Ambush  [2be] {i}(Play me with the effect \"Recall target ally, put me into their position in play.\"){/i}  {/n}[once] When I am dealt damage, I deal that much damage to any target.",
       "rev": "2023-09-11 11:45:08.329484",
       "details": "",
-      "factions": ["water", "earth"],
+      "factions": ["water", "earth", "hybrid"],
       "rulings": [],
       "image_name": "sandrew.jpg"
     },
@@ -4149,7 +4149,7 @@
       "text": "Create a 1/1 unit for each unit in target formation.",
       "rev": "2023-09-11 11:45:08.329484",
       "details": "",
-      "factions": ["water", "wood"],
+      "factions": ["water", "wood", "hybrid"],
       "rulings": [],
       "image_name": "saprogenesis.jpg"
     },
@@ -4268,7 +4268,7 @@
       "text": "[once]  [one]: Recall another ally. I gain flying and +2/+0 until regroup.",
       "rev": "2023-09-11 11:45:08.330479",
       "details": "",
-      "factions": ["water", "metal"],
+      "factions": ["water", "metal", "hybrid"],
       "rulings": [],
       "image_name": "seraphic-sentry.jpg"
     },
@@ -4336,7 +4336,7 @@
       "text": "You may play me into an open spot in a formation. {i}(Including the opponent's.){/i}  {/n}[Augment] Whenever a nontoken enemy dies, sacrifice another unit.",
       "rev": "2023-09-11 11:45:08.330479",
       "details": "",
-      "factions": ["fire", "wood"],
+      "factions": ["fire", "wood", "hybrid"],
       "rulings": [],
       "image_name": "shocking-shiitake.jpg"
     },
@@ -4523,7 +4523,7 @@
       "text": "[Augment] Whenever a nontoken ally dies, create a Fireball 1.",
       "rev": "2023-09-11 11:45:08.331479",
       "details": "",
-      "factions": ["fire", "metal"],
+      "factions": ["fire", "metal", "hybrid"],
       "rulings": [],
       "image_name": "soulforger.jpg"
     },
@@ -4642,7 +4642,7 @@
       "text": "[Augment] Double the X value of Crystal and Poison tokens you create.",
       "rev": "2023-09-11 11:45:08.332475",
       "details": "",
-      "factions": ["earth", "wood"],
+      "factions": ["earth", "wood", "hybrid"],
       "rulings": [],
       "image_name": "spirit-of-nature.jpg"
     },
@@ -4676,7 +4676,7 @@
       "text": "[Augment] Whenever I am dealt damage, put that many -1/-1 counters on target unit.",
       "rev": "2023-09-11 11:45:08.332475",
       "details": "",
-      "factions": ["earth", "wood"],
+      "factions": ["earth", "wood", "hybrid"],
       "rulings": [],
       "image_name": "spraying-colony.jpg"
     },
@@ -4761,7 +4761,7 @@
       "text": "[Augment] Spells with cost  [three] or less, cost  [three].",
       "rev": "2023-09-11 11:45:08.333473",
       "details": "",
-      "factions": ["water", "earth"],
+      "factions": ["water", "earth", "hybrid"],
       "rulings": [],
       "image_name": "stasis-sentry.jpg"
     },
@@ -4897,7 +4897,7 @@
       "text": " [Switch1] /[Sacrifice a unit, note its health as X]: Each opponent sacrifices units with total health greater than or equal to X.",
       "rev": "2023-09-11 11:45:08.334442",
       "details": "",
-      "factions": ["earth", "fire"],
+      "factions": ["earth", "fire", "hybrid"],
       "rulings": [],
       "image_name": "structural-collapse.jpg"
     },
@@ -5033,7 +5033,7 @@
       "text": "When I despawn, you may pay [one] to take 1 damage and draw a card.",
       "rev": "2023-09-11 11:45:08.335439",
       "details": "",
-      "factions": ["water", "fire"],
+      "factions": ["water", "fire", "hybrid"],
       "rulings": [],
       "image_name": "tempest-oracle.jpg"
     },
@@ -5084,7 +5084,7 @@
       "text": "[Augment] Teams may only play one nontoken spell in each skirmish. {i}(Token spells are unaffected by this.)",
       "rev": "2023-09-11 11:45:08.335439",
       "details": "",
-      "factions": ["earth", "metal"],
+      "factions": ["earth", "metal", "hybrid"],
       "rulings": [],
       "image_name": "the-silent.jpg"
     },
@@ -5101,7 +5101,7 @@
       "text": "[Augment] As long as an enemy has died in this skirmish, allied tokens gain +1/+1 and enemy tokens gain -1/-1.",
       "rev": "2023-09-11 11:45:08.335439",
       "details": "",
-      "factions": ["wood", "metal"],
+      "factions": ["wood", "metal", "hybrid"],
       "rulings": [],
       "image_name": "the-world-shepherd.jpg"
     },
@@ -5237,7 +5237,7 @@
       "text": "End this skirmish. Erase this spell. {i}(Negate all spells and abilities, combat is over.)",
       "rev": "2023-09-11 11:45:08.336436",
       "details": "",
-      "factions": ["water", "metal"],
+      "factions": ["water", "metal", "hybrid"],
       "rulings": [],
       "image_name": "time-stop.jpg"
     },
@@ -5254,7 +5254,7 @@
       "text": "Recall X target nontoken allies. Then each player sacrifices a unit for each ally recalled this way.",
       "rev": "2023-09-11 11:45:08.336436",
       "details": "",
-      "factions": ["water", "fire"],
+      "factions": ["water", "fire", "hybrid"],
       "rulings": [],
       "image_name": "torrential-reclamation.jpg"
     },
@@ -5339,7 +5339,7 @@
       "text": "[Augment] Whenever another ally enters play during combat, double its power or its health until regroup.",
       "rev": "2023-09-11 11:45:08.337433",
       "details": "",
-      "factions": ["water", "metal"],
+      "factions": ["water", "metal", "hybrid"],
       "rulings": [],
       "image_name": "transmutide-enigma.jpg"
     },
@@ -5509,7 +5509,7 @@
       "text": "[Switch] /[Sacrifice a unit, note its health as X]: Create a Poison X and a Fireball X.",
       "rev": "2023-09-11 11:45:08.338431",
       "details": "",
-      "factions": ["fire", "wood"],
+      "factions": ["fire", "wood", "hybrid"],
       "rulings": [],
       "image_name": "volatile-toxicity.jpg"
     },
@@ -5633,7 +5633,7 @@
       "image_name": "worldbender.jpg"
     }
   ],
-  "factions": ["earth", "fire", "metal", "water", "wood", "colorless"],
+  "factions": ["earth", "fire", "metal", "water", "wood", "hybrid", "colorless"],
   "search_scopes": {
     "any": {
       " abduct ": [1001],
@@ -5767,6 +5767,12 @@
         1222, 1224, 1226, 1228, 1236, 1246, 1247, 1249, 1251, 1253, 1266, 1279, 1291, 1294, 1295,
         1299, 1300, 1308, 1311, 1313, 1314, 1315, 1319, 1320, 1323, 1329, 1331, 1001, 1003, 1006,
         1013, 1017, 1023
+      ],
+      " hybrid ": [
+        1024, 1152, 1280, 1156, 1157, 1288, 1166, 1296, 1299, 1300, 1175, 1176, 1308, 1053, 1309,
+        1058, 1187, 1314, 1064, 1065, 1194, 1067, 1324, 1075, 1079, 1080, 1221, 1222, 1096, 1097,
+        1102, 1236, 1237, 1110, 1243, 1244, 1251, 1255, 1001, 1005, 1006, 1134, 1266, 1144, 1273,
+        1146, 1275, 1020, 1021, 1150
       ],
       " aberrant ": [1002, 1003],
       " populace ": [1002],
@@ -9244,6 +9250,12 @@
         1222, 1224, 1226, 1228, 1236, 1246, 1247, 1249, 1251, 1253, 1266, 1279, 1291, 1294, 1295,
         1299, 1300, 1308, 1311, 1313, 1314, 1315, 1319, 1320, 1323, 1329, 1331, 1001, 1003, 1006,
         1013, 1017, 1023
+      ],
+      " hybrid ": [
+        1024, 1152, 1280, 1156, 1157, 1288, 1166, 1296, 1299, 1300, 1175, 1176, 1308, 1053, 1309,
+        1058, 1187, 1314, 1064, 1065, 1194, 1067, 1324, 1075, 1079, 1080, 1221, 1222, 1096, 1097,
+        1102, 1236, 1237, 1110, 1243, 1244, 1251, 1255, 1001, 1005, 1006, 1134, 1266, 1144, 1273,
+        1146, 1275, 1020, 1021, 1150
       ],
       " fire ": [
         1281, 1154, 1156, 1157, 1286, 1288, 1274, 1296, 1170, 1044, 1173, 1174, 1175, 1048, 1176,

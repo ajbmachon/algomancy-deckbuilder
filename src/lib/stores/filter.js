@@ -11,6 +11,8 @@ export function default_filter() {
 export const search_filter = writable(default_filter());
 export function filter_card_pool(filter, pool_by_key, search_scopes) {
   const init_acc = [];
+
+  // Yes yes, utterly unreadable, I know...
   const matched_keys =
     (filter.search_terms &&
       filter.search_terms
