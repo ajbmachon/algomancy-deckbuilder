@@ -7,44 +7,52 @@
 
   const attrs = ['factions', 'affinity', 'cost', 'power', 'toughness', 'attributes', 'complexity'];
   $: raw_cards = $decklist.length > 0 ? $decklist.map((e) => e.card) : $card_pool.cards;
-  $: cards = $analyse_scope
-    ? raw_cards.filter((card) => {
-        const value = card[$analyse_scope.attr];
+  $: cards = $analyse_scope.reduce(
+    (cards, scope) =>
+      cards.filter((card) => {
+        const value = card[scope.attr];
         if (Array.isArray(value)) {
-          return value.includes($analyse_scope.value);
+          return value.includes(scope.value);
         } else {
-          return value === $analyse_scope.value;
+          return value === scope.value;
         }
-      })
-    : raw_cards;
+      }),
+    raw_cards
+  );
 
-  function unscope() {
-    analyse_scope.set(null);
+  function unscope(idx) {
+    return () => {
+      analyse_scope.update((scopes) => {
+        scopes.splice(idx, 1);
+        return scopes;
+      });
+    };
   }
 
   function search_scoped() {
-    const attr = $analyse_scope.attr;
-    const value = $analyse_scope.value;
+    const search_value = $analyse_scope.map(({ attr, value }) => `${attr}:${value}`).join(' ');
     search_filter.set({
       ...default_filter(),
-      search_value: `${attr}:${value}`
+      search_value
     });
   }
 </script>
 
-{#if $analyse_scope}
+{#if $analyse_scope.length > 0}
   <div class="mb-8">
-    <button on:click={unscope} type="button" class="btn btn-sm variant-ghost-secondary">
-      Unscope
-    </button>
-
-    Scoped on <code class="badge variant-ghost-secondary">{$analyse_scope.attr}</code>
-    for <code class="badge variant-ghost-secondary">{$analyse_scope.value}</code>
-    with
-    <a class="anchor" href={base || '/'} on:click={search_scoped}
-      >{cards.length} card{cards.length === 1 ? '' : 's'}</a
-    >
-    (out of {raw_cards.length} card{raw_cards.length === 1 ? '' : 's'})
+    {#each $analyse_scope as scope, idx}
+      <div>
+        Scoped on <code class="badge variant-ghost-secondary">{scope.attr}</code>
+        for <code class="badge variant-ghost-secondary">{scope.value}.</code>
+        <span class="anchor" on:click={unscope(idx)}>drop</span>
+      </div>
+    {/each}
+    <div>
+      with <a class="anchor" href={base || '/'} on:click={search_scoped}>
+        {cards.length} card{cards.length === 1 ? '' : 's'}
+      </a>
+      (out of {raw_cards.length} card{raw_cards.length === 1 ? '' : 's'})
+    </div>
   </div>
 {/if}
 

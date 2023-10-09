@@ -24,13 +24,16 @@
     { stops: [], prev: { end: 0 } }
   ).stops;
 
-  function clicked(e) {
-    analyse_scope.set({ attr, value: e.target.innerText });
+  function scope(e) {
+    analyse_scope.update((scopes) => {
+      scopes.push({ attr, value: e.target.innerText });
+      return scopes;
+    });
   }
 </script>
 
 <div>
-  <ConicGradient stops={conicStops} legend on:click={clicked}>
+  <ConicGradient stops={conicStops} legend on:click={scope}>
     <slot>
       <span class="capitalize">{attr}</span>
     </slot>

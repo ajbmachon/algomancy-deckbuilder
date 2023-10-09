@@ -85,4 +85,4 @@ export function partition(cards, attr) {
   );
 }
 
-export const analyse_scope = writable(null);
+export const analyse_scope = writable([]);
