@@ -12,7 +12,11 @@
       cards.filter((card) => {
         const value = card[scope.attr];
         if (Array.isArray(value)) {
-          return value.includes(scope.value);
+          if (scope.value === 'hybrid' && scope.attr === 'factions') {
+            return value.length > 1;
+          } else {
+            return value.includes(scope.value);
+          }
         } else {
           return value === scope.value;
         }
@@ -43,8 +47,8 @@
     {#each $analyse_scope as scope, idx}
       <div>
         Scoped on <code class="badge variant-ghost-secondary">{scope.attr}</code>
-        for <code class="badge variant-ghost-secondary">{scope.value}.</code>
-        <span class="anchor" on:click={unscope(idx)}>drop</span>
+        for <code class="badge variant-ghost-secondary">{scope.value}</code>
+        <span class="anchor cursor-pointer" on:click={unscope(idx)}>drop</span>
       </div>
     {/each}
     <div>

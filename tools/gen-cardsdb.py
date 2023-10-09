@@ -32,10 +32,10 @@ def searchable(opt: bool=True):
 class AlgoCard:
     key: int = searchable(False)
     name: str = searchable(True)
-    power: int = searchable(True)
-    toughness: int = searchable(True)
+    power: str = searchable(True)
+    toughness: str = searchable(True)
     affinity: str = searchable(True)
-    cost: int = searchable(True)
+    cost: str = searchable(True)
     type: str = searchable(True)
     attributes: tuple[str, ...] = searchable(True)
     complexity: str = searchable(True)
@@ -55,10 +55,10 @@ class AlgoCard:
         return cls(
             key=key,
             name=src["name"],
-            power=int(src["power"]),
-            toughness=int(src["toughness"]),
-            affinity=src["cost"],
-            cost=src["total_cost"],
+            power=str(src["power"]),
+            toughness=str(src["toughness"]),
+            affinity=str(src["cost"]),
+            cost=str(src["total_cost"]),
             type=src["type"],
             attributes=re.findall(r"{([^}]*)}", src["type"]),
             complexity=src["complexity"],
@@ -78,8 +78,6 @@ class AlgoCard:
 
     def search_tags(self, scope: str) -> Iterator[str]:
         value = getattr(self, scope)
-        if isinstance(value, int):
-            value = str(value)
         if isinstance(value, str):
             value = value.split(" ")
         yield from map(str.strip, map(str.lower, value))
