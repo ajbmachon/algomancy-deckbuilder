@@ -25,8 +25,9 @@
   ).stops;
 
   function scope(e) {
+    let value = e.target.parentElement.children[1].innerText;
     analyse_scope.update((scopes) => {
-      scopes.push({ attr, value: e.target.innerText });
+      scopes.push({ attr, value });
       return scopes;
     });
   }
