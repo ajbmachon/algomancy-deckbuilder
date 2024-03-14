@@ -26,6 +26,7 @@
     >
       <Card
         name={entry.card.name}
+        image_name={entry.card.image_name}
         faction={entry.card.factions[0]}
         on:click={click_event(entry)}
         bind:height

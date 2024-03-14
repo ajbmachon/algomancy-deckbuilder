@@ -2,17 +2,18 @@
   import { base } from '$app/paths';
 
   export let name;
+  export let image_name;
   export let faction;
   export let height = 400;
 
-  $: image_name = name.replaceAll(',', '').replaceAll(' ', '-');
   $: height_var = `${height}px`;
 </script>
 
 <img
   class={faction}
   style:--height={height_var}
-  src="{base}/card_images/{image_name}.jpg"
+  src="{base}/card_images/{image_name}"
+  alt={name}
   on:click
 />
 

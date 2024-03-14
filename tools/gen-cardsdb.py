@@ -53,6 +53,8 @@ class AlgoCard:
     def from_upstream(cls, key: int, src: Mapping[str, Any]) -> AlgoCard:
         img_name = src["name"].lower().replace(",", "").replace(" ", "-")
         factions = src["factions"]
+        if not isinstance(factions, list):
+            factions = []
         if len(factions) > 1:
             factions.append("hybrid")
         return cls(
@@ -82,8 +84,17 @@ class AlgoCard:
     def search_tags(self, scope: str) -> Iterator[str]:
         value = getattr(self, scope)
         if isinstance(value, str):
+            value = re.sub(
+                "|".join(
+                    f"(?:{r})"
+                    for r in (
+                            r"\{[^}]*\}",
+                            r"[^a-z0-9']+",
+                    )
+                ), " ", value.lower()
+            ).strip()
             value = value.split(" ")
-        yield from map(str.strip, map(str.lower, value))
+        yield from (v for v in map(str.strip, value) if v)
 
 
 @dataclass
