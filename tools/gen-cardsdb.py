@@ -1,13 +1,14 @@
 from __future__ import annotations
 
-import re
 import json
-import click
-import requests
-from dataclasses import dataclass, field, fields, asdict
+import re
 from collections import defaultdict
+from dataclasses import asdict, dataclass, field, fields
 from functools import partial
 from typing import DefaultDict, Mapping, MutableMapping
+
+import click
+import requests
 
 
 @dataclass
@@ -24,7 +25,7 @@ class Tags:
         return {tag: tuple(values) for tag, values in self.cloud.items()}
 
 
-def searchable(opt: bool=True):
+def searchable(opt: bool = True):
     return field(metadata=dict(searchable=opt))
 
 
@@ -62,7 +63,7 @@ class AlgoCard:
             name=src["name"],
             power=str(src["power"]),
             toughness=str(src["toughness"]),
-            affinity=''.join(sorted(str(src["cost"]))),
+            affinity="".join(sorted(str(src["cost"]))),
             cost=str(src["total_cost"]),
             type=src["type"],
             attributes=re.findall(r"{([^}]*)}", src["type"]),
@@ -72,7 +73,7 @@ class AlgoCard:
             details=src["details"],
             factions=factions,
             rulings=src["rulings"],
-            image_name=f'{img_name}.jpg',
+            image_name=f"{img_name}.jpg",
         )
 
     @classmethod
@@ -88,10 +89,12 @@ class AlgoCard:
                 "|".join(
                     f"(?:{r})"
                     for r in (
-                            r"\{[^}]*\}",
-                            r"[^a-z0-9']+",
+                        r"\{[^}]*\}",
+                        r"[^a-z0-9']+",
                     )
-                ), " ", value.lower()
+                ),
+                " ",
+                value.lower(),
             ).strip()
             value = value.split(" ")
         yield from (v for v in map(str.strip, value) if v)
@@ -101,7 +104,9 @@ class AlgoCard:
 class AlgoDB:
     cards: MutableMapping[int, AlgoCard] = field(default_factory=dict)
     factions: Sequence[str] = field(default_factory=set)
-    search_scopes: DefaultDict[str, Tags] = field(default_factory=partial(defaultdict, Tags))
+    search_scopes: DefaultDict[str, Tags] = field(
+        default_factory=partial(defaultdict, Tags)
+    )
 
     def add_from_upstream(self, key: int, src: Mapping[str, Any]) -> None:
         card = AlgoCard.from_upstream(key, src)
@@ -123,8 +128,20 @@ class AlgoDB:
             "colorless": "zzb",
         }
         return dict(
+            help_cards=[
+                card.asdict()
+                for card in self.cards.values()
+                if card.type == "Help Card"
+            ],
+            glitch_cards=[
+                card.asdict()
+                for card in self.cards.values()
+                if card.complexity == "Glitch"
+            ],
             cards=[
-                card.asdict() for card in self.cards.values()
+                card.asdict()
+                for card in self.cards.values()
+                if card.type != "Help Card" and card.complexity != "Glitch"
             ],
             factions=sorted(tuple(self.factions), key=lambda f: faction_prio.get(f, f)),
             search_scopes={
@@ -134,7 +151,10 @@ class AlgoDB:
 
 
 @click.command
-@click.option("--upstream-url", default="https://calebgannon.com/wp-content/uploads/algomancy-extras/AlgomancyCards.json")
+@click.option(
+    "--upstream-url",
+    default="https://calebgannon.com/wp-content/uploads/algomancy-extras/AlgomancyCards.json",
+)
 def main(upstream_url):
     upstream_data = requests.get(upstream_url).json()
     db = AlgoDB()

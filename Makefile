@@ -2,8 +2,8 @@
 dev:
 	npm run dev -- --open
 
-src/lib/assets/cards_db.json:
-	pants run tools/gen-cardsdb.py | jq . > $@
+src/lib/assets/cards_db.json: tools/gen-cardsdb.py
+	pants run $< | jq . > $@
 
 CARD_IMAGE_ROOT_URL = https://calebgannon.com/wp-content/uploads/cardsearch-images
 CARD_IMAGE_URLS = $(shell for img in `jq -r '.cards[]|.image_name' src/lib/assets/cards_db.json`; do echo "$(CARD_IMAGE_ROOT_URL)/$$img"; done)

@@ -1,5 +1,5 @@
 {
-  "cards": [
+  "help_cards": [
     {
       "key": 1001,
       "name": "1v1 Turn Structure",
@@ -17,6 +17,406 @@
       "rulings": [],
       "image_name": "1v1-Turn-Structure.jpg"
     },
+    {
+      "key": 1035,
+      "name": "Blank Card",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.056985",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Blank-Card.jpg"
+    },
+    {
+      "key": 1049,
+      "name": "Cardback",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.058980",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Cardback.jpg"
+    },
+    {
+      "key": 1146,
+      "name": "Initiative Back",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.066959",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Initiative-Back.jpg"
+    },
+    {
+      "key": 1147,
+      "name": "Initiative",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.067956",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Initiative.jpg"
+    },
+    {
+      "key": 1151,
+      "name": "Intent",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.067956",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Intent.jpg"
+    },
+    {
+      "key": 1168,
+      "name": "Left",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Left.jpg"
+    },
+    {
+      "key": 1230,
+      "name": "Player Icons Card",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.074937",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Player-Icons-Card.jpg"
+    },
+    {
+      "key": 1231,
+      "name": "Player Keywords Card",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.074937",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Player-Keywords-Card.jpg"
+    },
+    {
+      "key": 1257,
+      "name": "Right",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.076932",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Right.jpg"
+    },
+    {
+      "key": 1299,
+      "name": "Stay",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.080921",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Stay.jpg"
+    },
+    {
+      "key": 1345,
+      "name": "Turn Structure",
+      "power": "2",
+      "toughness": "0",
+      "affinity": "empty",
+      "cost": "0",
+      "type": "Help Card",
+      "attributes": [],
+      "complexity": "Simple",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.084910",
+      "details": "",
+      "factions": [],
+      "rulings": [],
+      "image_name": "Turn-Structure.jpg"
+    }
+  ],
+  "glitch_cards": [
+    {
+      "key": 1059,
+      "name": "Collective Creation",
+      "power": "4046",
+      "toughness": "4046",
+      "affinity": "p",
+      "cost": "10",
+      "type": "Cosmic Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.059977",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "Collective-Creation.jpg"
+    },
+    {
+      "key": 1158,
+      "name": "KSX Crystal Buddy",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Crystal-Buddy.jpg"
+    },
+    {
+      "key": 1159,
+      "name": "KSX Fire Buddy",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Fire-Buddy.jpg"
+    },
+    {
+      "key": 1160,
+      "name": "KSX Metal Buddy",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Metal-Buddy.jpg"
+    },
+    {
+      "key": 1161,
+      "name": "KSX Plant Buddy",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Plant-Buddy.jpg"
+    },
+    {
+      "key": 1162,
+      "name": "KSX Price of Power",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Price-of-Power.jpg"
+    },
+    {
+      "key": 1163,
+      "name": "KSX Self Assembly",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Self-Assembly.jpg"
+    },
+    {
+      "key": 1164,
+      "name": "KSX Soul Tithe",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Soul-Tithe.jpg"
+    },
+    {
+      "key": 1165,
+      "name": "KSX Tides of War",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Tides-of-War.jpg"
+    },
+    {
+      "key": 1166,
+      "name": "KSX Water Buddy",
+      "power": "2",
+      "toughness": "2",
+      "affinity": "p",
+      "cost": "2",
+      "type": "Glitch Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "",
+      "rev": "2024-03-11 20:23:46.068953",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "KSX-Water-Buddy.jpg"
+    },
+    {
+      "key": 1173,
+      "name": "Lord of Buddies",
+      "power": "7",
+      "toughness": "7",
+      "affinity": "p",
+      "cost": "7",
+      "type": "Glitch Buddy Lord Unit",
+      "attributes": [],
+      "complexity": "Glitch",
+      "text": "[Augment] If another nontoken buddy would die in battle, recall it and create a 7/7 unit instead.",
+      "rev": "2024-03-11 20:23:46.069951",
+      "details": "",
+      "factions": [
+        "colorless"
+      ],
+      "rulings": [],
+      "image_name": "Lord-of-Buddies.jpg"
+    }
+  ],
+  "cards": [
     {
       "key": 1002,
       "name": "A Fast Pile of Rocks",
@@ -699,23 +1099,6 @@
       "image_name": "Biotoxicity.jpg"
     },
     {
-      "key": 1035,
-      "name": "Blank Card",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.056985",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Blank-Card.jpg"
-    },
-    {
       "key": 1036,
       "name": "Bloated Manablub",
       "power": "2",
@@ -987,23 +1370,6 @@
       "image_name": "Carapace-Devourer.jpg"
     },
     {
-      "key": 1049,
-      "name": "Cardback",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.058980",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Cardback.jpg"
-    },
-    {
       "key": 1050,
       "name": "Celestial Fluxmorph",
       "power": "1",
@@ -1193,25 +1559,6 @@
       ],
       "rulings": [],
       "image_name": "Cinder-Scuttler.jpg"
-    },
-    {
-      "key": 1059,
-      "name": "Collective Creation",
-      "power": "4046",
-      "toughness": "4046",
-      "affinity": "p",
-      "cost": "10",
-      "type": "Cosmic Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.059977",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "Collective-Creation.jpg"
     },
     {
       "key": 1060,
@@ -2955,40 +3302,6 @@
       "image_name": "Infernal-Wispweaver.jpg"
     },
     {
-      "key": 1146,
-      "name": "Initiative Back",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.066959",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Initiative-Back.jpg"
-    },
-    {
-      "key": 1147,
-      "name": "Initiative",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.067956",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Initiative.jpg"
-    },
-    {
       "key": 1148,
       "name": "Insidious Invitation",
       "power": "2",
@@ -3048,23 +3361,6 @@
       ],
       "rulings": [],
       "image_name": "Instrument-of-Reassignment.jpg"
-    },
-    {
-      "key": 1151,
-      "name": "Intent",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.067956",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Intent.jpg"
     },
     {
       "key": 1152,
@@ -3192,177 +3488,6 @@
       "image_name": "Jollyglop.jpg"
     },
     {
-      "key": 1158,
-      "name": "KSX Crystal Buddy",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Crystal-Buddy.jpg"
-    },
-    {
-      "key": 1159,
-      "name": "KSX Fire Buddy",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Fire-Buddy.jpg"
-    },
-    {
-      "key": 1160,
-      "name": "KSX Metal Buddy",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Metal-Buddy.jpg"
-    },
-    {
-      "key": 1161,
-      "name": "KSX Plant Buddy",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Plant-Buddy.jpg"
-    },
-    {
-      "key": 1162,
-      "name": "KSX Price of Power",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Price-of-Power.jpg"
-    },
-    {
-      "key": 1163,
-      "name": "KSX Self Assembly",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Self-Assembly.jpg"
-    },
-    {
-      "key": 1164,
-      "name": "KSX Soul Tithe",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Soul-Tithe.jpg"
-    },
-    {
-      "key": 1165,
-      "name": "KSX Tides of War",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Tides-of-War.jpg"
-    },
-    {
-      "key": 1166,
-      "name": "KSX Water Buddy",
-      "power": "2",
-      "toughness": "2",
-      "affinity": "p",
-      "cost": "2",
-      "type": "Glitch Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "KSX-Water-Buddy.jpg"
-    },
-    {
       "key": 1167,
       "name": "Leaping Lillik",
       "power": "5",
@@ -3382,23 +3507,6 @@
       ],
       "rulings": [],
       "image_name": "Leaping-Lillik.jpg"
-    },
-    {
-      "key": 1168,
-      "name": "Left",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.068953",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Left.jpg"
     },
     {
       "key": 1169,
@@ -3479,25 +3587,6 @@
       ],
       "rulings": [],
       "image_name": "Lonely-Forager.jpg"
-    },
-    {
-      "key": 1173,
-      "name": "Lord of Buddies",
-      "power": "7",
-      "toughness": "7",
-      "affinity": "p",
-      "cost": "7",
-      "type": "Glitch Buddy Lord Unit",
-      "attributes": [],
-      "complexity": "Glitch",
-      "text": "[Augment] If another nontoken buddy would die in battle, recall it and create a 7/7 unit instead.",
-      "rev": "2024-03-11 20:23:46.069951",
-      "details": "",
-      "factions": [
-        "colorless"
-      ],
-      "rulings": [],
-      "image_name": "Lord-of-Buddies.jpg"
     },
     {
       "key": 1174,
@@ -4647,40 +4736,6 @@
       "image_name": "Plague-Bellower.jpg"
     },
     {
-      "key": 1230,
-      "name": "Player Icons Card",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.074937",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Player-Icons-Card.jpg"
-    },
-    {
-      "key": 1231,
-      "name": "Player Keywords Card",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.074937",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Player-Keywords-Card.jpg"
-    },
-    {
       "key": 1232,
       "name": "Plodding Pebble",
       "power": "0",
@@ -5189,23 +5244,6 @@
         "If the target of an ambush ability is removed, the ability will fizzle and this card will go into your discard."
       ],
       "image_name": "Riftwalker.jpg"
-    },
-    {
-      "key": 1257,
-      "name": "Right",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.076932",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Right.jpg"
     },
     {
       "key": 1258,
@@ -6036,23 +6074,6 @@
       ],
       "rulings": [],
       "image_name": "Static-Courier.jpg"
-    },
-    {
-      "key": 1299,
-      "name": "Stay",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.080921",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Stay.jpg"
     },
     {
       "key": 1300,
@@ -6963,23 +6984,6 @@
       ],
       "rulings": [],
       "image_name": "Trigger-3.jpg"
-    },
-    {
-      "key": 1345,
-      "name": "Turn Structure",
-      "power": "2",
-      "toughness": "0",
-      "affinity": "empty",
-      "cost": "0",
-      "type": "Help Card",
-      "attributes": [],
-      "complexity": "Simple",
-      "text": "",
-      "rev": "2024-03-11 20:23:46.084910",
-      "details": "",
-      "factions": [],
-      "rulings": [],
-      "image_name": "Turn-Structure.jpg"
     },
     {
       "key": 1346,
