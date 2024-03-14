@@ -22,8 +22,9 @@
     height: var(--height, 400px);
     border-radius: 16px;
     box-shadow: 10px 10px 10px -5px hsl(0deg 0% 0% / 60%);
+    object-position: 50% -10px;
 
-    transition: transform 0.25s ease-out, box-shadow 0.75s ease-out;
+    transition: transform 0.25s ease-out, box-shadow 0.75s ease-out, object-position 0.1s ease-in;
 
     user-drag: none;
     -webkit-user-drag: none;
@@ -34,8 +35,9 @@
   }
   img:hover {
     box-shadow: 0px 0px 15px 5px hsl(0deg 0% 50% / 80%), 10px 10px 10px -5px hsl(0deg 0% 0% / 60%);
+    object-position: 50% 0px;
     transform: translate(5px, -5px) perspective(5000px) rotateX(10deg) rotateY(0deg) rotateZ(-1deg);
-    transition: transform 0.5s ease-out, box-shadow 0.2s ease-in;
+    transition: transform 0.5s ease-out, box-shadow 0.2s ease-in, object-position 0.15s ease-out;
   }
   img.earth:hover {
     box-shadow: 0px 0px 4px 3px hsl(220deg 8% 86% / 70%), 0px 0px 15px 5px hsl(28deg 69% 57% / 90%),
