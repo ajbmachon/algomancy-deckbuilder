@@ -15,7 +15,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "1v1-turn-structure.jpg"
+      "image_name": "1v1-Turn-Structure.jpg"
     },
     {
       "key": 1002,
@@ -36,7 +36,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "a-fast-pile-of-rocks.jpg"
+      "image_name": "A-Fast-Pile-of-Rocks.jpg"
     },
     {
       "key": 1003,
@@ -55,7 +55,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "a-pile-of-rubbish.jpg"
+      "image_name": "A-Pile-of-Rubbish.jpg"
     },
     {
       "key": 1004,
@@ -76,7 +76,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "a-pile-of-runes.jpg"
+      "image_name": "A-Pile-of-Runes.jpg"
     },
     {
       "key": 1005,
@@ -99,7 +99,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "abduct.jpg"
+      "image_name": "Abduct.jpg"
     },
     {
       "key": 1006,
@@ -118,7 +118,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "aberrant-populace.jpg"
+      "image_name": "Aberrant-Populace.jpg"
     },
     {
       "key": 1007,
@@ -140,7 +140,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "aberrant-statweaver.jpg"
+      "image_name": "Aberrant-Statweaver.jpg"
     },
     {
       "key": 1008,
@@ -161,7 +161,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "abyssal-evocation.jpg"
+      "image_name": "Abyssal-Evocation.jpg"
     },
     {
       "key": 1009,
@@ -182,7 +182,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "accelerated-germination.jpg"
+      "image_name": "Accelerated-Germination.jpg"
     },
     {
       "key": 1010,
@@ -203,7 +203,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "accumulated-nucleation.jpg"
+      "image_name": "Accumulated-Nucleation.jpg"
     },
     {
       "key": 1011,
@@ -226,7 +226,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "adversary-of-the-deep.jpg"
+      "image_name": "Adversary-of-the-Deep.jpg"
     },
     {
       "key": 1012,
@@ -247,7 +247,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "aether-channeler.jpg"
+      "image_name": "Aether-Channeler.jpg"
     },
     {
       "key": 1013,
@@ -268,7 +268,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "aethercap-siphoner.jpg"
+      "image_name": "Aethercap-Siphoner.jpg"
     },
     {
       "key": 1014,
@@ -289,7 +289,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "aetherflux-golem.jpg"
+      "image_name": "Aetherflux-Golem.jpg"
     },
     {
       "key": 1015,
@@ -310,7 +310,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "all-consuming-blaze.jpg"
+      "image_name": "All-Consuming-Blaze.jpg"
     },
     {
       "key": 1016,
@@ -329,7 +329,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "all-consuming-blight.jpg"
+      "image_name": "All-Consuming-Blight.jpg"
     },
     {
       "key": 1017,
@@ -351,7 +351,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "ambling-mountaintop.jpg"
+      "image_name": "Ambling-Mountaintop.jpg"
     },
     {
       "key": 1018,
@@ -370,7 +370,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "amphivore.jpg"
+      "image_name": "Amphivore.jpg"
     },
     {
       "key": 1019,
@@ -394,7 +394,7 @@
         "This effect includes modifications such as grafted and augmented abilities.",
         "This is a big ol test of testing how the overflow for rulings works on each card! I'm going to repeat this a bunch of times now. This is a big ol test of testing how the overflow for rulings works on each card! I'm going to repeat this a bunch of times now.This is a big ol test of testing how the overflow for rulings works on each card! I'm going to repeat this a bunch of times now.This is a big ol test of testing how the overflow for rulings works on each card! I'm going to repeat this a bunch of times now.This is a big ol test of testing how the overflow for rulings works on each card! I'm going to repeat this a bunch of times now."
       ],
-      "image_name": "ancient-one.jpg"
+      "image_name": "Ancient-One.jpg"
     },
     {
       "key": 1020,
@@ -413,7 +413,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "animated-spark.jpg"
+      "image_name": "Animated-Spark.jpg"
     },
     {
       "key": 1021,
@@ -435,7 +435,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "arc-lightning.jpg"
+      "image_name": "Arc-Lightning.jpg"
     },
     {
       "key": 1022,
@@ -454,7 +454,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "arcane-concentrator.jpg"
+      "image_name": "Arcane-Concentrator.jpg"
     },
     {
       "key": 1023,
@@ -475,7 +475,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "arcane-echo.jpg"
+      "image_name": "Arcane-Echo.jpg"
     },
     {
       "key": 1024,
@@ -498,7 +498,7 @@
       "rulings": [
         "On the first trigger, this makes a Fireball 0 even if you have no spells."
       ],
-      "image_name": "astral-painseeker.jpg"
+      "image_name": "Astral-Painseeker.jpg"
     },
     {
       "key": 1025,
@@ -517,7 +517,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "astral-tidewraith.jpg"
+      "image_name": "Astral-Tidewraith.jpg"
     },
     {
       "key": 1026,
@@ -536,7 +536,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "astralith.jpg"
+      "image_name": "Astralith.jpg"
     },
     {
       "key": 1027,
@@ -557,7 +557,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "auric-ascendant.jpg"
+      "image_name": "Auric-Ascendant.jpg"
     },
     {
       "key": 1028,
@@ -576,7 +576,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "automaton-of-abundance.jpg"
+      "image_name": "Automaton-of-Abundance.jpg"
     },
     {
       "key": 1029,
@@ -597,7 +597,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "awoken-tomb.jpg"
+      "image_name": "Awoken-Tomb.jpg"
     },
     {
       "key": 1030,
@@ -618,7 +618,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "battle.jpg"
+      "image_name": "Battle.jpg"
     },
     {
       "key": 1031,
@@ -637,7 +637,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "bellowing-boulder.jpg"
+      "image_name": "Bellowing-Boulder.jpg"
     },
     {
       "key": 1032,
@@ -656,7 +656,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "biomass-devourer.jpg"
+      "image_name": "Biomass-Devourer.jpg"
     },
     {
       "key": 1033,
@@ -677,7 +677,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "bioremediation.jpg"
+      "image_name": "Bioremediation.jpg"
     },
     {
       "key": 1034,
@@ -696,7 +696,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "biotoxicity.jpg"
+      "image_name": "Biotoxicity.jpg"
     },
     {
       "key": 1035,
@@ -713,7 +713,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "blank-card.jpg"
+      "image_name": "Blank-Card.jpg"
     },
     {
       "key": 1036,
@@ -732,7 +732,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "bloated-manablub.jpg"
+      "image_name": "Bloated-Manablub.jpg"
     },
     {
       "key": 1037,
@@ -753,7 +753,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "bloodwind-revenant.jpg"
+      "image_name": "Bloodwind-Revenant.jpg"
     },
     {
       "key": 1038,
@@ -772,7 +772,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "bloomcaster.jpg"
+      "image_name": "Bloomcaster.jpg"
     },
     {
       "key": 1039,
@@ -793,7 +793,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "body-swap.jpg"
+      "image_name": "Body-Swap.jpg"
     },
     {
       "key": 1040,
@@ -814,7 +814,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "boon-of-protection.jpg"
+      "image_name": "Boon-of-Protection.jpg"
     },
     {
       "key": 1041,
@@ -833,7 +833,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "boreal-wanderer.jpg"
+      "image_name": "Boreal-Wanderer.jpg"
     },
     {
       "key": 1042,
@@ -854,7 +854,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "borrower-of-forms.jpg"
+      "image_name": "Borrower-of-Forms.jpg"
     },
     {
       "key": 1043,
@@ -876,7 +876,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "bripp.jpg"
+      "image_name": "Bripp.jpg"
     },
     {
       "key": 1044,
@@ -897,7 +897,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "bubb.jpg"
+      "image_name": "Bubb.jpg"
     },
     {
       "key": 1045,
@@ -919,7 +919,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "bumblecrab.jpg"
+      "image_name": "Bumblecrab.jpg"
     },
     {
       "key": 1046,
@@ -942,7 +942,7 @@
       "rulings": [
         "You select either the might or mass mode of this effect during declaration."
       ],
-      "image_name": "burgeon.jpg"
+      "image_name": "Burgeon.jpg"
     },
     {
       "key": 1047,
@@ -963,7 +963,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "burning-vengeance.jpg"
+      "image_name": "Burning-Vengeance.jpg"
     },
     {
       "key": 1048,
@@ -984,7 +984,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "carapace-devourer.jpg"
+      "image_name": "Carapace-Devourer.jpg"
     },
     {
       "key": 1049,
@@ -1001,7 +1001,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "cardback.jpg"
+      "image_name": "Cardback.jpg"
     },
     {
       "key": 1050,
@@ -1022,7 +1022,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "celestial-fluxmorph.jpg"
+      "image_name": "Celestial-Fluxmorph.jpg"
     },
     {
       "key": 1051,
@@ -1043,7 +1043,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "celestial-purge.jpg"
+      "image_name": "Celestial-Purge.jpg"
     },
     {
       "key": 1052,
@@ -1064,7 +1064,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "celestial-shifter.jpg"
+      "image_name": "Celestial-Shifter.jpg"
     },
     {
       "key": 1053,
@@ -1087,7 +1087,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "channel-through.jpg"
+      "image_name": "Channel-Through.jpg"
     },
     {
       "key": 1054,
@@ -1106,7 +1106,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "channeled-amalgam.jpg"
+      "image_name": "Channeled-Amalgam.jpg"
     },
     {
       "key": 1055,
@@ -1127,7 +1127,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "channeled-boon.jpg"
+      "image_name": "Channeled-Boon.jpg"
     },
     {
       "key": 1056,
@@ -1149,7 +1149,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "child-of-aether.jpg"
+      "image_name": "Child-of-Aether.jpg"
     },
     {
       "key": 1057,
@@ -1171,7 +1171,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "chitin-shredder.jpg"
+      "image_name": "Chitin-Shredder.jpg"
     },
     {
       "key": 1058,
@@ -1192,7 +1192,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "cinder-scuttler.jpg"
+      "image_name": "Cinder-Scuttler.jpg"
     },
     {
       "key": 1059,
@@ -1211,7 +1211,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "collective-creation.jpg"
+      "image_name": "Collective-Creation.jpg"
     },
     {
       "key": 1060,
@@ -1232,7 +1232,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "colossal-construction.jpg"
+      "image_name": "Colossal-Construction.jpg"
     },
     {
       "key": 1061,
@@ -1251,7 +1251,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "conduit-of-pain.jpg"
+      "image_name": "Conduit-of-Pain.jpg"
     },
     {
       "key": 1062,
@@ -1270,7 +1270,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "construct-overseer.jpg"
+      "image_name": "Construct-Overseer.jpg"
     },
     {
       "key": 1063,
@@ -1291,7 +1291,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "containment-protocol.jpg"
+      "image_name": "Containment-Protocol.jpg"
     },
     {
       "key": 1064,
@@ -1312,7 +1312,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "corroded-alchemy.jpg"
+      "image_name": "Corroded-Alchemy.jpg"
     },
     {
       "key": 1065,
@@ -1333,7 +1333,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "corrupting-blight.jpg"
+      "image_name": "Corrupting-Blight.jpg"
     },
     {
       "key": 1066,
@@ -1352,7 +1352,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "cosmic-conspirator.jpg"
+      "image_name": "Cosmic-Conspirator.jpg"
     },
     {
       "key": 1067,
@@ -1373,7 +1373,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "cosmic-reversal.jpg"
+      "image_name": "Cosmic-Reversal.jpg"
     },
     {
       "key": 1068,
@@ -1392,7 +1392,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "crevice-lurker.jpg"
+      "image_name": "Crevice-Lurker.jpg"
     },
     {
       "key": 1069,
@@ -1414,7 +1414,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "crumbling-ancient.jpg"
+      "image_name": "Crumbling-Ancient.jpg"
     },
     {
       "key": 1070,
@@ -1436,7 +1436,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "crystal.jpg"
+      "image_name": "Crystal.jpg"
     },
     {
       "key": 1071,
@@ -1457,7 +1457,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "curio-drifter.jpg"
+      "image_name": "Curio-Drifter.jpg"
     },
     {
       "key": 1072,
@@ -1478,7 +1478,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "death-greeter.jpg"
+      "image_name": "Death-Greeter.jpg"
     },
     {
       "key": 1073,
@@ -1497,7 +1497,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "deathglow-strider.jpg"
+      "image_name": "Deathglow-Strider.jpg"
     },
     {
       "key": 1074,
@@ -1520,7 +1520,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "decay-distributor.jpg"
+      "image_name": "Decay-Distributor.jpg"
     },
     {
       "key": 1075,
@@ -1539,7 +1539,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "deformant.jpg"
+      "image_name": "Deformant.jpg"
     },
     {
       "key": 1076,
@@ -1558,7 +1558,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "delver-of-mysteries.jpg"
+      "image_name": "Delver-of-Mysteries.jpg"
     },
     {
       "key": 1077,
@@ -1581,7 +1581,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "dematerialize.jpg"
+      "image_name": "Dematerialize.jpg"
     },
     {
       "key": 1078,
@@ -1602,7 +1602,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "demon-of-the-depths.jpg"
+      "image_name": "Demon-of-the-Depths.jpg"
     },
     {
       "key": 1079,
@@ -1623,7 +1623,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "discharge.jpg"
+      "image_name": "Discharge.jpg"
     },
     {
       "key": 1080,
@@ -1642,7 +1642,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "dispatch-courier.jpg"
+      "image_name": "Dispatch-Courier.jpg"
     },
     {
       "key": 1081,
@@ -1661,7 +1661,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "dormant-resource.jpg"
+      "image_name": "Dormant-Resource.jpg"
     },
     {
       "key": 1082,
@@ -1682,7 +1682,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "download.jpg"
+      "image_name": "Download.jpg"
     },
     {
       "key": 1083,
@@ -1703,7 +1703,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "dreadspawn-horror.jpg"
+      "image_name": "Dreadspawn-Horror.jpg"
     },
     {
       "key": 1084,
@@ -1724,7 +1724,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "dreadwave-devourer.jpg"
+      "image_name": "Dreadwave-Devourer.jpg"
     },
     {
       "key": 1085,
@@ -1745,7 +1745,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "dreamfloat-drifter.jpg"
+      "image_name": "Dreamfloat-Drifter.jpg"
     },
     {
       "key": 1086,
@@ -1767,7 +1767,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "dune-drifter.jpg"
+      "image_name": "Dune-Drifter.jpg"
     },
     {
       "key": 1087,
@@ -1788,7 +1788,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "earnest-defender.jpg"
+      "image_name": "Earnest-Defender.jpg"
     },
     {
       "key": 1088,
@@ -1807,7 +1807,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "earth-resource.jpg"
+      "image_name": "Earth-Resource.jpg"
     },
     {
       "key": 1089,
@@ -1830,7 +1830,7 @@
       "rulings": [
         "A copy of a spell is not created or cast, nor is it a token. This copy effect will not trigger any effects that care about creating tokens or casting spells."
       ],
-      "image_name": "earthbound-replicator.jpg"
+      "image_name": "Earthbound-Replicator.jpg"
     },
     {
       "key": 1090,
@@ -1849,7 +1849,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "echo-of-despair.jpg"
+      "image_name": "Echo-of-Despair.jpg"
     },
     {
       "key": 1091,
@@ -1871,7 +1871,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "eldritch-dreamtender.jpg"
+      "image_name": "Eldritch-Dreamtender.jpg"
     },
     {
       "key": 1092,
@@ -1890,7 +1890,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "eldritch-reclaimer.jpg"
+      "image_name": "Eldritch-Reclaimer.jpg"
     },
     {
       "key": 1093,
@@ -1911,7 +1911,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "ember-of-life.jpg"
+      "image_name": "Ember-of-Life.jpg"
     },
     {
       "key": 1094,
@@ -1930,7 +1930,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "emberflame-enlightener.jpg"
+      "image_name": "Emberflame-Enlightener.jpg"
     },
     {
       "key": 1095,
@@ -1949,7 +1949,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "embermaw-fledgling.jpg"
+      "image_name": "Embermaw-Fledgling.jpg"
     },
     {
       "key": 1096,
@@ -1968,7 +1968,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "eminence-of-the-barrens.jpg"
+      "image_name": "Eminence-of-the-Barrens.jpg"
     },
     {
       "key": 1097,
@@ -1987,7 +1987,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "engorged-caudex.jpg"
+      "image_name": "Engorged-Caudex.jpg"
     },
     {
       "key": 1098,
@@ -2006,7 +2006,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "enigmatic-warder.jpg"
+      "image_name": "Enigmatic-Warder.jpg"
     },
     {
       "key": 1099,
@@ -2025,7 +2025,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "envoy-of-lightning.jpg"
+      "image_name": "Envoy-of-Lightning.jpg"
     },
     {
       "key": 1100,
@@ -2046,7 +2046,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "ephemeral-skywalker.jpg"
+      "image_name": "Ephemeral-Skywalker.jpg"
     },
     {
       "key": 1101,
@@ -2067,7 +2067,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "evolutionary-experiment.jpg"
+      "image_name": "Evolutionary-Experiment.jpg"
     },
     {
       "key": 1102,
@@ -2088,7 +2088,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "fight.jpg"
+      "image_name": "Fight.jpg"
     },
     {
       "key": 1103,
@@ -2107,7 +2107,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "fire-resource.jpg"
+      "image_name": "Fire-Resource.jpg"
     },
     {
       "key": 1104,
@@ -2129,7 +2129,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "fireball.jpg"
+      "image_name": "Fireball.jpg"
     },
     {
       "key": 1105,
@@ -2148,7 +2148,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "flame-juggle.jpg"
+      "image_name": "Flame-Juggle.jpg"
     },
     {
       "key": 1106,
@@ -2170,7 +2170,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "flame-of-history.jpg"
+      "image_name": "Flame-of-History.jpg"
     },
     {
       "key": 1107,
@@ -2191,7 +2191,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "flame-shield.jpg"
+      "image_name": "Flame-Shield.jpg"
     },
     {
       "key": 1108,
@@ -2210,7 +2210,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "flamebreath-initiate.jpg"
+      "image_name": "Flamebreath-Initiate.jpg"
     },
     {
       "key": 1109,
@@ -2231,7 +2231,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "floral-singularity.jpg"
+      "image_name": "Floral-Singularity.jpg"
     },
     {
       "key": 1110,
@@ -2250,7 +2250,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "flourishing-flora.jpg"
+      "image_name": "Flourishing-Flora.jpg"
     },
     {
       "key": 1111,
@@ -2271,7 +2271,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "flowstone-arcanite.jpg"
+      "image_name": "Flowstone-Arcanite.jpg"
     },
     {
       "key": 1112,
@@ -2290,7 +2290,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "flux-constructor.jpg"
+      "image_name": "Flux-Constructor.jpg"
     },
     {
       "key": 1113,
@@ -2309,7 +2309,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "flux-resonator.jpg"
+      "image_name": "Flux-Resonator.jpg"
     },
     {
       "key": 1114,
@@ -2328,7 +2328,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "forager-of-the-fallen.jpg"
+      "image_name": "Forager-of-the-Fallen.jpg"
     },
     {
       "key": 1115,
@@ -2349,7 +2349,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "foretell.jpg"
+      "image_name": "Foretell.jpg"
     },
     {
       "key": 1116,
@@ -2370,7 +2370,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "formless.jpg"
+      "image_name": "Formless.jpg"
     },
     {
       "key": 1117,
@@ -2391,7 +2391,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "frosted-denial.jpg"
+      "image_name": "Frosted-Denial.jpg"
     },
     {
       "key": 1118,
@@ -2410,7 +2410,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "fungal-gardener.jpg"
+      "image_name": "Fungal-Gardener.jpg"
     },
     {
       "key": 1119,
@@ -2433,7 +2433,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "galactic-germination.jpg"
+      "image_name": "Galactic-Germination.jpg"
     },
     {
       "key": 1120,
@@ -2452,7 +2452,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "galerider-eel.jpg"
+      "image_name": "Galerider-Eel.jpg"
     },
     {
       "key": 1121,
@@ -2471,7 +2471,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "general-smof.jpg"
+      "image_name": "General-Smof.jpg"
     },
     {
       "key": 1122,
@@ -2490,7 +2490,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "generic-unit.jpg"
+      "image_name": "Generic-Unit.jpg"
     },
     {
       "key": 1123,
@@ -2509,7 +2509,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "geode.jpg"
+      "image_name": "Geode.jpg"
     },
     {
       "key": 1124,
@@ -2528,7 +2528,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "ghord.jpg"
+      "image_name": "Ghord.jpg"
     },
     {
       "key": 1125,
@@ -2549,7 +2549,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "glowhaven-elder.jpg"
+      "image_name": "Glowhaven-Elder.jpg"
     },
     {
       "key": 1126,
@@ -2572,7 +2572,7 @@
       "rulings": [
         "If the target of an ambush ability is removed, the ability will fizzle and this card will go into your discard."
       ],
-      "image_name": "good-whale.jpg"
+      "image_name": "Good-Whale.jpg"
     },
     {
       "key": 1127,
@@ -2593,7 +2593,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "gravitational-correction.jpg"
+      "image_name": "Gravitational-Correction.jpg"
     },
     {
       "key": 1128,
@@ -2614,7 +2614,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "graxxlid.jpg"
+      "image_name": "Graxxlid.jpg"
     },
     {
       "key": 1129,
@@ -2635,7 +2635,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "growing-plague.jpg"
+      "image_name": "Growing-Plague.jpg"
     },
     {
       "key": 1130,
@@ -2654,7 +2654,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "guardian-of-the-grotto.jpg"
+      "image_name": "Guardian-of-the-Grotto.jpg"
     },
     {
       "key": 1131,
@@ -2676,7 +2676,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "haboob.jpg"
+      "image_name": "Haboob.jpg"
     },
     {
       "key": 1132,
@@ -2695,7 +2695,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "harbinger-of-immolation.jpg"
+      "image_name": "Harbinger-of-Immolation.jpg"
     },
     {
       "key": 1133,
@@ -2716,7 +2716,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "hearthwood-ancient.jpg"
+      "image_name": "Hearthwood-Ancient.jpg"
     },
     {
       "key": 1134,
@@ -2735,7 +2735,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "hexbane-shiitake.jpg"
+      "image_name": "Hexbane-Shiitake.jpg"
     },
     {
       "key": 1135,
@@ -2754,7 +2754,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "hooba-bot.jpg"
+      "image_name": "Hooba-Bot.jpg"
     },
     {
       "key": 1136,
@@ -2773,7 +2773,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "hooba-lan.jpg"
+      "image_name": "Hooba-Lan.jpg"
     },
     {
       "key": 1137,
@@ -2794,7 +2794,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "hooba-lin.jpg"
+      "image_name": "Hooba-Lin.jpg"
     },
     {
       "key": 1138,
@@ -2813,7 +2813,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "hooba-nan.jpg"
+      "image_name": "Hooba-Nan.jpg"
     },
     {
       "key": 1139,
@@ -2832,7 +2832,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "hooba-pon.jpg"
+      "image_name": "Hooba-Pon.jpg"
     },
     {
       "key": 1140,
@@ -2853,7 +2853,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "hush-mush.jpg"
+      "image_name": "Hush-Mush.jpg"
     },
     {
       "key": 1141,
@@ -2872,7 +2872,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "ignis-sprite.jpg"
+      "image_name": "Ignis-Sprite.jpg"
     },
     {
       "key": 1142,
@@ -2893,7 +2893,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "immolate.jpg"
+      "image_name": "Immolate.jpg"
     },
     {
       "key": 1143,
@@ -2912,7 +2912,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "infernal-cultivator.jpg"
+      "image_name": "Infernal-Cultivator.jpg"
     },
     {
       "key": 1144,
@@ -2933,7 +2933,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "infernal-grovekeeper.jpg"
+      "image_name": "Infernal-Grovekeeper.jpg"
     },
     {
       "key": 1145,
@@ -2952,7 +2952,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "infernal-wispweaver.jpg"
+      "image_name": "Infernal-Wispweaver.jpg"
     },
     {
       "key": 1146,
@@ -2969,7 +2969,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "initiative-back.jpg"
+      "image_name": "Initiative-Back.jpg"
     },
     {
       "key": 1147,
@@ -2986,7 +2986,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "initiative.jpg"
+      "image_name": "Initiative.jpg"
     },
     {
       "key": 1148,
@@ -3007,7 +3007,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "insidious-invitation.jpg"
+      "image_name": "Insidious-Invitation.jpg"
     },
     {
       "key": 1149,
@@ -3028,7 +3028,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "inspiration.jpg"
+      "image_name": "Inspiration.jpg"
     },
     {
       "key": 1150,
@@ -3047,7 +3047,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "instrument-of-reassignment.jpg"
+      "image_name": "Instrument-of-Reassignment.jpg"
     },
     {
       "key": 1151,
@@ -3064,7 +3064,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "intent.jpg"
+      "image_name": "Intent.jpg"
     },
     {
       "key": 1152,
@@ -3085,7 +3085,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "interdiction-rift.jpg"
+      "image_name": "Interdiction-Rift.jpg"
     },
     {
       "key": 1153,
@@ -3107,7 +3107,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "invasive-reassignment.jpg"
+      "image_name": "Invasive-Reassignment.jpg"
     },
     {
       "key": 1154,
@@ -3128,7 +3128,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "invasive-species.jpg"
+      "image_name": "Invasive-Species.jpg"
     },
     {
       "key": 1155,
@@ -3149,7 +3149,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "invigorate.jpg"
+      "image_name": "Invigorate.jpg"
     },
     {
       "key": 1156,
@@ -3170,7 +3170,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "jelly.jpg"
+      "image_name": "Jelly.jpg"
     },
     {
       "key": 1157,
@@ -3189,7 +3189,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "jollyglop.jpg"
+      "image_name": "Jollyglop.jpg"
     },
     {
       "key": 1158,
@@ -3208,7 +3208,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-crystal-buddy.jpg"
+      "image_name": "KSX-Crystal-Buddy.jpg"
     },
     {
       "key": 1159,
@@ -3227,7 +3227,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-fire-buddy.jpg"
+      "image_name": "KSX-Fire-Buddy.jpg"
     },
     {
       "key": 1160,
@@ -3246,7 +3246,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-metal-buddy.jpg"
+      "image_name": "KSX-Metal-Buddy.jpg"
     },
     {
       "key": 1161,
@@ -3265,7 +3265,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-plant-buddy.jpg"
+      "image_name": "KSX-Plant-Buddy.jpg"
     },
     {
       "key": 1162,
@@ -3284,7 +3284,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-price-of-power.jpg"
+      "image_name": "KSX-Price-of-Power.jpg"
     },
     {
       "key": 1163,
@@ -3303,7 +3303,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-self-assembly.jpg"
+      "image_name": "KSX-Self-Assembly.jpg"
     },
     {
       "key": 1164,
@@ -3322,7 +3322,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-soul-tithe.jpg"
+      "image_name": "KSX-Soul-Tithe.jpg"
     },
     {
       "key": 1165,
@@ -3341,7 +3341,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-tides-of-war.jpg"
+      "image_name": "KSX-Tides-of-War.jpg"
     },
     {
       "key": 1166,
@@ -3360,7 +3360,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "ksx-water-buddy.jpg"
+      "image_name": "KSX-Water-Buddy.jpg"
     },
     {
       "key": 1167,
@@ -3381,7 +3381,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "leaping-lillik.jpg"
+      "image_name": "Leaping-Lillik.jpg"
     },
     {
       "key": 1168,
@@ -3398,7 +3398,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "left.jpg"
+      "image_name": "Left.jpg"
     },
     {
       "key": 1169,
@@ -3419,7 +3419,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "linked-extinction.jpg"
+      "image_name": "Linked-Extinction.jpg"
     },
     {
       "key": 1170,
@@ -3440,7 +3440,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "lithoghul.jpg"
+      "image_name": "Lithoghul.jpg"
     },
     {
       "key": 1171,
@@ -3459,7 +3459,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "living-forge.jpg"
+      "image_name": "Living-Forge.jpg"
     },
     {
       "key": 1172,
@@ -3478,7 +3478,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "lonely-forager.jpg"
+      "image_name": "Lonely-Forager.jpg"
     },
     {
       "key": 1173,
@@ -3497,7 +3497,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "lord-of-buddies.jpg"
+      "image_name": "Lord-of-Buddies.jpg"
     },
     {
       "key": 1174,
@@ -3516,7 +3516,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "lost-guardian.jpg"
+      "image_name": "Lost-Guardian.jpg"
     },
     {
       "key": 1175,
@@ -3537,7 +3537,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "lumengrove-lurker.jpg"
+      "image_name": "Lumengrove-Lurker.jpg"
     },
     {
       "key": 1176,
@@ -3556,7 +3556,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "luminary-leader.jpg"
+      "image_name": "Luminary-Leader.jpg"
     },
     {
       "key": 1177,
@@ -3577,7 +3577,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "luminous-arc.jpg"
+      "image_name": "Luminous-Arc.jpg"
     },
     {
       "key": 1178,
@@ -3598,7 +3598,7 @@
       "rulings": [
         "If the target of an ambush ability is removed, the ability will fizzle and this card will go into your discard."
       ],
-      "image_name": "lurking-slimebeast.jpg"
+      "image_name": "Lurking-Slimebeast.jpg"
     },
     {
       "key": 1179,
@@ -3619,7 +3619,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "maelstrom-charger.jpg"
+      "image_name": "Maelstrom-Charger.jpg"
     },
     {
       "key": 1180,
@@ -3642,7 +3642,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "malevolent-machinations.jpg"
+      "image_name": "Malevolent-Machinations.jpg"
     },
     {
       "key": 1181,
@@ -3663,7 +3663,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "malformed-monstrosity.jpg"
+      "image_name": "Malformed-Monstrosity.jpg"
     },
     {
       "key": 1182,
@@ -3684,7 +3684,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "malicious-hardware.jpg"
+      "image_name": "Malicious-Hardware.jpg"
     },
     {
       "key": 1183,
@@ -3703,7 +3703,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "manufacture.jpg"
+      "image_name": "Manufacture.jpg"
     },
     {
       "key": 1184,
@@ -3726,7 +3726,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "maw-of-damnation.jpg"
+      "image_name": "Maw-of-Damnation.jpg"
     },
     {
       "key": 1185,
@@ -3745,7 +3745,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "megadeath.jpg"
+      "image_name": "Megadeath.jpg"
     },
     {
       "key": 1186,
@@ -3764,7 +3764,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "metal-resource.jpg"
+      "image_name": "Metal-Resource.jpg"
     },
     {
       "key": 1187,
@@ -3783,7 +3783,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "metamorphic-luminary.jpg"
+      "image_name": "Metamorphic-Luminary.jpg"
     },
     {
       "key": 1188,
@@ -3804,7 +3804,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "meteor-shower.jpg"
+      "image_name": "Meteor-Shower.jpg"
     },
     {
       "key": 1189,
@@ -3825,7 +3825,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "might-of-the-grove.jpg"
+      "image_name": "Might-of-the-Grove.jpg"
     },
     {
       "key": 1190,
@@ -3844,7 +3844,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "mindspore-fiend.jpg"
+      "image_name": "Mindspore-Fiend.jpg"
     },
     {
       "key": 1191,
@@ -3867,7 +3867,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "mindwarp-sporefrog.jpg"
+      "image_name": "Mindwarp-Sporefrog.jpg"
     },
     {
       "key": 1192,
@@ -3886,7 +3886,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "minor-kraken.jpg"
+      "image_name": "Minor-Kraken.jpg"
     },
     {
       "key": 1193,
@@ -3905,7 +3905,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "mirage-scuttler.jpg"
+      "image_name": "Mirage-Scuttler.jpg"
     },
     {
       "key": 1194,
@@ -3924,7 +3924,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "mirage-walker.jpg"
+      "image_name": "Mirage-Walker.jpg"
     },
     {
       "key": 1195,
@@ -3945,7 +3945,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "mirrorback-ambusher.jpg"
+      "image_name": "Mirrorback-Ambusher.jpg"
     },
     {
       "key": 1196,
@@ -3964,7 +3964,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "mischievous-reclaimer.jpg"
+      "image_name": "Mischievous-Reclaimer.jpg"
     },
     {
       "key": 1197,
@@ -3983,7 +3983,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "mohruung.jpg"
+      "image_name": "Mohruung.jpg"
     },
     {
       "key": 1198,
@@ -4006,7 +4006,7 @@
       "rulings": [
         "Augments do not trigger enters play abilities, so you do not get the fireballs from this when used as a virus or regular augment."
       ],
-      "image_name": "molten-riftbreaker.jpg"
+      "image_name": "Molten-Riftbreaker.jpg"
     },
     {
       "key": 1199,
@@ -4027,7 +4027,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "molten-tormentor.jpg"
+      "image_name": "Molten-Tormentor.jpg"
     },
     {
       "key": 1200,
@@ -4048,7 +4048,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "molten-upheaval.jpg"
+      "image_name": "Molten-Upheaval.jpg"
     },
     {
       "key": 1201,
@@ -4071,7 +4071,7 @@
       "rulings": [
         "Monke does not affect units that are on the stack (such as unit spells), only units in play"
       ],
-      "image_name": "monke.jpg"
+      "image_name": "Monke.jpg"
     },
     {
       "key": 1202,
@@ -4090,7 +4090,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "morphic-mentor.jpg"
+      "image_name": "Morphic-Mentor.jpg"
     },
     {
       "key": 1203,
@@ -4109,7 +4109,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "mycelial-mentor.jpg"
+      "image_name": "Mycelial-Mentor.jpg"
     },
     {
       "key": 1204,
@@ -4131,7 +4131,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "nebula-drifter.jpg"
+      "image_name": "Nebula-Drifter.jpg"
     },
     {
       "key": 1205,
@@ -4150,7 +4150,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "nectar-ridge-oracle.jpg"
+      "image_name": "Nectar-Ridge-Oracle.jpg"
     },
     {
       "key": 1206,
@@ -4169,7 +4169,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "nimbus-eel.jpg"
+      "image_name": "Nimbus-Eel.jpg"
     },
     {
       "key": 1207,
@@ -4190,7 +4190,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "noxious-deathcap.jpg"
+      "image_name": "Noxious-Deathcap.jpg"
     },
     {
       "key": 1208,
@@ -4212,7 +4212,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "noxious-demise.jpg"
+      "image_name": "Noxious-Demise.jpg"
     },
     {
       "key": 1209,
@@ -4234,7 +4234,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "noxious-sporefiend.jpg"
+      "image_name": "Noxious-Sporefiend.jpg"
     },
     {
       "key": 1210,
@@ -4255,7 +4255,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "nucleus-of-the-miasma.jpg"
+      "image_name": "Nucleus-of-the-Miasma.jpg"
     },
     {
       "key": 1211,
@@ -4276,7 +4276,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "null-drone.jpg"
+      "image_name": "Null-Drone.jpg"
     },
     {
       "key": 1212,
@@ -4297,7 +4297,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "ominous-growth.jpg"
+      "image_name": "Ominous-Growth.jpg"
     },
     {
       "key": 1213,
@@ -4316,7 +4316,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "omniwield-evoker.jpg"
+      "image_name": "Omniwield-Evoker.jpg"
     },
     {
       "key": 1214,
@@ -4338,7 +4338,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "oorblak.jpg"
+      "image_name": "Oorblak.jpg"
     },
     {
       "key": 1215,
@@ -4357,7 +4357,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "oracle-of-foretelling.jpg"
+      "image_name": "Oracle-of-Foretelling.jpg"
     },
     {
       "key": 1216,
@@ -4376,7 +4376,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "oracle-of-the-flame.jpg"
+      "image_name": "Oracle-of-the-Flame.jpg"
     },
     {
       "key": 1217,
@@ -4399,7 +4399,7 @@
       "rulings": [
         "If the target of an ambush ability is removed, the ability will fizzle and this card will go into your discard."
       ],
-      "image_name": "orblish-horroth.jpg"
+      "image_name": "Orblish-Horroth.jpg"
     },
     {
       "key": 1218,
@@ -4420,7 +4420,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "organic-exchange.jpg"
+      "image_name": "Organic-Exchange.jpg"
     },
     {
       "key": 1219,
@@ -4441,7 +4441,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "origon.jpg"
+      "image_name": "Origon.jpg"
     },
     {
       "key": 1220,
@@ -4460,7 +4460,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "overbloom.jpg"
+      "image_name": "Overbloom.jpg"
     },
     {
       "key": 1221,
@@ -4481,7 +4481,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "overwhelm.jpg"
+      "image_name": "Overwhelm.jpg"
     },
     {
       "key": 1222,
@@ -4500,7 +4500,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "pack-leader.jpg"
+      "image_name": "Pack-Leader.jpg"
     },
     {
       "key": 1223,
@@ -4521,7 +4521,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "pathogenic-enclave.jpg"
+      "image_name": "Pathogenic-Enclave.jpg"
     },
     {
       "key": 1224,
@@ -4542,7 +4542,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "perish.jpg"
+      "image_name": "Perish.jpg"
     },
     {
       "key": 1225,
@@ -4561,7 +4561,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "pernicious-photosynthesis.jpg"
+      "image_name": "Pernicious-Photosynthesis.jpg"
     },
     {
       "key": 1226,
@@ -4580,7 +4580,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "perpetual-construct.jpg"
+      "image_name": "Perpetual-Construct.jpg"
     },
     {
       "key": 1227,
@@ -4604,7 +4604,7 @@
         "If you place multiple counters on a single creature, this effect will only trigger once.",
         "If you place one or more counters on more than one unit, this effect will trigger once for each unit that had counters placed on it."
       ],
-      "image_name": "pestilent-mycelion.jpg"
+      "image_name": "Pestilent-Mycelion.jpg"
     },
     {
       "key": 1228,
@@ -4625,7 +4625,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "phytochemical-protection.jpg"
+      "image_name": "Phytochemical-Protection.jpg"
     },
     {
       "key": 1229,
@@ -4644,7 +4644,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "plague-bellower.jpg"
+      "image_name": "Plague-Bellower.jpg"
     },
     {
       "key": 1230,
@@ -4661,7 +4661,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "player-icons-card.jpg"
+      "image_name": "Player-Icons-Card.jpg"
     },
     {
       "key": 1231,
@@ -4678,7 +4678,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "player-keywords-card.jpg"
+      "image_name": "Player-Keywords-Card.jpg"
     },
     {
       "key": 1232,
@@ -4699,7 +4699,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "plodding-pebble.jpg"
+      "image_name": "Plodding-Pebble.jpg"
     },
     {
       "key": 1233,
@@ -4721,7 +4721,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "poison.jpg"
+      "image_name": "Poison.jpg"
     },
     {
       "key": 1234,
@@ -4740,7 +4740,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "powerforge-synergist.jpg"
+      "image_name": "Powerforge-Synergist.jpg"
     },
     {
       "key": 1235,
@@ -4761,7 +4761,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "premonition.jpg"
+      "image_name": "Premonition.jpg"
     },
     {
       "key": 1236,
@@ -4780,7 +4780,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "prickly-protector.jpg"
+      "image_name": "Prickly-Protector.jpg"
     },
     {
       "key": 1237,
@@ -4799,7 +4799,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "prismite.jpg"
+      "image_name": "Prismite.jpg"
     },
     {
       "key": 1238,
@@ -4820,7 +4820,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "protective-adaptations.jpg"
+      "image_name": "Protective-Adaptations.jpg"
     },
     {
       "key": 1239,
@@ -4841,7 +4841,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "pull-under.jpg"
+      "image_name": "Pull-Under.jpg"
     },
     {
       "key": 1240,
@@ -4860,7 +4860,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "ralph.jpg"
+      "image_name": "Ralph.jpg"
     },
     {
       "key": 1241,
@@ -4882,7 +4882,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "rampart-guardian.jpg"
+      "image_name": "Rampart-Guardian.jpg"
     },
     {
       "key": 1242,
@@ -4901,7 +4901,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "ravenous-fireslinger.jpg"
+      "image_name": "Ravenous-Fireslinger.jpg"
     },
     {
       "key": 1243,
@@ -4923,7 +4923,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "reality-bender.jpg"
+      "image_name": "Reality-Bender.jpg"
     },
     {
       "key": 1244,
@@ -4944,7 +4944,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "rebalance.jpg"
+      "image_name": "Rebalance.jpg"
     },
     {
       "key": 1245,
@@ -4965,7 +4965,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "recall.jpg"
+      "image_name": "Recall.jpg"
     },
     {
       "key": 1246,
@@ -4984,7 +4984,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "reclaimer-of-secrets.jpg"
+      "image_name": "Reclaimer-of-Secrets.jpg"
     },
     {
       "key": 1247,
@@ -5007,7 +5007,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "reconfigure.jpg"
+      "image_name": "Reconfigure.jpg"
     },
     {
       "key": 1248,
@@ -5026,7 +5026,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "recyclable-sentinel.jpg"
+      "image_name": "Recyclable-Sentinel.jpg"
     },
     {
       "key": 1249,
@@ -5047,7 +5047,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "reforge-the-dead.jpg"
+      "image_name": "Reforge-the-Dead.jpg"
     },
     {
       "key": 1250,
@@ -5066,7 +5066,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "refuse-reclaimer.jpg"
+      "image_name": "Refuse-Reclaimer.jpg"
     },
     {
       "key": 1251,
@@ -5087,7 +5087,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "resonant-form.jpg"
+      "image_name": "Resonant-Form.jpg"
     },
     {
       "key": 1252,
@@ -5106,7 +5106,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "restitution.jpg"
+      "image_name": "Restitution.jpg"
     },
     {
       "key": 1253,
@@ -5125,7 +5125,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "resurrect.jpg"
+      "image_name": "Resurrect.jpg"
     },
     {
       "key": 1254,
@@ -5146,7 +5146,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "return-to-nature.jpg"
+      "image_name": "Return-to-Nature.jpg"
     },
     {
       "key": 1255,
@@ -5165,7 +5165,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "rider-of-the-tides.jpg"
+      "image_name": "Rider-of-the-Tides.jpg"
     },
     {
       "key": 1256,
@@ -5188,7 +5188,7 @@
       "rulings": [
         "If the target of an ambush ability is removed, the ability will fizzle and this card will go into your discard."
       ],
-      "image_name": "riftwalker.jpg"
+      "image_name": "Riftwalker.jpg"
     },
     {
       "key": 1257,
@@ -5205,7 +5205,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "right.jpg"
+      "image_name": "Right.jpg"
     },
     {
       "key": 1258,
@@ -5226,7 +5226,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "rippleback-skulker.jpg"
+      "image_name": "Rippleback-Skulker.jpg"
     },
     {
       "key": 1259,
@@ -5245,7 +5245,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "robot.jpg"
+      "image_name": "Robot.jpg"
     },
     {
       "key": 1260,
@@ -5266,7 +5266,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "rook.jpg"
+      "image_name": "Rook.jpg"
     },
     {
       "key": 1261,
@@ -5287,7 +5287,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "rotspore-herald.jpg"
+      "image_name": "Rotspore-Herald.jpg"
     },
     {
       "key": 1262,
@@ -5308,7 +5308,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "rousing-spirit.jpg"
+      "image_name": "Rousing-Spirit.jpg"
     },
     {
       "key": 1263,
@@ -5327,7 +5327,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "roving-quillback.jpg"
+      "image_name": "Roving-Quillback.jpg"
     },
     {
       "key": 1264,
@@ -5348,7 +5348,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "ruinbringer.jpg"
+      "image_name": "Ruinbringer.jpg"
     },
     {
       "key": 1265,
@@ -5367,7 +5367,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "rune-channeler.jpg"
+      "image_name": "Rune-Channeler.jpg"
     },
     {
       "key": 1266,
@@ -5388,7 +5388,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "sacrificial-burst.jpg"
+      "image_name": "Sacrificial-Burst.jpg"
     },
     {
       "key": 1267,
@@ -5407,7 +5407,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "sandstone-defender.jpg"
+      "image_name": "Sandstone-Defender.jpg"
     },
     {
       "key": 1268,
@@ -5426,7 +5426,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "saprophytic-oracle.jpg"
+      "image_name": "Saprophytic-Oracle.jpg"
     },
     {
       "key": 1269,
@@ -5445,7 +5445,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "scavenging-sentry.jpg"
+      "image_name": "Scavenging-Sentry.jpg"
     },
     {
       "key": 1270,
@@ -5466,7 +5466,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "scrap-for-parts.jpg"
+      "image_name": "Scrap-For-Parts.jpg"
     },
     {
       "key": 1271,
@@ -5487,7 +5487,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "scrapyard-custodian.jpg"
+      "image_name": "Scrapyard-Custodian.jpg"
     },
     {
       "key": 1272,
@@ -5506,7 +5506,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "seabed-shellcaster.jpg"
+      "image_name": "Seabed-Shellcaster.jpg"
     },
     {
       "key": 1273,
@@ -5528,7 +5528,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "seismomancy.jpg"
+      "image_name": "Seismomancy.jpg"
     },
     {
       "key": 1274,
@@ -5547,7 +5547,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "self-assembly.jpg"
+      "image_name": "Self-Assembly.jpg"
     },
     {
       "key": 1275,
@@ -5566,7 +5566,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "shard-resource.jpg"
+      "image_name": "Shard-Resource.jpg"
     },
     {
       "key": 1276,
@@ -5585,7 +5585,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "shoreline-specter.jpg"
+      "image_name": "Shoreline-Specter.jpg"
     },
     {
       "key": 1277,
@@ -5606,7 +5606,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "skybreaker.jpg"
+      "image_name": "Skybreaker.jpg"
     },
     {
       "key": 1278,
@@ -5629,7 +5629,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "slag-spewer.jpg"
+      "image_name": "Slag-Spewer.jpg"
     },
     {
       "key": 1279,
@@ -5651,7 +5651,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "slink.jpg"
+      "image_name": "Slink.jpg"
     },
     {
       "key": 1280,
@@ -5673,7 +5673,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "smouldering-inferno.jpg"
+      "image_name": "Smouldering-Inferno.jpg"
     },
     {
       "key": 1281,
@@ -5694,7 +5694,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "soul-reaver.jpg"
+      "image_name": "Soul-Reaver.jpg"
     },
     {
       "key": 1282,
@@ -5715,7 +5715,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "soul-siphon.jpg"
+      "image_name": "Soul-Siphon.jpg"
     },
     {
       "key": 1283,
@@ -5734,7 +5734,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "soul-swallower.jpg"
+      "image_name": "Soul-Swallower.jpg"
     },
     {
       "key": 1284,
@@ -5755,7 +5755,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "soul-tithe.jpg"
+      "image_name": "Soul-Tithe.jpg"
     },
     {
       "key": 1285,
@@ -5776,7 +5776,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "soulforger.jpg"
+      "image_name": "Soulforger.jpg"
     },
     {
       "key": 1286,
@@ -5795,7 +5795,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "sparkwraith.jpg"
+      "image_name": "Sparkwraith.jpg"
     },
     {
       "key": 1287,
@@ -5814,7 +5814,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "spawning-ground.jpg"
+      "image_name": "Spawning-Ground.jpg"
     },
     {
       "key": 1288,
@@ -5835,7 +5835,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "spawntender.jpg"
+      "image_name": "Spawntender.jpg"
     },
     {
       "key": 1289,
@@ -5854,7 +5854,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "spectrogenesis.jpg"
+      "image_name": "Spectrogenesis.jpg"
     },
     {
       "key": 1290,
@@ -5875,7 +5875,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "spell-excavation.jpg"
+      "image_name": "Spell-Excavation.jpg"
     },
     {
       "key": 1291,
@@ -5894,7 +5894,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "spewing-mushroom.jpg"
+      "image_name": "Spewing-Mushroom.jpg"
     },
     {
       "key": 1292,
@@ -5915,7 +5915,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "spirit-of-nature.jpg"
+      "image_name": "Spirit-of-Nature.jpg"
     },
     {
       "key": 1293,
@@ -5934,7 +5934,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "spirit-of-vengeance.jpg"
+      "image_name": "Spirit-of-Vengeance.jpg"
     },
     {
       "key": 1294,
@@ -5955,7 +5955,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "spiteful-shadow.jpg"
+      "image_name": "Spiteful-Shadow.jpg"
     },
     {
       "key": 1295,
@@ -5974,7 +5974,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "sprouter.jpg"
+      "image_name": "Sprouter.jpg"
     },
     {
       "key": 1296,
@@ -5995,7 +5995,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "squish.jpg"
+      "image_name": "Squish.jpg"
     },
     {
       "key": 1297,
@@ -6016,7 +6016,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "stasis-sentry.jpg"
+      "image_name": "Stasis-Sentry.jpg"
     },
     {
       "key": 1298,
@@ -6035,7 +6035,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "static-courier.jpg"
+      "image_name": "Static-Courier.jpg"
     },
     {
       "key": 1299,
@@ -6052,7 +6052,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "stay.jpg"
+      "image_name": "Stay.jpg"
     },
     {
       "key": 1300,
@@ -6071,7 +6071,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "stellarspore-harvester.jpg"
+      "image_name": "Stellarspore-Harvester.jpg"
     },
     {
       "key": 1301,
@@ -6090,7 +6090,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-1.jpg"
+      "image_name": "Stolen-Card-1.jpg"
     },
     {
       "key": 1302,
@@ -6109,7 +6109,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-10.jpg"
+      "image_name": "Stolen-Card-10.jpg"
     },
     {
       "key": 1303,
@@ -6128,7 +6128,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-2.jpg"
+      "image_name": "Stolen-Card-2.jpg"
     },
     {
       "key": 1304,
@@ -6147,7 +6147,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-3.jpg"
+      "image_name": "Stolen-Card-3.jpg"
     },
     {
       "key": 1305,
@@ -6166,7 +6166,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-4.jpg"
+      "image_name": "Stolen-Card-4.jpg"
     },
     {
       "key": 1306,
@@ -6185,7 +6185,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-5.jpg"
+      "image_name": "Stolen-Card-5.jpg"
     },
     {
       "key": 1307,
@@ -6204,7 +6204,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-6.jpg"
+      "image_name": "Stolen-Card-6.jpg"
     },
     {
       "key": 1308,
@@ -6223,7 +6223,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-7.jpg"
+      "image_name": "Stolen-Card-7.jpg"
     },
     {
       "key": 1309,
@@ -6242,7 +6242,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-8.jpg"
+      "image_name": "Stolen-Card-8.jpg"
     },
     {
       "key": 1310,
@@ -6261,7 +6261,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "stolen-card-9.jpg"
+      "image_name": "Stolen-Card-9.jpg"
     },
     {
       "key": 1311,
@@ -6280,7 +6280,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "stoneborn-progenitor.jpg"
+      "image_name": "Stoneborn-Progenitor.jpg"
     },
     {
       "key": 1312,
@@ -6299,7 +6299,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "stormsowing-nimbus.jpg"
+      "image_name": "Stormsowing-Nimbus.jpg"
     },
     {
       "key": 1313,
@@ -6322,7 +6322,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "structural-collapse.jpg"
+      "image_name": "Structural-Collapse.jpg"
     },
     {
       "key": 1314,
@@ -6343,7 +6343,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "sudden-bloom.jpg"
+      "image_name": "Sudden-Bloom.jpg"
     },
     {
       "key": 1315,
@@ -6364,7 +6364,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "suppression-field.jpg"
+      "image_name": "Suppression-Field.jpg"
     },
     {
       "key": 1316,
@@ -6385,7 +6385,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "surly-stalker.jpg"
+      "image_name": "Surly-Stalker.jpg"
     },
     {
       "key": 1317,
@@ -6404,7 +6404,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "swirling-shardform.jpg"
+      "image_name": "Swirling-Shardform.jpg"
     },
     {
       "key": 1318,
@@ -6423,7 +6423,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "sylvan-sprouting.jpg"
+      "image_name": "Sylvan-Sprouting.jpg"
     },
     {
       "key": 1319,
@@ -6442,7 +6442,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "synaptic-energizer.jpg"
+      "image_name": "Synaptic-Energizer.jpg"
     },
     {
       "key": 1320,
@@ -6463,7 +6463,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "technological-superiority.jpg"
+      "image_name": "Technological-Superiority.jpg"
     },
     {
       "key": 1321,
@@ -6484,7 +6484,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "tempest-oracle.jpg"
+      "image_name": "Tempest-Oracle.jpg"
     },
     {
       "key": 1322,
@@ -6506,7 +6506,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tempest-wrangler.jpg"
+      "image_name": "Tempest-Wrangler.jpg"
     },
     {
       "key": 1323,
@@ -6529,7 +6529,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "temporal-rift.jpg"
+      "image_name": "Temporal-Rift.jpg"
     },
     {
       "key": 1324,
@@ -6550,7 +6550,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "tenebrous-bulborb.jpg"
+      "image_name": "Tenebrous-Bulborb.jpg"
     },
     {
       "key": 1325,
@@ -6569,7 +6569,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "the-bonesculptor.jpg"
+      "image_name": "The-Bonesculptor.jpg"
     },
     {
       "key": 1326,
@@ -6590,7 +6590,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "the-silent.jpg"
+      "image_name": "The-Silent.jpg"
     },
     {
       "key": 1327,
@@ -6613,7 +6613,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "the-world-shepherd.jpg"
+      "image_name": "The-World-Shepherd.jpg"
     },
     {
       "key": 1328,
@@ -6634,7 +6634,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "throw-off-a-cliff.jpg"
+      "image_name": "Throw-off-a-Cliff.jpg"
     },
     {
       "key": 1329,
@@ -6653,7 +6653,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "throwing-boulder.jpg"
+      "image_name": "Throwing-Boulder.jpg"
     },
     {
       "key": 1330,
@@ -6674,7 +6674,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tidal-menace.jpg"
+      "image_name": "Tidal-Menace.jpg"
     },
     {
       "key": 1331,
@@ -6695,7 +6695,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tidal-reversion.jpg"
+      "image_name": "Tidal-Reversion.jpg"
     },
     {
       "key": 1332,
@@ -6714,7 +6714,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tidelurker.jpg"
+      "image_name": "Tidelurker.jpg"
     },
     {
       "key": 1333,
@@ -6736,7 +6736,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tidepool-terror.jpg"
+      "image_name": "Tidepool-Terror.jpg"
     },
     {
       "key": 1334,
@@ -6757,7 +6757,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tiderunner-initiate.jpg"
+      "image_name": "Tiderunner-Initiate.jpg"
     },
     {
       "key": 1335,
@@ -6778,7 +6778,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "tides-of-the-cosmos.jpg"
+      "image_name": "Tides-of-the-Cosmos.jpg"
     },
     {
       "key": 1336,
@@ -6801,7 +6801,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "torrential-reclamation.jpg"
+      "image_name": "Torrential-Reclamation.jpg"
     },
     {
       "key": 1337,
@@ -6822,7 +6822,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "towering-colossus.jpg"
+      "image_name": "Towering-Colossus.jpg"
     },
     {
       "key": 1338,
@@ -6841,7 +6841,7 @@
         "earth"
       ],
       "rulings": [],
-      "image_name": "tranquility.jpg"
+      "image_name": "Tranquility.jpg"
     },
     {
       "key": 1339,
@@ -6862,7 +6862,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "transmogrifant.jpg"
+      "image_name": "Transmogrifant.jpg"
     },
     {
       "key": 1340,
@@ -6883,7 +6883,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "transmutide-enigma.jpg"
+      "image_name": "Transmutide-Enigma.jpg"
     },
     {
       "key": 1341,
@@ -6905,7 +6905,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "trashling.jpg"
+      "image_name": "Trashling.jpg"
     },
     {
       "key": 1342,
@@ -6924,7 +6924,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "trigger-1.jpg"
+      "image_name": "Trigger-1.jpg"
     },
     {
       "key": 1343,
@@ -6943,7 +6943,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "trigger-2.jpg"
+      "image_name": "Trigger-2.jpg"
     },
     {
       "key": 1344,
@@ -6962,7 +6962,7 @@
         "colorless"
       ],
       "rulings": [],
-      "image_name": "trigger-3.jpg"
+      "image_name": "Trigger-3.jpg"
     },
     {
       "key": 1345,
@@ -6979,7 +6979,7 @@
       "details": "",
       "factions": [],
       "rulings": [],
-      "image_name": "turn-structure.jpg"
+      "image_name": "Turn-Structure.jpg"
     },
     {
       "key": 1346,
@@ -7000,7 +7000,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "twin-flame.jpg"
+      "image_name": "Twin-Flame.jpg"
     },
     {
       "key": 1347,
@@ -7023,7 +7023,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "unfinished-creation.jpg"
+      "image_name": "Unfinished-Creation.jpg"
     },
     {
       "key": 1348,
@@ -7044,7 +7044,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "unmake.jpg"
+      "image_name": "Unmake.jpg"
     },
     {
       "key": 1349,
@@ -7063,7 +7063,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "unstable-apparition.jpg"
+      "image_name": "Unstable-Apparition.jpg"
     },
     {
       "key": 1350,
@@ -7086,7 +7086,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "unstable-form.jpg"
+      "image_name": "Unstable-Form.jpg"
     },
     {
       "key": 1351,
@@ -7107,7 +7107,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "unstable-refactor.jpg"
+      "image_name": "Unstable-Refactor.jpg"
     },
     {
       "key": 1352,
@@ -7126,7 +7126,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "unstable-singularity.jpg"
+      "image_name": "Unstable-Singularity.jpg"
     },
     {
       "key": 1353,
@@ -7147,7 +7147,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "upheaval.jpg"
+      "image_name": "Upheaval.jpg"
     },
     {
       "key": 1354,
@@ -7166,7 +7166,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "vaporweave-eidolon.jpg"
+      "image_name": "Vaporweave-Eidolon.jpg"
     },
     {
       "key": 1355,
@@ -7185,7 +7185,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "verdant-necrophage.jpg"
+      "image_name": "Verdant-Necrophage.jpg"
     },
     {
       "key": 1356,
@@ -7206,7 +7206,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "verdant-vengeance.jpg"
+      "image_name": "Verdant-Vengeance.jpg"
     },
     {
       "key": 1357,
@@ -7227,7 +7227,7 @@
         "metal"
       ],
       "rulings": [],
-      "image_name": "void-memory.jpg"
+      "image_name": "Void-Memory.jpg"
     },
     {
       "key": 1358,
@@ -7250,7 +7250,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "volatile-toxicity.jpg"
+      "image_name": "Volatile-Toxicity.jpg"
     },
     {
       "key": 1359,
@@ -7269,7 +7269,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "voltwrath-behemoth.jpg"
+      "image_name": "Voltwrath-Behemoth.jpg"
     },
     {
       "key": 1360,
@@ -7288,7 +7288,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "wandering-blightshell.jpg"
+      "image_name": "Wandering-Blightshell.jpg"
     },
     {
       "key": 1361,
@@ -7307,7 +7307,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "warbloom-herald.jpg"
+      "image_name": "Warbloom-Herald.jpg"
     },
     {
       "key": 1362,
@@ -7326,7 +7326,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "water-resource.jpg"
+      "image_name": "Water-Resource.jpg"
     },
     {
       "key": 1363,
@@ -7347,7 +7347,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "whispering-mantid.jpg"
+      "image_name": "Whispering-Mantid.jpg"
     },
     {
       "key": 1364,
@@ -7368,7 +7368,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "wildfire.jpg"
+      "image_name": "Wildfire.jpg"
     },
     {
       "key": 1365,
@@ -7389,7 +7389,7 @@
         "fire"
       ],
       "rulings": [],
-      "image_name": "wisp.jpg"
+      "image_name": "Wisp.jpg"
     },
     {
       "key": 1366,
@@ -7412,7 +7412,7 @@
         "hybrid"
       ],
       "rulings": [],
-      "image_name": "wither-and-bloom.jpg"
+      "image_name": "Wither-and-Bloom.jpg"
     },
     {
       "key": 1367,
@@ -7431,7 +7431,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "wood-resource.jpg"
+      "image_name": "Wood-Resource.jpg"
     },
     {
       "key": 1368,
@@ -7452,7 +7452,7 @@
         "wood"
       ],
       "rulings": [],
-      "image_name": "woodland-warding.jpg"
+      "image_name": "Woodland-Warding.jpg"
     },
     {
       "key": 1369,
@@ -7475,7 +7475,7 @@
       "rulings": [
         "All draft skipping cards are not legal in formats without a draft."
       ],
-      "image_name": "worldbender.jpg"
+      "image_name": "Worldbender.jpg"
     },
     {
       "key": 1370,
@@ -7494,7 +7494,7 @@
         "water"
       ],
       "rulings": [],
-      "image_name": "xenopod-progenitor.jpg"
+      "image_name": "Xenopod-Progenitor.jpg"
     }
   ],
   "factions": [

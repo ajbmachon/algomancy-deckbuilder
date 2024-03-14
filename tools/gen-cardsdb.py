@@ -51,7 +51,7 @@ class AlgoCard:
 
     @classmethod
     def from_upstream(cls, key: int, src: Mapping[str, Any]) -> AlgoCard:
-        img_name = src["name"].lower().replace(",", "").replace(" ", "-")
+        img_name = src["name"].replace(",", "").replace(" ", "-")
         factions = src["factions"]
         if not isinstance(factions, list):
             factions = []
