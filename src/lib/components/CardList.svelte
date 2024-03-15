@@ -18,7 +18,7 @@
   {#each list as entry, idx (entry.id)}
     <div
       class="absolute card-slot"
-      style:top={`${idx * card_splay}px`}
+      style:top={`${20 + idx * card_splay}px`}
       in:receive={{ key: entry.id }}
       out:send={{ key: entry.id }}
       animate:flip={{ duration: 500 }}
@@ -40,7 +40,7 @@
   }
 
   .card-slot :global(img) {
-    margin: 20px;
+    margin: 0px 20px 20px;
   }
 
   .card-slot:hover {
