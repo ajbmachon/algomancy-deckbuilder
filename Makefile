@@ -8,11 +8,12 @@ src/lib/assets/cards_db.json: tools/gen-cardsdb.py
 CARD_IMAGE_ROOT_URL = https://calebgannon.com/wp-content/uploads/cardsearch-images
 CARD_IMAGE_URLS = $(shell for img in `jq -r '.cards[]|.image_name' src/lib/assets/cards_db.json`; do echo "$(CARD_IMAGE_ROOT_URL)/$$img"; done)
 
-images: src/lib/assets/cards_db.json
-	@> .urls
-	@for url in $(CARD_IMAGE_URLS); do echo $$url >> .urls; done
-	@wget -P static/card_images -i .urls
-	@rm -f .urls
+.urls: src/lib/assets/cards_db.json
+	@> $@
+	@for url in $(CARD_IMAGE_URLS); do echo $$url >> $@; done
+
+images: .urls
+	@wget -P static/card_images -i $<
 
 .PHONY: check-images
 check-images: src/lib/assets/cards_db.json
