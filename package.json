@@ -7,7 +7,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "^2.2.0",

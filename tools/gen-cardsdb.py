@@ -90,14 +90,14 @@ class AlgoCard:
                     f"(?:{r})"
                     for r in (
                         r"\{[^}]*\}",
-                        r"[^a-z0-9']+",
+                        r"[^a-zA-Z0-9']+",
                     )
                 ),
                 " ",
-                value.lower(),
+                value,
             ).strip()
             value = value.split(" ")
-        yield from (v for v in map(str.strip, value) if v)
+        yield from (v for v in map(str.strip, map(str.lower, value)) if v)
 
 
 @dataclass

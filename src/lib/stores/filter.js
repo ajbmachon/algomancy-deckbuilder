@@ -50,7 +50,7 @@ export function filter_card_pool(filter, pool_by_key, search_scopes) {
       return acc;
     }, []);
 
-  if (filter.sort_by !== 'any') {
+  if (filter.sort_by && filter.sort_by !== 'any') {
     new_pool.sort((a, b) => {
       const a_val = a.card[filter.sort_by];
       const b_val = b.card[filter.sort_by];
