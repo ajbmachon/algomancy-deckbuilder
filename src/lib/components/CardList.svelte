@@ -5,20 +5,21 @@
 
   const dispatch = createEventDispatcher();
   const click_event = (entry) => () => dispatch('click', entry);
-  const height = 400;
 
   export let list;
   export let crossfade;
-  export let card_splay = 40;
+  export let compact = false;
+  export let disabledCards = [];
 
   $: [send, receive] = crossfade;
+  $: isDisabled = (id) => disabledCards.includes(id);
 </script>
 
-<div class="relative card-list">
-  {#each list as entry, idx (entry.id)}
+<div class="card-grid" class:compact>
+  {#each list as entry (entry.id)}
     <div
-      class="absolute card-slot"
-      style:top={`${20 + idx * card_splay}px`}
+      class="card-item"
+      class:disabled={isDisabled(entry.id)}
       in:receive={{ key: entry.id }}
       out:send={{ key: entry.id }}
       animate:flip={{ duration: 500 }}
@@ -27,23 +28,48 @@
         name={entry.card.name}
         image_name={entry.card.image_name}
         faction={entry.card.factions[0]}
-        on:click={click_event(entry)}
+        on:click={!isDisabled(entry.id) ? click_event(entry) : null}
       />
     </div>
   {/each}
 </div>
 
 <style>
-  .card-list {
-    height: calc(100vh - 300px);
-    overflow-y: scroll;
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5em;
+    width: 100%;
+    height: calc(120vh - 300px);
+    overflow-y: auto;
+  }
+  
+  .card-grid.compact {
+    height: calc(130vh - 500px);
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 5px;
+    padding: 2px;
+
   }
 
-  .card-slot :global(img) {
-    margin: 0px 20px 20px;
+  .card-item {
+    margin-top: 1em;
+    transition: transform 0.2s;
+    min-height: 280px;
   }
 
-  .card-slot:hover {
-    z-index: 1;
+  .card-item:hover {
+    z-index: 10;
+  }
+  
+  .card-item.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .card-item :global(img) {
+    width: 100%;
+    height: auto;
+    margin: 0;
   }
 </style>

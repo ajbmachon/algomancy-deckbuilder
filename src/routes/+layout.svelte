@@ -11,26 +11,55 @@
   storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 </script>
 
-<AppShell>
+<AppShell slotSidebarLeft="w-auto" regionPage="overflow-hidden">
   <svelte:fragment slot="header">
-    <p class="text-4xl/loose ml-4">
-      Algomancy Deck Builder
-      <span class="text-sm opacity-10">[Card pool size: {$filtered_pool.length}]</span>
-    </p>
+    <div class="header-container">
+      <p class="app-title">
+        Algomancy Deck Builder
+        <span class="pool-size">[Card pool size: {$filtered_pool.length}]</span>
+      </p>
+    </div>
   </svelte:fragment>
   <SideBar slot="sidebarLeft" />
-  <!-- (sidebarRight) -->
-  <!-- (pageHeader) -->
   <!-- Router Slot -->
-  <slot />
-  <!-- ---- / ---- -->
-  <!--<svelte:fragment slot="pageFooter">Page Footer</svelte:fragment>-->
-  <!-- (footer) -->
+  <div class="content-container">
+    <slot />
+  </div>
 </AppShell>
 
 <style>
-  html,
-  body {
-    @apply h-full overflow-hidden;
+  :global(html),
+  :global(body) {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .pool-size {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-left: 10px;
+    font-weight: normal;
+  }
+
+  .content-container {
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
   }
 </style>

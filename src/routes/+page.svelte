@@ -10,7 +10,7 @@
   <Filter bind:filter={$search_filter} />
 </div>
 
-<div class="picker">
+<div class="main-content">
   <PoolPicker pool={$filtered_pool} bind:picked={$decklist} />
 </div>
 
@@ -19,7 +19,9 @@
     padding: 1em;
   }
 
-  .picker {
-    padding: 1.5em;
+  .main-content {
+    padding: 0 1.5em 1.5em;
+    height: calc(100vh - 150px);
+    overflow: hidden;
   }
 </style>
