@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 250 95% 64%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 250 95% 64%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 250 95% 64%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground bg-gradient-to-br from-background via-background to-black/80;
+
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .card-fade-in {
+    animation: cardFadeIn 0.3s ease-out;
+  }
+
+  .filter-btn-earth {
+    @apply border-2 border-faction-earth text-faction-earth hover:bg-faction-earth/10;
+  }
+
+  .filter-btn-earth.active {
+    @apply bg-faction-earth text-white hover:bg-faction-earth/90;
+  }
+
+  .filter-btn-wood {
+    @apply border-2 border-faction-wood text-faction-wood hover:bg-faction-wood/10;
+  }
+
+  .filter-btn-wood.active {
+    @apply bg-faction-wood text-white hover:bg-faction-wood/90;
+  }
+
+  .filter-btn-fire {
+    @apply border-2 border-faction-fire text-faction-fire hover:bg-faction-fire/10;
+  }
+
+  .filter-btn-fire.active {
+    @apply bg-faction-fire text-white hover:bg-faction-fire/90;
+  }
+
+  .filter-btn-water {
+    @apply border-2 border-faction-water text-faction-water hover:bg-faction-water/10;
+  }
+
+  .filter-btn-water.active {
+    @apply bg-faction-water text-white hover:bg-faction-water/90;
+  }
+
+  .filter-btn-metal {
+    @apply border-2 border-faction-metal text-faction-metal hover:bg-faction-metal/10;
+  }
+
+  .filter-btn-metal.active {
+    @apply bg-faction-metal text-white hover:bg-faction-metal/90;
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card deck glow effect */
+.deck-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #8b5cf6 0deg,
+    #5eead4 60deg,
+    #6366f1 120deg,
+    #8b5cf6 180deg,
+    #5eead4 240deg,
+    #6366f1 300deg,
+    #8b5cf6 360deg
+  );
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.deck-card-glow:hover::before {
+  opacity: 1;
+}

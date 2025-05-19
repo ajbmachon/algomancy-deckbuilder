@@ -1,0 +1,6 @@
+{
+  "permissions": {
+    "allow": ["shadcn-ui", "npx shadcn"],
+    "deny": []
+  }
+}

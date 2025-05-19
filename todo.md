@@ -7,35 +7,39 @@ This file tracks the implementation progress of the UI modernization plan.
 ## Phase 1: Setup and Infrastructure
 - [ ] Set up shadcn-ui via MCP server
   - [x] Connect to shadcn-ui MCP server
-  - [ ] Install base components via MCP
-  - [ ] Configure project for shadcn-ui components
+  - [x] Create migration plan documentation
+  - [x] Create direct usage documentation for MCP components
+  - [x] Remove shadcn-svelte references
+  - [x] Create utility functions for card stacking
+  - [ ] Implement direct MCP component usage
+  - [x] Create directory structure for new components
   - [ ] Set up testing environment for UI components
 - [ ] Create base theme components
-  - [ ] Implement basic theme colors in Tailwind
-  - [ ] Create BaseTheme component
+  - [x] Define faction-based colors in tailwind.config.js
+  - [x] Create BaseTheme component
   - [ ] Test theme application
   - [ ] Implement basic typography styles
 
 ## Phase 2: Card Stacking Implementation
-- [ ] Create card grouping logic
-  - [ ] Write tests for card grouping by name
-  - [ ] Implement stackCards function
-  - [ ] Test grouping algorithm with various card lists
+- [x] Create card grouping logic
+  - [x] Write tests for card grouping by name
+  - [x] Implement stackCards function
+  - [x] Test grouping algorithm with various card lists
   - [ ] Ensure backward compatibility with current UI
 - [ ] Implement card count badge
-  - [ ] Install Badge component
+  - [ ] Use Badge component from MCP
   - [ ] Test badge visibility based on card count
   - [ ] Style badge for different faction types
   - [ ] Ensure badge position and visibility
 - [ ] Modify card display to use stacked cards
-  - [ ] Update card rendering to show stacked cards
+  - [ ] Use Card component from MCP
   - [ ] Test interaction with stacked cards
   - [ ] Ensure proper event handling
   - [ ] Verify behavior with disabled cards
 
 ## Phase 3: Theme and Styling Modernization
 - [ ] Implement faction-based styling
-  - [ ] Create faction color variables
+  - [x] Define faction color variables in tailwind.config.js
   - [ ] Test application of faction colors
   - [ ] Implement hover effects for different factions
   - [ ] Verify accessibility of color choices
@@ -52,29 +56,29 @@ This file tracks the implementation progress of the UI modernization plan.
 
 ## Phase 4: Enhanced Filtering
 - [ ] Implement Tabs component for filters
-  - [ ] Install Tabs component
+  - [ ] Use Tabs component from MCP
   - [ ] Test tab switching functionality
   - [ ] Organize filters into logical tab groups
   - [ ] Ensure tab content updates correctly
 - [ ] Enhance filter components
-  - [ ] Install Checkbox component
+  - [ ] Use Checkbox component from MCP
   - [ ] Implement sliders for numeric filters
   - [ ] Test filter interaction and state
   - [ ] Ensure filter state persistence
 - [ ] Add active filter indicators
-  - [ ] Create Badge component for active filters
+  - [ ] Use Badge component for active filters
   - [ ] Test adding/removing active filters
   - [ ] Implement visual feedback for filter state
   - [ ] Ensure filter removal updates results
 
 ## Phase 5: Deck Statistics and Visualization
 - [ ] Create basic statistics component
-  - [ ] Install Card component for stats display
+  - [ ] Use Card component from MCP for stats display
   - [ ] Test statistics calculations
   - [ ] Ensure statistics update when deck changes
   - [ ] Verify display of multiple metrics
 - [ ] Add faction distribution visualization
-  - [ ] Install Progress component
+  - [ ] Use Progress component from MCP
   - [ ] Test percentage calculations
   - [ ] Style progress bars with faction colors
   - [ ] Ensure responsive display of progress bars
@@ -91,7 +95,7 @@ This file tracks the implementation progress of the UI modernization plan.
   - [ ] Create mobile-specific styles
   - [ ] Ensure card grid adapts to screen width
 - [ ] Implement mobile drawer for deck view
-  - [ ] Install Drawer component
+  - [ ] Use Drawer component from MCP
   - [ ] Test drawer open/close functionality
   - [ ] Ensure deck interactions work in drawer
   - [ ] Verify smooth animations

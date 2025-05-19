@@ -43,7 +43,7 @@ npm run dev -- --open
 
 ## UI Modernization
 
-We're currently modernizing the UI using shadcn-ui components via the Model Context Protocol (MCP). This will provide a more polished look and better user experience.
+We're migrating from shadcn-svelte to shadcn-ui components via the Model Context Protocol (MCP). This will provide a more polished look and better user experience.
 
 Key features of the modernization:
 - Card stacking for duplicates
@@ -52,7 +52,10 @@ Key features of the modernization:
 - Improved deck analysis tools
 - Responsive design for all devices
 
-See [UI_MODERNIZATION_PLAN.md](./UI_MODERNIZATION_PLAN.md) for more details.
+See the following files for our migration plan:
+- [SHADCN_UI_MIGRATION_PLAN.md](./SHADCN_UI_MIGRATION_PLAN.md) - Overall migration strategy
+- [SHADCN_UI_COMPONENTS.md](./SHADCN_UI_COMPONENTS.md) - Components to install via MCP
+- [PACKAGE_UPDATES.md](./PACKAGE_UPDATES.md) - Required package updates
 
 ## Card Properties
 

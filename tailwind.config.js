@@ -1,17 +1,7 @@
-// @ts-check
-import { join } from 'path';
-import { skeleton } from '@skeletonlabs/tw-plugin';
-import { fontFamily } from 'tailwindcss/defaultTheme';
-import animation from 'tailwindcss-animate';
-
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
-  content: [
-    './src/**/*.{html,js,svelte,ts}',
-    join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}'),
-    './node_modules/shadcn-svelte/**/*.{html,js,svelte,ts}'
-  ],
+  darkMode: ['class'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
   theme: {
     container: {
       center: true,
@@ -81,7 +71,7 @@ export default {
         'card-hover': '0 15px 25px -5px rgba(0, 0, 0, 0.5), 0 0 10px 0 rgba(139, 92, 246, 0.3)'
       },
       fontFamily: {
-        sans: ['Inter', ...fontFamily.sans]
+        sans: ['var(--font-sans)']
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -99,10 +89,5 @@ export default {
       }
     }
   },
-  plugins: [
-    skeleton({
-      themes: { preset: ['skeleton'] }
-    }),
-    animation
-  ]
+  plugins: [require('tailwindcss-animate')]
 };
