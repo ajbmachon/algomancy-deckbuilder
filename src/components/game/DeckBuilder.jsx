@@ -19,7 +19,10 @@ export function DeckBuilder({ cardPool = [], initialDeck = [] }) {
 
   // Apply filters to card pool
   useEffect(() => {
-    let filtered = [...cardPool];
+    // First, filter out colorless cards from the pool
+    let filtered = cardPool.filter(card =>
+      !card.card.factions.some(faction => faction.toLowerCase() === 'colorless')
+    );
 
     // Filter by factions
     if (activeFilters.factions.length > 0) {
@@ -114,7 +117,9 @@ export function DeckBuilder({ cardPool = [], initialDeck = [] }) {
   };
 
   // Get unique faction, cost, and type values from card pool
-  const factions = [...new Set(cardPool.flatMap(card => card.card.factions.map(f => f.toLowerCase())))];
+  // Filter out the "colorless" faction as it's not used for deckbuilding
+  const factions = [...new Set(cardPool.flatMap(card => card.card.factions.map(f => f.toLowerCase())))]
+    .filter(faction => faction !== 'colorless');
   const costs = [...new Set(cardPool.map(card => card.card.cost))].sort((a, b) => a - b);
   const types = [...new Set(cardPool.map(card => card.card.type))];
 
