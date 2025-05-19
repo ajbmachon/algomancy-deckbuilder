@@ -4,12 +4,6 @@ import CardFooter from './card-footer.svelte';
 import CardTitle from './card-title.svelte';
 import CardDescription from './card-description.svelte';
 import CardContent from './card-content.svelte';
+import CardWithCount from './CardWithCount.svelte';
 
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent
-};
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, CardWithCount };

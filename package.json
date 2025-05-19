@@ -10,7 +10,9 @@
     "format": "prettier --plugin-search-dir . --write .",
     "test": "vitest run",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "shadcn-svelte": "shadcn-svelte",
+    "prepare": "pre-commit install"
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "^2.2.0",
@@ -22,21 +24,32 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/svelte": "^4.1.0",
     "autoprefixer": "^10.4.14",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte": "^2.30.0",
     "jsdom": "^24.0.0",
+    "lucide-svelte": "^0.363.0",
     "postcss": "^8.4.24",
     "postcss-load-config": "^4.0.1",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.10.1",
+    "shadcn-svelte": "^0.8.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0",
     "svelte": "^4.0.5",
+    "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.2",
+    "tailwindcss-animate": "^1.0.7",
     "vite": "^5.0.0",
     "vitest": "^1.4.0"
   },
   "type": "module",
   "dependencies": {
-    "@floating-ui/dom": "^1.5.3"
+    "@floating-ui/dom": "^1.5.3",
+    "bits-ui": "^0.11.8",
+    "tailwind-variants": "^0.1.18"
   }
 }
