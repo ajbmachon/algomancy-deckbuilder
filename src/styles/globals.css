@@ -66,76 +66,91 @@
   .filter-btn-earth {
     @apply border-2 border-faction-earth text-faction-earth hover:bg-faction-earth/10;
     transition: all 0.2s ease;
-    box-shadow: 0 0 0 rgba(217, 119, 6, 0);
+    box-shadow: 0 0 0 rgba(180, 83, 9, 0);
   }
 
   .filter-btn-earth.active {
     @apply bg-faction-earth text-white hover:bg-faction-earth/90;
-    box-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
+    box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
   }
 
   .filter-btn-earth:hover {
-    box-shadow: 0 0 8px rgba(217, 119, 6, 0.2);
+    box-shadow: 0 0 8px rgba(180, 83, 9, 0.2);
   }
 
   .filter-btn-wood {
     @apply border-2 border-faction-wood text-faction-wood hover:bg-faction-wood/10;
     transition: all 0.2s ease;
-    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 rgba(4, 120, 87, 0);
   }
 
   .filter-btn-wood.active {
     @apply bg-faction-wood text-white hover:bg-faction-wood/90;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
   }
 
   .filter-btn-wood:hover {
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 8px rgba(4, 120, 87, 0.2);
   }
 
   .filter-btn-fire {
     @apply border-2 border-faction-fire text-faction-fire hover:bg-faction-fire/10;
     transition: all 0.2s ease;
-    box-shadow: 0 0 0 rgba(239, 68, 68, 0);
+    box-shadow: 0 0 0 rgba(185, 28, 28, 0);
   }
 
   .filter-btn-fire.active {
     @apply bg-faction-fire text-white hover:bg-faction-fire/90;
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 10px rgba(185, 28, 28, 0.3);
   }
 
   .filter-btn-fire:hover {
-    box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 8px rgba(185, 28, 28, 0.2);
   }
 
   .filter-btn-water {
     @apply border-2 border-faction-water text-faction-water hover:bg-faction-water/10;
     transition: all 0.2s ease;
-    box-shadow: 0 0 0 rgba(14, 165, 233, 0);
+    box-shadow: 0 0 0 rgba(3, 105, 161, 0);
   }
 
   .filter-btn-water.active {
     @apply bg-faction-water text-white hover:bg-faction-water/90;
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 0 10px rgba(3, 105, 161, 0.3);
   }
 
   .filter-btn-water:hover {
-    box-shadow: 0 0 8px rgba(14, 165, 233, 0.2);
+    box-shadow: 0 0 8px rgba(3, 105, 161, 0.2);
   }
 
   .filter-btn-metal {
     @apply border-2 border-faction-metal text-faction-metal hover:bg-faction-metal/10;
     transition: all 0.2s ease;
-    box-shadow: 0 0 0 rgba(148, 163, 184, 0);
+    box-shadow: 0 0 0 rgba(71, 85, 105, 0);
   }
 
   .filter-btn-metal.active {
     @apply bg-faction-metal text-white hover:bg-faction-metal/90;
-    box-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+    box-shadow: 0 0 10px rgba(71, 85, 105, 0.3);
   }
 
   .filter-btn-metal:hover {
-    box-shadow: 0 0 8px rgba(148, 163, 184, 0.2);
+    box-shadow: 0 0 8px rgba(71, 85, 105, 0.2);
+  }
+
+  .filter-btn-shard {
+    @apply border-2 border-faction-shard text-faction-shard hover:bg-faction-shard/10;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 rgba(124, 58, 237, 0);
+  }
+
+  .filter-btn-shard.active {
+    @apply bg-faction-shard text-white hover:bg-faction-shard/90;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+  }
+
+  .filter-btn-shard:hover {
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
   }
 
   /* Enhanced cards styling */
@@ -154,7 +169,7 @@
     content: '';
     position: absolute;
     inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.4), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.4), transparent 70%);
     border-radius: 16px;
     z-index: -1;
     opacity: 0;
@@ -169,7 +184,7 @@
     content: '';
     position: absolute;
     inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.4), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(4, 120, 87, 0.4), transparent 70%);
     border-radius: 16px;
     z-index: -1;
     opacity: 0;
@@ -184,7 +199,7 @@
     content: '';
     position: absolute;
     inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.4), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.4), transparent 70%);
     border-radius: 16px;
     z-index: -1;
     opacity: 0;
@@ -199,7 +214,7 @@
     content: '';
     position: absolute;
     inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.4), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(3, 105, 161, 0.4), transparent 70%);
     border-radius: 16px;
     z-index: -1;
     opacity: 0;
@@ -214,7 +229,7 @@
     content: '';
     position: absolute;
     inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.4), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(71, 85, 105, 0.4), transparent 70%);
     border-radius: 16px;
     z-index: -1;
     opacity: 0;
@@ -222,6 +237,21 @@
   }
 
   .card-metal-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-shard-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.4), transparent 70%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-shard-glow:hover::before {
     opacity: 1;
   }
 
@@ -323,27 +353,32 @@
 
   .faction-badge-earth {
     @apply bg-faction-earth;
-    box-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
+    box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
   }
 
   .faction-badge-wood {
     @apply bg-faction-wood;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
   }
 
   .faction-badge-fire {
     @apply bg-faction-fire;
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 10px rgba(185, 28, 28, 0.3);
   }
 
   .faction-badge-water {
     @apply bg-faction-water;
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 0 10px rgba(3, 105, 161, 0.3);
   }
 
   .faction-badge-metal {
     @apply bg-faction-metal;
-    box-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+    box-shadow: 0 0 10px rgba(71, 85, 105, 0.3);
+  }
+
+  .faction-badge-shard {
+    @apply bg-faction-shard;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
   }
 }
 

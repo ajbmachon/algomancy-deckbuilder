@@ -45,19 +45,21 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
           // Card faction colors
-          earth: '#D97706', // Amber
-          wood: '#10B981', // Emerald
-          fire: '#EF4444', // Red
-          water: '#0EA5E9', // Sky blue
-          metal: '#94A3B8' // Slate
+          earth: '#B45309', // Amber-700
+          wood: '#047857', // Emerald-700
+          fire: '#B91C1C', // Red-700
+          water: '#0369A1', // Sky-700
+          metal: '#475569', // Slate-600
+          shard: '#7C3AED'  // Violet-600 (for shard/generic cards)
         },
         // Faction-specific colors for badges and highlights
         faction: {
-          earth: '#D97706', // Amber
-          wood: '#10B981', // Emerald
-          fire: '#EF4444', // Red
-          water: '#0EA5E9', // Sky blue
-          metal: '#94A3B8' // Slate
+          earth: '#B45309', // Amber-700
+          wood: '#047857', // Emerald-700
+          fire: '#B91C1C', // Red-700
+          water: '#0369A1', // Sky-700
+          metal: '#475569', // Slate-600
+          shard: '#7C3AED'  // Violet-600 (for shard/generic cards)
         }
       },
       borderRadius: {
