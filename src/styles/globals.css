@@ -33,9 +33,28 @@
   }
 
   body {
-    @apply bg-background text-foreground bg-gradient-to-br from-background via-background to-black/80;
-
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 100% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 0% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
     min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
   }
 }
 
@@ -46,42 +65,285 @@
 
   .filter-btn-earth {
     @apply border-2 border-faction-earth text-faction-earth hover:bg-faction-earth/10;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 rgba(217, 119, 6, 0);
   }
 
   .filter-btn-earth.active {
     @apply bg-faction-earth text-white hover:bg-faction-earth/90;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
+  }
+
+  .filter-btn-earth:hover {
+    box-shadow: 0 0 8px rgba(217, 119, 6, 0.2);
   }
 
   .filter-btn-wood {
     @apply border-2 border-faction-wood text-faction-wood hover:bg-faction-wood/10;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
   }
 
   .filter-btn-wood.active {
     @apply bg-faction-wood text-white hover:bg-faction-wood/90;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+
+  .filter-btn-wood:hover {
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
   }
 
   .filter-btn-fire {
     @apply border-2 border-faction-fire text-faction-fire hover:bg-faction-fire/10;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0);
   }
 
   .filter-btn-fire.active {
     @apply bg-faction-fire text-white hover:bg-faction-fire/90;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+
+  .filter-btn-fire:hover {
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
   }
 
   .filter-btn-water {
     @apply border-2 border-faction-water text-faction-water hover:bg-faction-water/10;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 rgba(14, 165, 233, 0);
   }
 
   .filter-btn-water.active {
     @apply bg-faction-water text-white hover:bg-faction-water/90;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+  }
+
+  .filter-btn-water:hover {
+    box-shadow: 0 0 8px rgba(14, 165, 233, 0.2);
   }
 
   .filter-btn-metal {
     @apply border-2 border-faction-metal text-faction-metal hover:bg-faction-metal/10;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 rgba(148, 163, 184, 0);
   }
 
   .filter-btn-metal.active {
     @apply bg-faction-metal text-white hover:bg-faction-metal/90;
+    box-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+  }
+
+  .filter-btn-metal:hover {
+    box-shadow: 0 0 8px rgba(148, 163, 184, 0.2);
+  }
+
+  /* Enhanced cards styling */
+  .card-container {
+    @apply relative rounded-xl overflow-hidden;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+  }
+
+  .card-container:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* Card faction specific glow styles */
+  .card-earth-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.4), transparent 70%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-earth-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-wood-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.4), transparent 70%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-wood-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-fire-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.4), transparent 70%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-fire-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-water-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.4), transparent 70%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-water-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-metal-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.4), transparent 70%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-metal-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Card deck glow effect */
+  .deck-card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      #8b5cf6 0deg,
+      #5eead4 60deg,
+      #6366f1 120deg,
+      #8b5cf6 180deg,
+      #5eead4 240deg,
+      #6366f1 300deg,
+      #8b5cf6 360deg
+    );
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .deck-card-glow:hover::before {
+    opacity: 1;
+    animation: rotate 3s linear infinite;
+  }
+
+  /* Card tooltip styling */
+  .card-tooltip {
+    @apply bg-black/90 p-4 rounded-lg border border-white/10 shadow-xl backdrop-blur-sm;
+    max-width: 300px;
+  }
+
+  /* Card badge styling */
+  .card-badge {
+    @apply absolute rounded-full flex items-center justify-center
+    font-bold shadow-lg border border-white/20;
+    transition: all 0.2s ease;
+  }
+
+  .card-badge-cost {
+    @apply top-2 left-2 w-7 h-7 text-sm;
+  }
+
+  .card-badge-count {
+    @apply top-2 right-2 px-2 py-1 text-xs;
+  }
+
+  /* Fancy header text with gradient */
+  .gradient-heading {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, #8b5cf6, #3b82f6, #5eead4);
+  }
+
+  /* Improved tabs styling */
+  .fancy-tabs {
+    @apply bg-white/5 p-1 rounded-xl;
+    backdrop-filter: blur(8px);
+  }
+
+  .fancy-tab {
+    @apply px-4 py-2 rounded-lg transition-all duration-300;
+  }
+
+  .fancy-tab-active {
+    @apply bg-white/10 shadow-lg text-white;
+  }
+
+  /* Empty state styling */
+  .empty-state {
+    @apply text-center py-12 text-muted-foreground border border-dashed
+    border-white/10 rounded-lg transition-all duration-300;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  }
+
+  .empty-state:hover {
+    @apply border-white/20;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+  }
+
+  /* Card container with modern style */
+  .modern-card {
+    @apply border border-white/10 shadow-xl bg-black/40 backdrop-blur-sm;
+    transition: all 0.3s ease;
+  }
+
+  .modern-card:hover {
+    @apply border-white/20;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(139, 92, 246, 0.1);
+  }
+
+  /* Faction badge styles */
+  .faction-badge {
+    @apply px-3 py-1 rounded-md text-xs font-medium text-white;
+    transition: all 0.2s ease;
+  }
+
+  .faction-badge-earth {
+    @apply bg-faction-earth;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
+  }
+
+  .faction-badge-wood {
+    @apply bg-faction-wood;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+
+  .faction-badge-fire {
+    @apply bg-faction-fire;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+
+  .faction-badge-water {
+    @apply bg-faction-water;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+  }
+
+  .faction-badge-metal {
+    @apply bg-faction-metal;
+    box-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
   }
 }
 
@@ -97,27 +359,55 @@
   }
 }
 
-/* Card deck glow effect */
-.deck-card-glow::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    #8b5cf6 0deg,
-    #5eead4 60deg,
-    #6366f1 120deg,
-    #8b5cf6 180deg,
-    #5eead4 240deg,
-    #6366f1 300deg,
-    #8b5cf6 360deg
-  );
-  border-radius: 18px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-.deck-card-glow:hover::before {
-  opacity: 1;
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
