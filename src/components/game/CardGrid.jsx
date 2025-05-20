@@ -14,6 +14,7 @@ export function CardGrid({
   currentDeck = [],
   maxCardCount = 2,
   className,
+  isRecentlyAdded,
   ...props
 }) {
   // Stack duplicate cards
@@ -24,34 +25,68 @@ export function CardGrid({
     ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2'
     : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3';
 
+  // Disable grouping by type - display all cards in a simple grid
+  const groupByType = false;
+
+  // Render a card with consistent props
+  const renderCard = (stackedCard) => {
+    const { card, count, entries } = stackedCard;
+    const disabled = disabledCards.includes(card.name) ||
+                    isCardAtMaxCount(card.name, currentDeck, maxCardCount);
+
+    // Get faction from the first faction in the array, or default to empty string
+    const faction = card.factions && card.factions.length > 0 ? card.factions[0].toLowerCase() : '';
+
+    // Check if this card was recently added (for highlighting)
+    const wasRecentlyAdded = isRecentlyAdded && isRecentlyAdded(card.name);
+
+    return (
+      <div
+        key={card.name}
+        className={`transition-all duration-300 ${wasRecentlyAdded ? 'scale-105 -translate-y-2' : ''}`}
+      >
+        <GameCard
+          name={card.name}
+          image_name={card.image_name}
+          faction={faction}
+          count={count}
+          cost={card.cost}
+          type={card.type}
+          text={card.text}
+          disabled={disabled}
+          onClick={() => onCardClick(card, entries)}
+          className={wasRecentlyAdded ? 'recently-added' : ''}
+        />
+      </div>
+    );
+  };
+
+  if (!groupByType) {
+    return (
+      <div
+        className={cn('grid', gridClass, className)}
+        {...props}
+      >
+        {stackedCards.map(renderCard)}
+      </div>
+    );
+  }
+
+  // If grouping by type
   return (
-    <div
-      className={cn('grid', gridClass, className)}
-      {...props}
-    >
-      {stackedCards.map((stackedCard) => {
-        const { card, count, entries } = stackedCard;
-        const disabled = disabledCards.includes(card.name) ||
-                        isCardAtMaxCount(card.name, currentDeck, maxCardCount);
-
-        // Get faction from the first faction in the array, or default to empty string
-        const faction = card.factions && card.factions.length > 0 ? card.factions[0].toLowerCase() : '';
-
-        return (
-          <GameCard
-            key={card.name}
-            name={card.name}
-            image_name={card.image_name}
-            faction={faction}
-            count={count}
-            cost={card.cost}
-            type={card.type}
-            text={card.text}
-            disabled={disabled}
-            onClick={() => onCardClick(card, entries)}
-          />
-        );
-      })}
+    <div className="space-y-6">
+      {cardTypes.map(type => (
+        <div key={type} className="space-y-2">
+          <h3 className="text-sm font-medium uppercase text-muted-foreground flex items-center">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
+            {type}
+            <span className="ml-2 text-xs">({cardsByType[type].length})</span>
+          </h3>
+          <div className={cn('grid', gridClass)}>
+            {cardsByType[type].map(renderCard)}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
