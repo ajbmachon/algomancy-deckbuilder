@@ -1,13 +1,13 @@
 # Algomancy Deckbuilder
 
-This is a SvelteKit application being modernized with shadcn-ui components for building and analyzing decks for the Algomancy card game. The application allows users to browse cards, filter them by various properties, add them to a deck, and analyze the deck composition.
+This is a web application built with shadcn-ui components for building and analyzing decks for the Algomancy card game. The application allows users to browse cards, filter them by various properties, add them to a deck, and analyze the deck composition.
 
 ## Project Structure
 
 - `/src/lib/assets/cards_db.json` - Generated card database
-- `/src/lib/stores/` - Svelte stores for managing application state
-- `/src/components/ui/` - shadcn-ui components (to be installed via MCP)
-- `/src/routes/` - SvelteKit pages and routes
+- `/src/lib/stores/` - Application state management
+- `/src/components/ui/` - shadcn-ui components (installed via MCP)
+- `/src/routes/` - Application routes and pages
 - `/static/card_images/` - Card image files
 - `/tools/` - Utilities for generating card data
 
@@ -25,9 +25,9 @@ This is a SvelteKit application being modernized with shadcn-ui components for b
 
 `feature/stack-duplicates` - Working on stacking duplicate cards in the deck view to provide a cleaner interface and better visual representation of card quantities.
 
-## UI Modernization
+## UI Implementation
 
-We're transitioning from custom Svelte components to shadcn-ui components installed via the Model Context Protocol (MCP). This provides:
+The application uses shadcn-ui components installed via the Model Context Protocol (MCP). This provides:
 - Professional, accessible UI components
 - Consistent design system
 - Better mobile responsiveness
