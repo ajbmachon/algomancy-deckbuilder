@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx",
     "format": "prettier --write .",
     "prepare": "test -e .git/hooks/pre-commit || pre-commit install",
-    "precommit": "lint-staged"
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx}": [
