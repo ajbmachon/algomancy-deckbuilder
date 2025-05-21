@@ -2,6 +2,8 @@
 
 A modern deckbuilding application for [Algomancy](https://algomancy.io/), the deckbuilder CCG.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 ## Features
 
 - Browse and filter the card collection
@@ -41,21 +43,14 @@ npm run dev -- --open
 - `/static/card_images/` - Card image files
 - `/tools/` - Utilities for generating card data
 
-## UI Modernization
+## UI Features
 
-We're migrating from shadcn-svelte to shadcn-ui components via the Model Context Protocol (MCP). This will provide a more polished look and better user experience.
-
-Key features of the modernization:
+The application uses shadcn-ui components to provide a polished look and better user experience:
 - Card stacking for duplicates
 - Enhanced filtering and search
 - Modern dark UI theme
 - Improved deck analysis tools
 - Responsive design for all devices
-
-See the following files for our migration plan:
-- [SHADCN_UI_MIGRATION_PLAN.md](./SHADCN_UI_MIGRATION_PLAN.md) - Overall migration strategy
-- [SHADCN_UI_COMPONENTS.md](./SHADCN_UI_COMPONENTS.md) - Components to install via MCP
-- [PACKAGE_UPDATES.md](./PACKAGE_UPDATES.md) - Required package updates
 
 ## Card Properties
 
@@ -70,3 +65,17 @@ See the following files for our migration plan:
 - `text` - Card text/description
 - `factions` - Card factions (earth, wood, fire, water, metal)
 - `image_name` - Filename of card image
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Credits
+
+Original code created by Andreas Stenius (2023) with enhancements by Andre Machon.
+
+All card data and images are property of Algomancy.

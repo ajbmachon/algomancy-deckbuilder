@@ -7,7 +7,18 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext js,jsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "test -e .git/hooks/pre-commit || pre-commit install",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
@@ -21,6 +32,7 @@
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.37.5",
+    "lint-staged": "^16.0.0",
     "postcss": "^8.5.3",
     "pre-commit": "^1.2.2",
     "prettier": "^2.8.0",
