@@ -29,10 +29,10 @@ export function CardGrid({
   const groupByType = false;
 
   // Render a card with consistent props
-  const renderCard = (stackedCard) => {
+  const renderCard = stackedCard => {
     const { card, count, entries } = stackedCard;
-    const disabled = disabledCards.includes(card.name) ||
-                    isCardAtMaxCount(card.name, currentDeck, maxCardCount);
+    const disabled =
+      disabledCards.includes(card.name) || isCardAtMaxCount(card.name, currentDeck, maxCardCount);
 
     // Get faction from the first faction in the array, or default to empty string
     const faction = card.factions && card.factions.length > 0 ? card.factions[0].toLowerCase() : '';
@@ -63,30 +63,33 @@ export function CardGrid({
 
   if (!groupByType) {
     return (
-      <div
-        className={cn('grid', gridClass, className)}
-        {...props}
-      >
+      <div className={cn('grid', gridClass, className)} {...props}>
         {stackedCards.map(renderCard)}
       </div>
     );
   }
 
-  // If grouping by type
+  // If grouping by type - this code is currently unreachable since groupByType is false
+  // Kept for future implementation but with proper variable declarations
+  /* 
   return (
     <div className="space-y-6">
-      {cardTypes.map(type => (
+      {Object.keys(groupedCards).map(type => (
         <div key={type} className="space-y-2">
           <h3 className="text-sm font-medium uppercase text-muted-foreground flex items-center">
             <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
             {type}
-            <span className="ml-2 text-xs">({cardsByType[type].length})</span>
+            <span className="ml-2 text-xs">({groupedCards[type].length})</span>
           </h3>
           <div className={cn('grid', gridClass)}>
-            {cardsByType[type].map(renderCard)}
+            {groupedCards[type].map(renderCard)}
           </div>
         </div>
       ))}
     </div>
   );
+  */
+
+  // This code is unreachable, but we return something to satisfy the compiler
+  return null;
 }

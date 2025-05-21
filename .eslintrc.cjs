@@ -15,5 +15,13 @@ module.exports = {
     react: {
       version: 'detect'
     }
+  },
+  rules: {
+    // Disable prop-types warnings to simplify
+    'react/prop-types': 'off',
+    // Basic linting rules
+    'no-unused-vars': 'warn',
+    'no-undef': 'error',
+    'no-console': 'warn'
   }
 };

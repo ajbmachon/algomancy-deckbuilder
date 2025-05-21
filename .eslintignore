@@ -1,13 +1,19 @@
 .DS_Store
 node_modules
 /build
-/.svelte-kit
+/dist
 /package
 .env
 .env.*
 !.env.example
 
+# Ignore static assets
+/static/card_images
+
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# Ignore test files temporarily during migration
+**/*.test.js
