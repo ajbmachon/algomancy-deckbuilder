@@ -2,10 +2,8 @@ import React from 'react';
 import { DeckBuilder } from './components/game';
 import { Toaster } from './components/ui/toast';
 import CommandPalette from '@/components/layout/CommandPalette';
+import { Header } from '@/components/layout/Header';
 import { Button } from '@/components/ui/button';
-import { Toggle } from '@/components/ui/toggle';
-import { Sun, Moon } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
 import { AppProvider } from './lib/stores/react/AppProvider';
 import { toast } from 'sonner';
 import './styles/globals.css';
@@ -27,11 +25,11 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'));
+  const toggleTheme = newTheme => setTheme(newTheme);
 
   return (
     <AppProvider>
-      <div className="min-h-screen flex flex-col p-4 md:p-8">
+      <div className="min-h-screen flex flex-col">
         {/* Background gradients */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-[-1]">
           <div className="absolute top-0 left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full filter blur-[80px]" />
@@ -39,69 +37,15 @@ function App() {
           <div className="absolute top-[30%] right-[20%] w-[30%] h-[30%] bg-faction-fire/5 rounded-full filter blur-[120px]" />
         </div>
 
-        <header className="container mx-auto mb-6">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div className="relative z-10">
-              <h1 className="text-3xl md:text-5xl font-extrabold gradient-heading tracking-tight">
-                Algomancy Deckbuilder
-              </h1>
-              <p className="text-muted-foreground mt-2">
-                Build your deck with up to 2 copies of each card
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                className="border-border hover:bg-muted/20 hover:text-foreground text-foreground"
-                onClick={() => setCmdOpen(true)}
-              >
-                Search (⌘K)
-              </Button>
+        <Header onSearchOpen={() => setCmdOpen(true)} theme={theme} onThemeToggle={toggleTheme} />
 
-              <Toggle
-                variant="outline"
-                pressed={theme === 'light'}
-                onPressedChange={pressed => setTheme(pressed ? 'light' : 'dark')}
-                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                className="border-border transition-all duration-200 hover:scale-105 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
-              >
-                {theme === 'light' ? (
-                  <Sun className="w-4 h-4 transition-transform duration-200" />
-                ) : (
-                  <Moon className="w-4 h-4 transition-transform duration-200" />
-                )}
-              </Toggle>
-
-              <Separator orientation="vertical" className="h-8 bg-white/10" />
-              <div className="flex flex-wrap gap-2">
-                <span className="faction-badge faction-badge-earth group">
-                  <span className="inline-block">Earth</span>
-                </span>
-                <span className="faction-badge faction-badge-wood group">
-                  <span className="inline-block">Wood</span>
-                </span>
-                <span className="faction-badge faction-badge-fire group">
-                  <span className="inline-block">Fire</span>
-                </span>
-                <span className="faction-badge faction-badge-water group">
-                  <span className="inline-block">Water</span>
-                </span>
-                <span className="faction-badge faction-badge-metal group">
-                  <span className="inline-block">Metal</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <main className="container mx-auto relative z-10 flex-grow">
+        <main className="container mx-auto relative z-10 flex-grow p-4 md:p-8">
           <DeckBuilder />
         </main>
 
-        <footer className="container mx-auto mt-12 pt-4 border-t border-white/10 text-sm text-muted-foreground">
+        <footer className="container mx-auto mt-12 pt-4 border-t border-white/10 text-caption text-muted-foreground">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-4">
-            <p>© {new Date().getFullYear()} Algomancy Deckbuilder</p>
+            <p className="text-caption">© {new Date().getFullYear()} Algomancy Deckbuilder</p>
             <div className="flex items-center gap-6">
               <Button
                 variant="ghost"

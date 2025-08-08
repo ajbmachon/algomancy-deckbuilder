@@ -182,6 +182,39 @@
   h3 {
     @apply text-xl md:text-2xl;
   }
+
+  h4 {
+    @apply text-lg md:text-xl font-semibold;
+  }
+
+  h5 {
+    @apply text-base md:text-lg font-semibold;
+  }
+
+  h6 {
+    @apply text-sm md:text-base font-semibold;
+  }
+
+  /* Typography utilities */
+  .text-caption {
+    @apply text-xs leading-4 text-muted-foreground;
+  }
+
+  .text-overline {
+    @apply text-xs uppercase tracking-wider font-medium;
+  }
+
+  .text-body-sm {
+    @apply text-sm leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+
+  .text-body-lg {
+    @apply text-lg leading-relaxed;
+  }
 }
 
 @layer components {
@@ -491,11 +524,17 @@
     @apply top-2 right-2 px-2 py-1 text-xs;
   }
 
-  /* Fancy header text with gradient */
+  /* Subtle header text with reduced gradient */
   .gradient-heading {
     @apply text-transparent bg-clip-text;
     background-image: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
-    filter: drop-shadow(0 4px 14px rgba(99, 102, 241, 0.3));
+    filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.2));
+  }
+
+  /* More subtle header option */
+  .subtle-heading {
+    @apply text-foreground;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   /* Improved tabs styling */
@@ -543,38 +582,69 @@
       0 0 20px rgba(56, 189, 248, 0.12);
   }
 
-  /* Faction badge styles */
+  /* Faction badge styles - more subtle version */
   .faction-badge {
+    @apply px-3 py-1 rounded-lg text-xs font-medium;
+    transition: all 0.2s ease;
+    border: 1px solid;
+  }
+
+  .faction-badge-earth {
+    @apply bg-amber-600/20 text-amber-200 border-amber-600/30;
+  }
+
+  .faction-badge-wood {
+    @apply bg-emerald-600/20 text-emerald-200 border-emerald-600/30;
+  }
+
+  .faction-badge-fire {
+    @apply bg-red-600/20 text-red-200 border-red-600/30;
+  }
+
+  .faction-badge-water {
+    @apply bg-blue-600/20 text-blue-200 border-blue-600/30;
+  }
+
+  .faction-badge-metal {
+    @apply bg-slate-500/20 text-slate-200 border-slate-500/30;
+  }
+
+  .faction-badge-shard {
+    @apply bg-violet-600/20 text-violet-200 border-violet-600/30;
+  }
+
+  /* Original bright faction badges for active states */
+  .faction-badge-bright {
     @apply px-3 py-1 rounded-lg text-xs font-medium text-white;
     transition: all 0.2s ease;
   }
 
-  .faction-badge-earth {
+  .faction-badge-bright.faction-badge-earth {
     @apply bg-faction-earth;
     box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
   }
 
-  .faction-badge-wood {
+  .faction-badge-bright.faction-badge-wood {
     @apply bg-faction-wood;
     box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
   }
 
-  .faction-badge-fire {
+  .faction-badge-bright.faction-badge-fire {
     @apply bg-faction-fire;
     box-shadow: 0 0 10px rgba(185, 28, 28, 0.3);
   }
 
-  .faction-badge-water {
+  .faction-badge-bright.faction-badge-water {
     @apply bg-faction-water;
     box-shadow: 0 0 10px rgba(3, 105, 161, 0.3);
   }
 
-  .faction-badge-metal {
+  .faction-badge-bright.faction-badge-metal {
     @apply bg-faction-metal;
     box-shadow: 0 0 10px rgba(100, 116, 139, 0.3);
   }
 
-  .faction-badge-shard {
+  .faction-badge-bright.faction-badge-shard {
     @apply bg-faction-shard;
     box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
   }
@@ -622,6 +692,15 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 

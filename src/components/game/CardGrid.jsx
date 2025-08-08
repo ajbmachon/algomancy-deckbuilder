@@ -1,5 +1,6 @@
 import React from 'react';
 import { GameCard } from './GameCard';
+import { LoadingCardGrid } from '@/components/ui/LoadingCard';
 import { cn } from '@/lib/utils';
 import { stackCards, isCardAtMaxCount } from '@/lib/utils/stackCards';
 
@@ -15,6 +16,7 @@ export function CardGrid({
   maxCardCount = 2,
   className,
   isRecentlyAdded,
+  loading = false,
   ...props
 }) {
   // Stack duplicate cards
@@ -63,6 +65,11 @@ export function CardGrid({
     );
   };
 
+  // Show loading state
+  if (loading) {
+    return <LoadingCardGrid count={12} className={cn('grid', gridClass, className)} {...props} />;
+  }
+
   if (!groupByType) {
     return (
       <div className={cn('grid', gridClass, className)} {...props}>
@@ -78,11 +85,11 @@ export function CardGrid({
     <div className="space-y-6">
       {Object.keys(groupedCards).map(type => (
         <div key={type} className="space-y-2">
-          <h3 className="text-sm font-medium uppercase text-muted-foreground flex items-center">
+          <h5 className="text-overline text-muted-foreground flex items-center">
             <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
             {type}
-            <span className="ml-2 text-xs">({groupedCards[type].length})</span>
-          </h3>
+            <span className="ml-2 text-caption">({groupedCards[type].length})</span>
+          </h5>
           <div className={cn('grid', gridClass)}>
             {groupedCards[type].map(renderCard)}
           </div>

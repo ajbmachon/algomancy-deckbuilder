@@ -165,7 +165,7 @@ export function GameCard({
               {imageError && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-2">
                   <span
-                    className="text-xs text-center font-medium"
+                    className="text-caption text-center font-medium"
                     style={{ color: getFactionColor(faction) }}
                   >
                     {name}
@@ -216,7 +216,7 @@ export function GameCard({
 
           {/* Card Name Overlay (visible on hover) */}
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-8 pb-2 px-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10">
-            <p className="text-xs text-center text-white font-medium truncate">{name}</p>
+            <p className="text-caption text-center text-white font-medium truncate">{name}</p>
           </div>
         </Card>
       </HoverCardTrigger>
@@ -228,7 +228,7 @@ export function GameCard({
       >
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <h3 className="font-bold text-white text-lg line-clamp-2">{name}</h3>
+            <h4 className="font-bold text-white line-clamp-2">{name}</h4>
             {cost !== undefined && (
               <span
                 className="inline-flex items-center justify-center w-6 h-6 rounded-lg text-white font-bold text-sm border border-white/20 flex-shrink-0 ml-2"
@@ -240,7 +240,7 @@ export function GameCard({
               </span>
             )}
           </div>
-          <div className="flex flex-wrap gap-2 text-xs">
+          <div className="flex flex-wrap gap-2 text-caption">
             <span
               className="px-2 py-1 rounded-lg capitalize border"
               style={{
@@ -252,7 +252,7 @@ export function GameCard({
               {faction}
             </span>
             {type && (
-              <span className="px-2 py-1 rounded-lg bg-white/5 text-white/80 border border-white/10 capitalize">
+              <span className="px-2 py-1 rounded-lg bg-white/5 text-white/80 border border-white/10 capitalize text-caption">
                 {type}
               </span>
             )}
@@ -260,7 +260,7 @@ export function GameCard({
           {text && (
             <div className="mt-3 border-t border-white/10 pt-2">
               <p
-                className="text-sm text-white/90"
+                className="text-body-sm text-white/90"
                 dangerouslySetInnerHTML={{ __html: formatCardText(text) }}
               ></p>
             </div>

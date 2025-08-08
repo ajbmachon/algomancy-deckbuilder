@@ -121,7 +121,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
                   d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
                 />
               </svg>
-              <span className="text-xs mt-1">Filters</span>
+              <span className="text-caption mt-1">Filters</span>
             </Button>
             <Button
               variant="ghost"
@@ -137,7 +137,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
                   d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                 />
               </svg>
-              <span className="text-xs mt-1">Deck</span>
+              <span className="text-caption mt-1">Deck</span>
             </Button>
           </div>
         </div>
@@ -151,7 +151,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
           style={{ maxHeight: '80vh' }}
         >
           <div className="flex items-center justify-between space-component border-b border-border">
-            <h3 className="text-lg font-semibold">Filters</h3>
+            <h4>Filters</h4>
             <Button variant="ghost" size="icon" onClick={toggleMobileFilters}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -177,7 +177,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
           style={{ maxHeight: '80vh' }}
         >
           <div className="flex items-center justify-between space-component border-b border-border">
-            <h3 className="text-lg font-semibold">Deck</h3>
+            <h4>Deck</h4>
             <Button variant="ghost" size="icon" onClick={toggleMobileDeck}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -214,7 +214,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
         )}
       >
         <div className="flex items-center justify-between space-filter-group border-b border-border">
-          {!leftPanelCollapsed && <h3 className="font-semibold">Filters</h3>}
+          {!leftPanelCollapsed && <h5>Filters</h5>}
           <Button variant="ghost" size="icon" onClick={toggleLeftPanel} className="h-7 w-7">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -260,7 +260,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
                 />
               </svg>
             </Button>
-            {!rightPanelCollapsed && <h3 className="font-semibold">Deck</h3>}
+            {!rightPanelCollapsed && <h5>Deck</h5>}
           </div>
           {!rightPanelCollapsed && (
             <div
@@ -282,7 +282,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
           )}
         >
           <div className="flex items-center justify-between space-component border-b border-border">
-            <h3 className="text-lg font-semibold">Deck</h3>
+            <h4>Deck</h4>
             <Button variant="ghost" size="icon" onClick={toggleRightPanel}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path

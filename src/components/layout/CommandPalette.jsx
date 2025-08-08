@@ -87,8 +87,8 @@ export default function CommandPalette({ open, onOpenChange }) {
                         className="w-10 h-14 rounded object-cover"
                       />
                       <div className="min-w-0">
-                        <p className="text-sm font-medium truncate">{c.name}</p>
-                        <p className="text-xs text-muted-foreground truncate">{c.type}</p>
+                        <p className="text-body-sm font-medium truncate">{c.name}</p>
+                        <p className="text-caption text-muted-foreground truncate">{c.type}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">

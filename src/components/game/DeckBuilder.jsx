@@ -1,22 +1,26 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { CardGrid } from './CardGrid';
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
-import { Button } from '../ui/button';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { toast } from 'sonner';
 import { CardContext } from '@/lib/stores/react/CardProvider';
 import { DeckContext } from '@/lib/stores/react/DeckProvider';
+import { FilterPanel } from './FilterPanel';
+import { CardPoolHeader } from './CardPoolHeader';
+import { DeckPanel } from './DeckPanel';
+import {
+  getUniqueValues,
+  applyFilters,
+  calculateDeckStats,
+  sortCards,
+} from '@/lib/utils/deckUtils.jsx';
 
 /**
- * Main deck builder component
+ * Main deck builder component - orchestrates all sub-components
  */
 export function DeckBuilder() {
   // Get data from contexts
-  const { filteredPool: contextFilteredPool, working } = useContext(CardContext);
+  const { filteredPool: contextFilteredPool } = useContext(CardContext);
   const {
     deck,
     setDeck,
@@ -25,7 +29,6 @@ export function DeckBuilder() {
     removeAllCopies,
     clearDeck,
     exportDeck: contextExportDeck,
-    getCardCount,
   } = useContext(DeckContext);
 
   const [filteredPool, setFilteredPool] = useState([]);
@@ -43,37 +46,16 @@ export function DeckBuilder() {
   const [maximized, setMaximized] = useState(false);
   const previousLayoutRef = useRef({ filters: true, deck: true });
 
-  // Refs for horizontal scrolling containers
-  const factionsContainerRef = useRef(null);
-  const costsContainerRef = useRef(null);
-  const typesContainerRef = useRef(null);
+  // Sorting state
+  const [sortBy, setSortBy] = useState('name');
+  const [sortDir, setSortDir] = useState('asc');
+
+  // Analytics toggle
+  const [showAnalytics, setShowAnalytics] = useState(false);
 
   // Apply filters to card pool
   useEffect(() => {
-    // Use the filtered pool from context
-    let filtered = contextFilteredPool.filter(
-      card => !card.card.factions.some(faction => faction.toLowerCase() === 'colorless')
-    );
-
-    // Filter by factions
-    if (activeFilters.factions.length > 0) {
-      filtered = filtered.filter(card =>
-        card.card.factions.some(faction => activeFilters.factions.includes(faction.toLowerCase()))
-      );
-    }
-
-    // Filter by cost
-    if (activeFilters.cost !== null) {
-      filtered = filtered.filter(card => card.card.cost === activeFilters.cost);
-    }
-
-    // Filter by types (multiple selection)
-    if (activeFilters.types.length > 0) {
-      filtered = filtered.filter(card =>
-        activeFilters.types.some(type => card.card.type.includes(type))
-      );
-    }
-
+    const filtered = applyFilters(contextFilteredPool, activeFilters);
     setFilteredPool(filtered);
   }, [contextFilteredPool, activeFilters]);
 
@@ -88,7 +70,7 @@ export function DeckBuilder() {
   }, [recentlyAdded]);
 
   // Handle adding a card to the deck
-  const addCardToDeck = (card, entries) => {
+  const addCardToDeck = card => {
     // Check if we already have max copies
     const existingCount = deck.filter(item => item.card.name === card.name).length;
 
@@ -106,14 +88,14 @@ export function DeckBuilder() {
     setRecentlyAdded(card.name);
   };
 
-  // Handle removing a card from the deck
-  const removeCardFromDeck = (card, entries) => {
-    if (entries && entries.length > 0) {
-      // Remove the first occurrence of the card
-      const cardIdToRemove = entries[0].id;
-      removeCard(cardIdToRemove);
-    }
-  };
+  // Handle removing a card from the deck (kept for potential future use)
+  // const removeCardFromDeck = (card, entries) => {
+  //   if (entries && entries.length > 0) {
+  //     // Remove the first occurrence of the card
+  //     const cardIdToRemove = entries[0].id;
+  //     removeCard(cardIdToRemove);
+  //   }
+  // };
 
   // Toggle faction filter
   const toggleFactionFilter = faction => {
@@ -185,260 +167,20 @@ export function DeckBuilder() {
     });
   };
 
-  // Get unique faction, cost, and type values from card pool
-  // Filter out the "colorless" faction as it's not used for deckbuilding
-  const factions = [
-    ...new Set(contextFilteredPool.flatMap(card => card.card.factions.map(f => f.toLowerCase()))),
-  ].filter(faction => faction !== 'colorless');
-  // Ensure numeric costs are sorted even if provided as strings, with 'X' at the end
-  const rawCostsSet = new Set(contextFilteredPool.map(c => c.card.cost));
-  const numericSet = new Set();
-  let hasX = false;
-  for (const v of rawCostsSet) {
-    if (v === 'X' || v === 'x') {
-      hasX = true;
-      continue;
-    }
-    const n = typeof v === 'number' ? v : Number.parseInt(String(v), 10);
-    if (Number.isFinite(n)) numericSet.add(n);
-  }
-  const costs = [...numericSet].sort((a, b) => a - b);
-  if (hasX) costs.push('X');
-
-  // Extract real card types (those with {braces}) from the cards
-  const extractRealTypes = str => {
-    // Match all text within curly braces
-    const matches = str.match(/{([^}]+)}/g);
-    return matches ? matches.map(match => match.replace(/[{}]/g, '')) : [];
-  };
-
-  // Get all real types from the card pool
-  const allRealTypes = contextFilteredPool.flatMap(card => extractRealTypes(card.card.type));
-
-  // Filter to types that appear in multiple cards (more than once in allRealTypes)
-  const typeCounts = allRealTypes.reduce((acc, type) => {
-    acc[type] = (acc[type] || 0) + 1;
-    return acc;
-  }, {});
-
-  // Filter to types that appear in multiple cards and sort alphabetically
-  const types = Object.entries(typeCounts)
-    .filter(([_, count]) => count > 1)
-    .map(([type]) => type)
-    .sort();
-
-  // Faction utility classes (explicit strings so Tailwind doesn't purge them)
-  const factionBgClass = f => {
-    switch (f) {
-      case 'earth':
-        return 'bg-faction-earth';
-      case 'wood':
-        return 'bg-faction-wood';
-      case 'fire':
-        return 'bg-faction-fire';
-      case 'water':
-        return 'bg-faction-water';
-      case 'metal':
-        return 'bg-faction-metal';
-      case 'hybrid':
-        return 'bg-faction-shard';
-      default:
-        return 'bg-primary';
-    }
-  };
-  const factionBg20Class = f => {
-    switch (f) {
-      case 'earth':
-        return 'bg-faction-earth/20';
-      case 'wood':
-        return 'bg-faction-wood/20';
-      case 'fire':
-        return 'bg-faction-fire/20';
-      case 'water':
-        return 'bg-faction-water/20';
-      case 'metal':
-        return 'bg-faction-metal/20';
-      case 'hybrid':
-        return 'bg-faction-shard/20';
-      default:
-        return 'bg-primary/20';
-    }
-  };
-  const factionTextClass = f => {
-    switch (f) {
-      case 'earth':
-        return 'text-faction-earth';
-      case 'wood':
-        return 'text-faction-wood';
-      case 'fire':
-        return 'text-faction-fire';
-      case 'water':
-        return 'text-faction-water';
-      case 'metal':
-        return 'text-faction-metal';
-      case 'hybrid':
-        return 'text-faction-shard';
-      default:
-        return 'text-primary';
-    }
-  };
-
-  // Get faction icon
-  const getFactionIcon = faction => {
-    switch (faction) {
-      case 'earth':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-4 h-4 mr-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-            />
-          </svg>
-        );
-      case 'wood':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-4 h-4 mr-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-            />
-          </svg>
-        );
-      case 'fire':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-4 h-4 mr-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
-            />
-          </svg>
-        );
-      case 'water':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-4 h-4 mr-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-            />
-          </svg>
-        );
-      case 'metal':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-4 h-4 mr-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-            />
-          </svg>
-        );
-      default:
-        return null;
-    }
-  };
+  // Get unique values from card pool
+  const { factions, costs, types } = getUniqueValues(contextFilteredPool);
 
   // Calculate deck stats
-  const calculateDeckStats = () => {
-    const factionCounts = {};
-    const typeCounts = {};
-    const costCounts = {};
-    const totalCards = deck.length;
-
-    // Count cards by faction, type, and cost
-    deck.forEach(item => {
-      const card = item.card;
-
-      // Count by faction
-      const cardFactions = card.factions;
-      cardFactions.forEach(faction => {
-        const normalizedFaction = faction.toLowerCase();
-        if (normalizedFaction !== 'colorless') {
-          factionCounts[normalizedFaction] = (factionCounts[normalizedFaction] || 0) + 1;
-        }
-      });
-
-      // Count by type
-      const cardType = card.type;
-      typeCounts[cardType] = (typeCounts[cardType] || 0) + 1;
-
-      // Count by cost
-      const cardCost = card.cost;
-      costCounts[cardCost] = (costCounts[cardCost] || 0) + 1;
-    });
-
-    return { factionCounts, typeCounts, costCounts, totalCards };
-  };
-
-  const deckStats = calculateDeckStats();
-
-  // Analytics toggle
-  const [showAnalytics, setShowAnalytics] = useState(false);
+  const deckStats = calculateDeckStats(deck);
 
   // Determine if a card was recently added (for highlight animation)
   const isRecentlyAdded = cardName => {
     return recentlyAdded === cardName;
   };
 
-  // Sorting state
-  const [sortBy, setSortBy] = useState('name');
-  const [sortDir, setSortDir] = useState('asc');
-
   // Apply sorting to filteredPool
   const sortedFiltered = React.useMemo(() => {
-    const arr = [...filteredPool];
-    arr.sort((a, b) => {
-      const ca = a.card;
-      const cb = b.card;
-      const mul = sortDir === 'asc' ? 1 : -1;
-      if (sortBy === 'cost') return (ca.cost - cb.cost) * mul;
-      return ca.name.localeCompare(cb.name) * mul;
-    });
-    return arr;
+    return sortCards(filteredPool, sortBy, sortDir);
   }, [filteredPool, sortBy, sortDir]);
 
   return (
@@ -458,349 +200,52 @@ export function DeckBuilder() {
         aria-label="Filters"
         className={`hidden lg:block ${showFiltersDesktop ? '' : 'lg:hidden'}`}
       >
-        <Card className="modern-card h-full max-h-[calc(100vh-8rem)] flex flex-col">
-          <CardHeader className="space-card-header border-b border-border">
-            <CardTitle className="text-sm">Filters</CardTitle>
-          </CardHeader>
-          <CardContent className="space-card-content flex-1 overflow-hidden">
-            <ScrollArea className="h-full pr-2">
-              <div className="space-filter-group flex flex-col">
-                <Collapsible defaultOpen>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
-                      Factions
-                    </h3>
-                    <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 px-2 border-border">
-                        Toggle
-                      </Button>
-                    </CollapsibleTrigger>
-                  </div>
-                  <CollapsibleContent className="mt-2 grid grid-cols-2 space-grid-tight">
-                    {factions.map(faction => (
-                      <Button
-                        key={faction}
-                        variant="outline"
-                        onClick={() => toggleFactionFilter(faction)}
-                        className={`capitalize ${
-                          activeFilters.factions.includes(faction)
-                            ? `filter-btn-${faction} active`
-                            : `filter-btn-${faction}`
-                        }`}
-                      >
-                        {getFactionIcon(faction)}
-                        {faction}
-                      </Button>
-                    ))}
-                  </CollapsibleContent>
-                </Collapsible>
-
-                <Separator className="bg-border" />
-
-                <Collapsible defaultOpen>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Cost</h3>
-                    <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 px-2 border-border">
-                        Toggle
-                      </Button>
-                    </CollapsibleTrigger>
-                  </div>
-                  <CollapsibleContent className="mt-2 flex flex-wrap space-grid-tight">
-                    {costs.map(cost => (
-                      <Button
-                        key={cost}
-                        variant={activeFilters.cost === cost ? 'default' : 'outline'}
-                        onClick={() => setCostFilter(cost)}
-                        className={
-                          activeFilters.cost === cost
-                            ? 'bg-primary hover:bg-primary/90'
-                            : 'border-border hover:bg-muted/20 hover:text-foreground'
-                        }
-                      >
-                        {cost}
-                      </Button>
-                    ))}
-                  </CollapsibleContent>
-                </Collapsible>
-
-                <Separator className="bg-border" />
-
-                <Collapsible defaultOpen>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Type</h3>
-                    <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 px-2 border-border">
-                        Toggle
-                      </Button>
-                    </CollapsibleTrigger>
-                  </div>
-                  <CollapsibleContent className="mt-2 grid grid-cols-2 space-grid-tight">
-                    {types.map(type => (
-                      <Button
-                        key={type}
-                        variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
-                        onClick={() => toggleTypeFilter(type)}
-                        className={`capitalize ${activeFilters.types.includes(type) ? 'bg-primary hover:bg-primary/90' : 'border-border hover:bg-muted/20 hover:text-foreground'}`}
-                      >
-                        {type}
-                      </Button>
-                    ))}
-                  </CollapsibleContent>
-                </Collapsible>
-
-                <div className="pt-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={clearFilters}
-                    className="border-border w-full"
-                  >
-                    Clear Filters
-                  </Button>
-                </div>
-              </div>
-            </ScrollArea>
-          </CardContent>
-        </Card>
+        <FilterPanel
+          factions={factions}
+          costs={costs}
+          types={types}
+          activeFilters={activeFilters}
+          toggleFactionFilter={toggleFactionFilter}
+          setCostFilter={setCostFilter}
+          toggleTypeFilter={toggleTypeFilter}
+          clearFilters={clearFilters}
+          isDesktop={true}
+        />
       </aside>
 
       {/* Card Pool Section */}
       <div className="space-filter-group flex flex-col">
         <Card className="modern-card overflow-hidden">
-          <CardHeader className="space-card-header border-b border-border">
-            <CardTitle className="flex justify-between items-center flex-wrap space-button-group">
-              <span className="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-primary"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-                <span className="font-bold bg-gradient-to-r from-primary/90 to-accent bg-clip-text text-transparent">
-                  Card Pool
-                </span>
-                <span className="ml-2 text-sm font-normal text-muted-foreground">
-                  ({filteredPool.length})
-                </span>
-              </span>
-              <div className="flex space-button-group flex-wrap items-center">
-                {/* Desktop layout toggles to maximize card grid */}
-                <div className="hidden lg:flex items-center space-button-group mr-2">
-                  <Button
-                    variant={maximized ? 'default' : 'outline'}
-                    size="sm"
-                    className="border-border hover:bg-muted/20 hover:text-foreground"
-                    onClick={() => {
-                      setMaximized(m => {
-                        if (!m) {
-                          previousLayoutRef.current = {
-                            filters: showFiltersDesktop,
-                            deck: showDeckDesktop,
-                          };
-                          setShowFiltersDesktop(false);
-                          setShowDeckDesktop(false);
-                          return true;
-                        } else {
-                          setShowFiltersDesktop(previousLayoutRef.current.filters);
-                          setShowDeckDesktop(previousLayoutRef.current.deck);
-                          return false;
-                        }
-                      });
-                    }}
-                    title={maximized ? 'Restore Layout' : 'Maximize Cards'}
-                  >
-                    {maximized ? 'Restore Layout' : 'Maximize Cards'}
-                  </Button>
-                  <Button
-                    variant={showFiltersDesktop ? 'outline' : 'default'}
-                    size="sm"
-                    className="border-border"
-                    onClick={() => setShowFiltersDesktop(v => !v)}
-                    title={showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
-                  >
-                    {showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
-                  </Button>
-                  <Button
-                    variant={showDeckDesktop ? 'outline' : 'default'}
-                    size="sm"
-                    className="border-border"
-                    onClick={() => setShowDeckDesktop(v => !v)}
-                    title={showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
-                  >
-                    {showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
-                  </Button>
-                </div>
-
-                <div className="hidden md:flex items-center space-tight text-xs text-muted-foreground mr-2">
-                  <span>Sort:</span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setSortBy('name')}
-                    className={`border-border ${sortBy === 'name' ? 'bg-muted/30' : ''}`}
-                  >
-                    Name
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setSortBy('cost')}
-                    className={`border-border ${sortBy === 'cost' ? 'bg-muted/30' : ''}`}
-                  >
-                    Cost
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setSortDir(sortDir === 'asc' ? 'desc' : 'asc')}
-                    className="border-border"
-                  >
-                    {sortDir === 'asc' ? 'Asc' : 'Desc'}
-                  </Button>
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-                  className="md:hidden border-border hover:bg-muted/20 hover:text-foreground min-h-[44px] min-w-[44px]"
-                >
-                  {mobileFiltersOpen ? 'Hide Filters' : 'Show Filters'}
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={clearFilters}
-                  className="border-border hover:bg-muted/20 hover:text-foreground"
-                >
-                  Clear Filters
-                </Button>
-              </div>
-            </CardTitle>
-          </CardHeader>
+          <CardPoolHeader
+            filteredPoolCount={filteredPool.length}
+            maximized={maximized}
+            setMaximized={setMaximized}
+            showFiltersDesktop={showFiltersDesktop}
+            setShowFiltersDesktop={setShowFiltersDesktop}
+            showDeckDesktop={showDeckDesktop}
+            setShowDeckDesktop={setShowDeckDesktop}
+            previousLayoutRef={previousLayoutRef}
+            mobileFiltersOpen={mobileFiltersOpen}
+            setMobileFiltersOpen={setMobileFiltersOpen}
+            sortBy={sortBy}
+            sortDir={sortDir}
+            setSortBy={setSortBy}
+            setSortDir={setSortDir}
+            clearFilters={clearFilters}
+          />
           <CardContent className="space-card-content">
-            <div className={`${mobileFiltersOpen ? 'block' : 'hidden'} md:hidden mb-6`}>
-              <Tabs defaultValue="factions" className="mb-6">
-                <TabsList className="fancy-tabs mb-4 w-full overflow-x-auto flex-nowrap md:flex-wrap whitespace-nowrap">
-                  <TabsTrigger
-                    value="factions"
-                    className="fancy-tab data-[state=active]:fancy-tab-active"
-                  >
-                    Factions
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="cost"
-                    className="fancy-tab data-[state=active]:fancy-tab-active"
-                  >
-                    Cost
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="type"
-                    className="fancy-tab data-[state=active]:fancy-tab-active"
-                  >
-                    Type
-                  </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="factions" className="space-y-4 card-fade-in">
-                  <div
-                    className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible"
-                    ref={factionsContainerRef}
-                  >
-                    {factions.map(faction => (
-                      <HoverCard key={faction} openDelay={300} closeDelay={100}>
-                        <HoverCardTrigger asChild>
-                          <Button
-                            variant="outline"
-                            onClick={() => toggleFactionFilter(faction)}
-                            className={`capitalize flex items-center flex-shrink-0 min-h-[44px] min-w-[100px] md:min-w-0 ${
-                              activeFilters.factions.includes(faction)
-                                ? `filter-btn-${faction} active`
-                                : `filter-btn-${faction}`
-                            }`}
-                          >
-                            {getFactionIcon(faction)}
-                            {faction}
-                          </Button>
-                        </HoverCardTrigger>
-                        <HoverCardContent className="w-80 p-4">
-                          <div className="space-y-2">
-                            <h4 className="text-sm font-semibold capitalize">{faction} Faction</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Filter cards from the {faction} faction.
-                              {faction === 'earth' &&
-                                ' Earth focuses on stability and resource generation.'}
-                              {faction === 'wood' && ' Wood excels at growth and sustainability.'}
-                              {faction === 'fire' &&
-                                ' Fire specializes in direct damage and aggression.'}
-                              {faction === 'water' &&
-                                ' Water manipulates flow and adapts to circumstances.'}
-                              {faction === 'metal' &&
-                                ' Metal provides strength and structural integrity.'}
-                            </p>
-                          </div>
-                        </HoverCardContent>
-                      </HoverCard>
-                    ))}
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="cost" className="space-y-4 card-fade-in">
-                  <div
-                    className="flex space-grid-tight overflow-x-auto pb-2 md:flex-wrap"
-                    ref={costsContainerRef}
-                  >
-                    {costs.map(cost => (
-                      <Button
-                        key={cost}
-                        variant={activeFilters.cost === cost ? 'default' : 'outline'}
-                        onClick={() => setCostFilter(cost)}
-                        className={`min-h-[44px] min-w-[44px] flex-shrink-0 ${
-                          activeFilters.cost === cost
-                            ? 'bg-primary hover:bg-primary/90'
-                            : 'border-border hover:bg-muted/20 hover:text-foreground'
-                        }`}
-                      >
-                        {cost}
-                      </Button>
-                    ))}
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="type" className="space-y-4 card-fade-in">
-                  <div
-                    className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible"
-                    ref={typesContainerRef}
-                  >
-                    {types.map(type => (
-                      <Button
-                        key={type}
-                        variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
-                        onClick={() => toggleTypeFilter(type)}
-                        className={`capitalize min-h-[44px] min-w-[100px] md:min-w-0 flex-shrink-0 ${
-                          activeFilters.types.includes(type)
-                            ? 'bg-primary hover:bg-primary/90'
-                            : 'border-border hover:bg-muted/20 hover:text-foreground'
-                        }`}
-                      >
-                        {type}
-                      </Button>
-                    ))}
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    {types.length === 0
-                      ? 'No common types found'
-                      : activeFilters.types.length > 0
-                        ? `Filtering for cards with: ${activeFilters.types.join(', ')}`
-                        : 'Select multiple types to filter cards'}
-                  </p>
-                </TabsContent>
-              </Tabs>
-            </div>
+            <FilterPanel
+              factions={factions}
+              costs={costs}
+              types={types}
+              activeFilters={activeFilters}
+              toggleFactionFilter={toggleFactionFilter}
+              setCostFilter={setCostFilter}
+              toggleTypeFilter={toggleTypeFilter}
+              clearFilters={clearFilters}
+              isDesktop={false}
+              isOpen={mobileFiltersOpen}
+            />
 
             <Separator className="my-4 bg-border" />
 
@@ -817,263 +262,20 @@ export function DeckBuilder() {
       </div>
 
       {/* Deck Section */}
-      <div className={`space-filter-group flex flex-col ${showDeckDesktop ? '' : 'lg:hidden'}`}>
-        <Card className="modern-card overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-30 pointer-events-none"></div>
-
-          <CardHeader className="space-card-header border-b border-border relative z-10">
-            <CardTitle className="flex justify-between items-center flex-wrap space-button-group">
-              <span className="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-accent"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="2" y="7" width="20" height="15" rx="2" />
-                  <path d="M16 2H8a2 2 0 00-2 2v3h12V4a2 2 0 00-2-2z" />
-                </svg>
-                <span className="font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                  Deck
-                </span>
-                <span className="ml-2 text-sm font-normal text-muted-foreground">
-                  ({deck.length})
-                </span>
-              </span>
-              <div className="flex items-center space-button-group flex-wrap justify-end">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
-                  onClick={() => {
-                    navigator.clipboard.writeText(JSON.stringify(deck, null, 2));
-                    toast.success('Deck copied to clipboard');
-                  }}
-                >
-                  Copy
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
-                  onClick={() => {
-                    const name = window.prompt('Save deck as');
-                    if (name) {
-                      localStorage.setItem(`algomancy:deck:${name}`, JSON.stringify(deck));
-                      toast.success(`Saved deck '${name}'`);
-                    }
-                  }}
-                >
-                  Save
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
-                  onClick={() => {
-                    const name = window.prompt('Load deck name');
-                    if (name) {
-                      const data = localStorage.getItem(`algomancy:deck:${name}`);
-                      if (!data) {
-                        toast.error(`No saved deck '${name}' found`);
-                        return;
-                      }
-                      try {
-                        const parsed = JSON.parse(data);
-                        if (Array.isArray(parsed)) {
-                          setDeck(parsed);
-                          toast.success(`Loaded deck '${name}'`);
-                        } else {
-                          toast.error('Invalid deck data');
-                        }
-                      } catch (e) {
-                        toast.error('Failed to load deck');
-                      }
-                    }
-                  }}
-                >
-                  Load
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-border hover:bg-muted/20 hover:text-foreground shrink-0"
-                  onClick={clearDeck}
-                >
-                  Clear
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-border hover:bg-muted/20 hover:text-foreground shrink-0"
-                  onClick={exportDeck}
-                >
-                  Export
-                </Button>
-              </div>
-            </CardTitle>
-          </CardHeader>
-
-          <CardContent className="space-card-content relative z-10 flex-1 overflow-auto">
-            {deck.length > 0 ? (
-              <>
-                <div className="mb-3 flex items-center justify-between">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-border"
-                    onClick={() => setShowAnalytics(s => !s)}
-                  >
-                    {showAnalytics ? 'Hide Analytics' : 'Show Analytics'}
-                  </Button>
-                </div>
-                {showAnalytics && (
-                  <div className="mb-6 grid grid-cols-2 space-filter-group space-deck-item bg-muted/30 rounded-lg border border-border">
-                    {/* Simple inline charts using CSS bars to avoid heavy deps at runtime */}
-                    {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
-                      <div key={faction} className="space-y-1">
-                        <div className="flex items-center justify-between text-xs capitalize">
-                          <span>{faction}</span>
-                          <span>{count}</span>
-                        </div>
-                        <div className="h-2 bg-muted/30 rounded">
-                          <div
-                            className={`h-full rounded ${factionBgClass(faction)}`}
-                            style={{
-                              width: `${(count / Math.max(deckStats.totalCards, 1)) * 100}%`,
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 space-grid-tight space-deck-item bg-muted/30 rounded-lg border border-border">
-                  {/* Deck Stats */}
-                  {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
-                    <div key={faction} className="flex flex-col items-center">
-                      <div
-                        className={`w-full h-1 rounded-full ${factionBg20Class(faction)} mb-1 overflow-hidden`}
-                      >
-                        <div
-                          className={`h-full ${factionBgClass(faction)} rounded-full`}
-                          style={{ width: `${(count / deckStats.totalCards) * 100}%` }}
-                        />
-                      </div>
-                      <span className={`text-xs capitalize ${factionTextClass(faction)}`}>
-                        {faction}: {count}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Deck list with controls */}
-                <div className="space-grid-tight flex flex-col">
-                  {Object.values(
-                    deck.reduce((acc, entry) => {
-                      const key = entry.card?.key || entry.key;
-                      if (!acc[key])
-                        acc[key] = { card: entry.card || entry, count: 0, entries: [] };
-                      acc[key].count += 1;
-                      acc[key].entries.push(entry);
-                      return acc;
-                    }, {})
-                  ).map(({ card, count, entries }) => {
-                    const faction = (card.factions && card.factions[0]?.toLowerCase()) || 'shard';
-                    const canAdd = count < 2;
-                    return (
-                      <div
-                        key={card.key}
-                        className="flex items-center justify-between space-grid-tight rounded-md border border-border bg-card space-element"
-                      >
-                        <div className="flex items-center space-filter-group min-w-0">
-                          <img
-                            src={`/card_images/${card.image_name}`}
-                            alt=""
-                            className="w-10 h-14 rounded object-cover"
-                          />
-                          <div className="min-w-0">
-                            <p className="text-sm font-medium truncate">{card.name}</p>
-                            <p className="text-xs text-muted-foreground truncate capitalize">
-                              {faction} • cost {card.cost}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-grid-tight shrink-0">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-8 w-8 hover:bg-muted/20 hover:text-foreground"
-                            onClick={() => {
-                              if (entries.length) removeCard(entries[0].id);
-                            }}
-                          >
-                            -
-                          </Button>
-                          <span className="w-6 text-center text-sm">{count}</span>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-8 w-8 hover:bg-muted/20 hover:text-foreground"
-                            onClick={() => {
-                              if (canAdd) addCard(card);
-                            }}
-                            disabled={!canAdd}
-                          >
-                            +
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-8"
-                            onClick={() => removeAllCopies(card.key)}
-                          >
-                            Remove
-                          </Button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
-            ) : (
-              <div className="empty-state">
-                <div className="relative w-20 h-20 mx-auto mb-4">
-                  <div className="absolute inset-0 bg-primary/5 rounded-full animate-ping opacity-75 duration-1000"></div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-20 h-20 mx-auto text-muted-foreground/30"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                  >
-                    <rect x="2" y="7" width="20" height="15" rx="2" />
-                    <path d="M16 2H8a2 2 0 00-2 2v3h12V4a2 2 0 00-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                  Your deck is empty
-                </h3>
-                <p className="text-muted-foreground max-w-md mx-auto">
-                  Click on cards in the Card Pool to add them to your deck. You can add up to 2
-                  copies of each card.
-                </p>
-                <div className="mt-6 flex justify-center space-grid-tight">
-                  {factions.map(faction => (
-                    <span
-                      key={faction}
-                      className={`faction-badge faction-badge-${faction} animate-pulse`}
-                    ></span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+      <DeckPanel
+        deck={deck}
+        deckStats={deckStats}
+        showDeckDesktop={showDeckDesktop}
+        setDeck={setDeck}
+        addCard={addCard}
+        removeCard={removeCard}
+        removeAllCopies={removeAllCopies}
+        clearDeck={clearDeck}
+        exportDeck={exportDeck}
+        showAnalytics={showAnalytics}
+        setShowAnalytics={setShowAnalytics}
+        factions={factions}
+      />
     </div>
   );
 }
