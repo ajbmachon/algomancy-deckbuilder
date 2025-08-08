@@ -5,6 +5,7 @@ import CommandPalette from '@/components/layout/CommandPalette';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { AppProvider } from './lib/stores/react/AppProvider';
+import { toast } from 'sonner';
 import './styles/globals.css';
 
 function App() {
@@ -65,28 +66,33 @@ function App() {
           <DeckBuilder />
         </main>
 
-        <footer className="container mx-auto mt-12 pt-4 border-t border-white/10 text-sm text-muted-foreground sticky bottom-0 bg-background/80 backdrop-blur-sm">
+        <footer className="container mx-auto mt-12 pt-4 border-t border-white/10 text-sm text-muted-foreground">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-4">
             <p>© {new Date().getFullYear()} Algomancy Deckbuilder</p>
             <div className="flex items-center gap-6">
-              <a
-                href="#"
+              <button
+                type="button"
+                onClick={() => toast.info('About', { description: 'This section is coming soon.' })}
                 className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
               >
                 About
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                type="button"
+                onClick={() => toast.info('Rules', { description: 'This section is coming soon.' })}
                 className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
               >
                 Rules
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  toast.info('Contact', { description: 'This section is coming soon.' })
+                }
                 className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
               >
                 Contact
-              </a>
+              </button>
             </div>
           </div>
         </footer>

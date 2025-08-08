@@ -5,6 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { toast } from 'sonner';
 import { CardContext } from '@/lib/stores/react/CardProvider';
 import { DeckContext } from '@/lib/stores/react/DeckProvider';
@@ -15,7 +17,16 @@ import { DeckContext } from '@/lib/stores/react/DeckProvider';
 export function DeckBuilder() {
   // Get data from contexts
   const { filteredPool: contextFilteredPool, working } = useContext(CardContext);
-  const { deck, addCard, removeCard, exportDeck: contextExportDeck } = useContext(DeckContext);
+  const {
+    deck,
+    setDeck,
+    addCard,
+    removeCard,
+    removeAllCopies,
+    clearDeck,
+    exportDeck: contextExportDeck,
+    getCardCount,
+  } = useContext(DeckContext);
 
   const [filteredPool, setFilteredPool] = useState([]);
   const [activeFilters, setActiveFilters] = useState({
@@ -25,6 +36,12 @@ export function DeckBuilder() {
   });
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [recentlyAdded, setRecentlyAdded] = useState(null);
+
+  // Desktop layout visibility controls
+  const [showFiltersDesktop, setShowFiltersDesktop] = useState(true);
+  const [showDeckDesktop, setShowDeckDesktop] = useState(true);
+  const [maximized, setMaximized] = useState(false);
+  const previousLayoutRef = useRef({ filters: true, deck: true });
 
   // Refs for horizontal scrolling containers
   const factionsContainerRef = useRef(null);
@@ -330,6 +347,9 @@ export function DeckBuilder() {
 
   const deckStats = calculateDeckStats();
 
+  // Analytics toggle
+  const [showAnalytics, setShowAnalytics] = useState(false);
+
   // Determine if a card was recently added (for highlight animation)
   const isRecentlyAdded = cardName => {
     return recentlyAdded === cardName;
@@ -353,7 +373,129 @@ export function DeckBuilder() {
   }, [filteredPool, sortBy, sortDir]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
+    <div
+      className={`grid grid-cols-1 ${
+        showFiltersDesktop && showDeckDesktop
+          ? 'lg:grid-cols-[280px_1fr_380px]'
+          : showFiltersDesktop && !showDeckDesktop
+            ? 'lg:grid-cols-[280px_1fr]'
+            : !showFiltersDesktop && showDeckDesktop
+              ? 'lg:grid-cols-[1fr_380px]'
+              : 'lg:grid-cols-1'
+      } gap-6`}
+    >
+      {/* Filters Sidebar */}
+      <aside
+        aria-label="Filters"
+        className={`hidden lg:block ${showFiltersDesktop ? '' : 'lg:hidden'}`}
+      >
+        <Card className="modern-card h-full">
+          <CardHeader className="border-b border-white/10 pb-3">
+            <CardTitle className="text-sm">Filters</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-4">
+            <ScrollArea className="h-[68vh] pr-2">
+              <div className="space-y-4">
+                <Collapsible defaultOpen>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
+                      Factions
+                    </h3>
+                    <CollapsibleTrigger asChild>
+                      <Button variant="outline" size="sm" className="h-7 px-2 border-white/20">
+                        Toggle
+                      </Button>
+                    </CollapsibleTrigger>
+                  </div>
+                  <CollapsibleContent className="mt-2 grid grid-cols-2 gap-2">
+                    {factions.map(faction => (
+                      <Button
+                        key={faction}
+                        variant="outline"
+                        onClick={() => toggleFactionFilter(faction)}
+                        className={`capitalize ${
+                          activeFilters.factions.includes(faction)
+                            ? `filter-btn-${faction} active`
+                            : `filter-btn-${faction}`
+                        }`}
+                      >
+                        {getFactionIcon(faction)}
+                        {faction}
+                      </Button>
+                    ))}
+                  </CollapsibleContent>
+                </Collapsible>
+
+                <Separator className="bg-white/10" />
+
+                <Collapsible defaultOpen>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Cost</h3>
+                    <CollapsibleTrigger asChild>
+                      <Button variant="outline" size="sm" className="h-7 px-2 border-white/20">
+                        Toggle
+                      </Button>
+                    </CollapsibleTrigger>
+                  </div>
+                  <CollapsibleContent className="mt-2 flex flex-wrap gap-2">
+                    {costs.map(cost => (
+                      <Button
+                        key={cost}
+                        variant={activeFilters.cost === cost ? 'default' : 'outline'}
+                        onClick={() => setCostFilter(cost)}
+                        className={
+                          activeFilters.cost === cost
+                            ? 'bg-primary hover:bg-primary/90'
+                            : 'border-white/20 hover:bg-white/5'
+                        }
+                      >
+                        {cost}
+                      </Button>
+                    ))}
+                  </CollapsibleContent>
+                </Collapsible>
+
+                <Separator className="bg-white/10" />
+
+                <Collapsible defaultOpen>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Type</h3>
+                    <CollapsibleTrigger asChild>
+                      <Button variant="outline" size="sm" className="h-7 px-2 border-white/20">
+                        Toggle
+                      </Button>
+                    </CollapsibleTrigger>
+                  </div>
+                  <CollapsibleContent className="mt-2 grid grid-cols-2 gap-2">
+                    {types.map(type => (
+                      <Button
+                        key={type}
+                        variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
+                        onClick={() => toggleTypeFilter(type)}
+                        className={`capitalize ${activeFilters.types.includes(type) ? 'bg-primary hover:bg-primary/90' : 'border-white/20 hover:bg-white/5'}`}
+                      >
+                        {type}
+                      </Button>
+                    ))}
+                  </CollapsibleContent>
+                </Collapsible>
+
+                <div className="pt-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={clearFilters}
+                    className="border-white/20 w-full"
+                  >
+                    Clear Filters
+                  </Button>
+                </div>
+              </div>
+            </ScrollArea>
+          </CardContent>
+        </Card>
+      </aside>
+
       {/* Card Pool Section */}
       <div className="space-y-4">
         <Card className="modern-card overflow-hidden">
@@ -378,6 +520,53 @@ export function DeckBuilder() {
                 </span>
               </span>
               <div className="flex gap-2 flex-wrap items-center">
+                {/* Desktop layout toggles to maximize card grid */}
+                <div className="hidden lg:flex items-center gap-2 mr-2">
+                  <Button
+                    variant={maximized ? 'default' : 'outline'}
+                    size="sm"
+                    className="border-white/20"
+                    onClick={() => {
+                      setMaximized(m => {
+                        if (!m) {
+                          previousLayoutRef.current = {
+                            filters: showFiltersDesktop,
+                            deck: showDeckDesktop,
+                          };
+                          setShowFiltersDesktop(false);
+                          setShowDeckDesktop(false);
+                          return true;
+                        } else {
+                          setShowFiltersDesktop(previousLayoutRef.current.filters);
+                          setShowDeckDesktop(previousLayoutRef.current.deck);
+                          return false;
+                        }
+                      });
+                    }}
+                    title={maximized ? 'Restore Layout' : 'Maximize Cards'}
+                  >
+                    {maximized ? 'Restore Layout' : 'Maximize Cards'}
+                  </Button>
+                  <Button
+                    variant={showFiltersDesktop ? 'outline' : 'default'}
+                    size="sm"
+                    className="border-white/20"
+                    onClick={() => setShowFiltersDesktop(v => !v)}
+                    title={showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
+                  >
+                    {showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
+                  </Button>
+                  <Button
+                    variant={showDeckDesktop ? 'outline' : 'default'}
+                    size="sm"
+                    className="border-white/20"
+                    onClick={() => setShowDeckDesktop(v => !v)}
+                    title={showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
+                  >
+                    {showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
+                  </Button>
+                </div>
+
                 <div className="hidden md:flex items-center gap-1 text-xs text-muted-foreground mr-2">
                   <span>Sort:</span>
                   <Button
@@ -425,7 +614,7 @@ export function DeckBuilder() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-6">
-            <div className={`${mobileFiltersOpen ? 'block' : 'hidden'} md:block mb-6`}>
+            <div className={`${mobileFiltersOpen ? 'block' : 'hidden'} md:hidden mb-6`}>
               <Tabs defaultValue="factions" className="mb-6">
                 <TabsList className="fancy-tabs mb-4 w-full overflow-x-auto flex-nowrap md:flex-wrap whitespace-nowrap">
                   <TabsTrigger
@@ -559,7 +748,7 @@ export function DeckBuilder() {
       </div>
 
       {/* Deck Section */}
-      <div className="space-y-4">
+      <div className={`space-y-4 ${showDeckDesktop ? '' : 'lg:hidden'}`}>
         <Card className="modern-card overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-30 pointer-events-none"></div>
 
@@ -584,20 +773,114 @@ export function DeckBuilder() {
                   ({deck.length})
                 </span>
               </span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={exportDeck}
-                className="border-white/20 hover:bg-white/5"
-              >
-                Export
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    navigator.clipboard.writeText(JSON.stringify(deck, null, 2));
+                    toast.success('Deck copied to clipboard');
+                  }}
+                  className="border-white/20 hover:bg-white/5"
+                >
+                  Copy
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const name = window.prompt('Save deck as');
+                    if (name) {
+                      localStorage.setItem(`algomancy:deck:${name}`, JSON.stringify(deck));
+                      toast.success(`Saved deck '${name}'`);
+                    }
+                  }}
+                  className="border-white/20 hover:bg-white/5"
+                >
+                  Save
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const name = window.prompt('Load deck name');
+                    if (name) {
+                      const data = localStorage.getItem(`algomancy:deck:${name}`);
+                      if (!data) {
+                        toast.error(`No saved deck '${name}' found`);
+                        return;
+                      }
+                      try {
+                        const parsed = JSON.parse(data);
+                        if (Array.isArray(parsed)) {
+                          setDeck(parsed);
+                          toast.success(`Loaded deck '${name}'`);
+                        } else {
+                          toast.error('Invalid deck data');
+                        }
+                      } catch (e) {
+                        toast.error('Failed to load deck');
+                      }
+                    }
+                  }}
+                  className="border-white/20 hover:bg-white/5"
+                >
+                  Load
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={clearDeck}
+                  className="border-white/20 hover:bg-white/5"
+                >
+                  Clear
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={exportDeck}
+                  className="border-white/20 hover:bg-white/5"
+                >
+                  Export
+                </Button>
+              </div>
             </CardTitle>
           </CardHeader>
 
           <CardContent className="pt-6 relative z-10">
             {deck.length > 0 ? (
               <>
+                <div className="mb-3 flex items-center justify-between">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-white/20"
+                    onClick={() => setShowAnalytics(s => !s)}
+                  >
+                    {showAnalytics ? 'Hide Analytics' : 'Show Analytics'}
+                  </Button>
+                </div>
+                {showAnalytics && (
+                  <div className="mb-6 grid grid-cols-2 gap-3 p-3 bg-black/20 rounded-lg border border-white/5">
+                    {/* Simple inline charts using CSS bars to avoid heavy deps at runtime */}
+                    {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
+                      <div key={faction} className="space-y-1">
+                        <div className="flex items-center justify-between text-xs capitalize">
+                          <span>{faction}</span>
+                          <span>{count}</span>
+                        </div>
+                        <div className="h-2 bg-white/10 rounded">
+                          <div
+                            className={`h-full rounded bg-faction-${faction}`}
+                            style={{
+                              width: `${(count / Math.max(deckStats.totalCards, 1)) * 100}%`,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 gap-2 p-3 bg-black/20 rounded-lg border border-white/5">
                   {/* Deck Stats */}
                   {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
@@ -617,14 +900,74 @@ export function DeckBuilder() {
                   ))}
                 </div>
 
-                {/* Using compact=false to disable card grouping by type */}
-                <CardGrid
-                  cards={deck}
-                  onCardClick={removeCardFromDeck}
-                  compact={false}
-                  className="card-fade-in"
-                  isRecentlyAdded={isRecentlyAdded}
-                />
+                {/* Deck list with controls */}
+                <div className="space-y-2">
+                  {Object.values(
+                    deck.reduce((acc, entry) => {
+                      const key = entry.card?.key || entry.key;
+                      if (!acc[key])
+                        acc[key] = { card: entry.card || entry, count: 0, entries: [] };
+                      acc[key].count += 1;
+                      acc[key].entries.push(entry);
+                      return acc;
+                    }, {})
+                  ).map(({ card, count, entries }) => {
+                    const faction = (card.factions && card.factions[0]?.toLowerCase()) || 'shard';
+                    const canAdd = count < 2;
+                    return (
+                      <div
+                        key={card.key}
+                        className="flex items-center justify-between gap-2 rounded-md border border-white/10 bg-black/30 p-2"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img
+                            src={`/card_images/${card.image_name}`}
+                            alt=""
+                            className="w-10 h-14 rounded object-cover"
+                          />
+                          <div className="min-w-0">
+                            <p className="text-sm font-medium truncate">{card.name}</p>
+                            <p className="text-xs text-muted-foreground truncate capitalize">
+                              {faction} • cost {card.cost}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8 w-8"
+                            onClick={() => {
+                              if (entries.length) removeCard(entries[0].id);
+                            }}
+                          >
+                            -
+                          </Button>
+                          <span className="w-6 text-center text-sm">{count}</span>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8 w-8"
+                            onClick={() => {
+                              if (canAdd) addCard(card);
+                            }}
+                            disabled={!canAdd}
+                          >
+                            +
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8"
+                            onClick={() => removeAllCopies(card.key)}
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </>
             ) : (
               <div className="empty-state">

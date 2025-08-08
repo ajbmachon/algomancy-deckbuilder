@@ -24,19 +24,25 @@ export function GameCard({
   const [imageError, setImageError] = useState(false);
 
   // Use faction colors from tailwind config
-  const getFactionColor = (faction) => {
+  const getFactionColor = faction => {
     switch (faction) {
-      case 'earth': return '#B45309'; // Amber-700
-      case 'wood': return '#047857';  // Emerald-700
-      case 'fire': return '#B91C1C';  // Red-700
-      case 'water': return '#0369A1'; // Sky-700
-      case 'metal': return '#475569'; // Slate-600
-      default: return '#7C3AED';      // Violet-600 for shard/generic
+      case 'earth':
+        return '#B45309'; // Amber-700
+      case 'wood':
+        return '#047857'; // Emerald-700
+      case 'fire':
+        return '#B91C1C'; // Red-700
+      case 'water':
+        return '#0369A1'; // Sky-700
+      case 'metal':
+        return '#475569'; // Slate-600
+      default:
+        return '#7C3AED'; // Violet-600 for shard/generic
     }
   };
 
   // Get the faction color class
-  const getFactionClass = (faction) => {
+  const getFactionClass = faction => {
     switch (faction) {
       case 'earth':
         return 'border-faction-earth shadow-[0_0_15px_rgba(180,83,9,0.2)] hover:shadow-[0_0_20px_rgba(180,83,9,0.4)]';
@@ -56,15 +62,22 @@ export function GameCard({
   };
 
   // Get faction glow class
-  const getFactionGlowClass = (faction) => {
+  const getFactionGlowClass = faction => {
     switch (faction) {
-      case 'earth': return 'card-earth-glow';
-      case 'wood': return 'card-wood-glow';
-      case 'fire': return 'card-fire-glow';
-      case 'water': return 'card-water-glow';
-      case 'metal': return 'card-metal-glow';
-      case 'shard': return 'card-shard-glow';
-      default: return 'card-shard-glow';
+      case 'earth':
+        return 'card-earth-glow';
+      case 'wood':
+        return 'card-wood-glow';
+      case 'fire':
+        return 'card-fire-glow';
+      case 'water':
+        return 'card-water-glow';
+      case 'metal':
+        return 'card-metal-glow';
+      case 'shard':
+        return 'card-shard-glow';
+      default:
+        return 'card-shard-glow';
     }
   };
 
@@ -72,7 +85,7 @@ export function GameCard({
     'card-container relative group overflow-hidden border-2 transition-all duration-300',
     'cursor-pointer hover:scale-105 hover:-translate-y-2',
     'rounded-xl backdrop-blur-sm bg-black/20',
-    'w-full aspect-[2/3] max-w-[200px] mx-auto', // Standard card dimensions
+    'w-full aspect-[2/3] max-w-[240px] mx-auto', // Slightly larger card tile
     'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background', // Focus state for accessibility
     getFactionClass(faction),
     getFactionGlowClass(faction),
@@ -91,7 +104,7 @@ export function GameCard({
   const handleImageError = () => setImageError(true);
 
   // Handle keyboard navigation
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault(); // Prevent scroll on space press
       if (!disabled && onClick) onClick();
@@ -109,8 +122,8 @@ export function GameCard({
   };
 
   // Format card text to highlight keywords like "augment" in bold
-  const formatCardText = (text) => {
-    if (!text) return "";
+  const formatCardText = text => {
+    if (!text) return '';
 
     // Replace [Switch 1] with <strong>augment</strong>, etc.
     // Add more keyword replacements as needed
@@ -142,7 +155,7 @@ export function GameCard({
                     className="w-12 h-12 rounded-full"
                     style={{
                       backgroundColor: `${getFactionColor(faction)}20`,
-                      borderColor: getFactionColor(faction)
+                      borderColor: getFactionColor(faction),
                     }}
                   ></div>
                 </div>
@@ -164,9 +177,9 @@ export function GameCard({
                 src={`/card_images/${image_name}`}
                 alt={`Card art for ${name}`}
                 className={cn(
-                  "w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110",
-                  !imageLoaded && "opacity-0",
-                  imageError && "hidden"
+                  'w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110',
+                  !imageLoaded && 'opacity-0',
+                  imageError && 'hidden'
                 )}
                 loading="lazy"
                 onLoad={handleImageLoaded}
@@ -192,7 +205,7 @@ export function GameCard({
               className="absolute top-1 right-1 px-3 py-1 rounded-md z-20 text-white font-bold"
               style={{
                 background: `linear-gradient(135deg, ${getFactionColor(faction)}, ${getFactionColor(faction)}CC)`,
-                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
               }}
             >
               {count}×
@@ -229,7 +242,7 @@ export function GameCard({
               style={{
                 backgroundColor: `${getFactionColor(faction)}20`,
                 borderColor: `${getFactionColor(faction)}30`,
-                color: getFactionColor(faction)
+                color: getFactionColor(faction),
               }}
             >
               {faction}

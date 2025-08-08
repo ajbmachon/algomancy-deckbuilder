@@ -320,7 +320,8 @@
   /* Fancy header text with gradient */
   .gradient-heading {
     @apply text-transparent bg-clip-text;
-    background-image: linear-gradient(135deg, #8b5cf6, #3b82f6, #5eead4);
+    background-image: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+    filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.25));
   }
 
   /* Improved tabs styling */
@@ -341,7 +342,7 @@
   .empty-state {
     @apply text-center py-12 text-muted-foreground border border-dashed
     border-white/10 rounded-lg transition-all duration-300;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
   }
 
   .empty-state:hover {
@@ -351,7 +352,7 @@
 
   /* Card container with modern style */
   .modern-card {
-    @apply border border-white/10 shadow-xl bg-black/40 backdrop-blur-sm;
+    @apply border border-white/15 shadow-xl bg-black/30 backdrop-blur-sm;
     transition: all 0.3s ease;
   }
 
