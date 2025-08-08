@@ -27,6 +27,16 @@
     --ring: 260 90% 66%;
     --radius: 0.6rem;
 
+    /* Semantic colors */
+    --success: 142 76% 36%; /* green-600 */
+    --success-foreground: 138 76% 97%; /* green-50 */
+    --warning: 43 96% 56%; /* amber-500 */
+    --warning-foreground: 48 100% 96%; /* amber-50 */
+    --error: 0 84% 60%; /* Uses existing destructive */
+    --error-foreground: 0 0% 98%; /* Uses existing destructive-foreground */
+    --info: 221 83% 53%; /* blue-600 */
+    --info-foreground: 214 100% 97%; /* blue-50 */
+
     /* Light mode tokens */
     color-scheme: dark light;
     --light-background: 210 40% 98%;
@@ -48,6 +58,16 @@
     --light-border: 214 32% 85%;
     --light-input: 214 32% 85%;
     --light-ring: 258 84% 54%;
+
+    /* Light mode semantic colors */
+    --light-success: 142 71% 45%; /* green-600 */
+    --light-success-foreground: 0 0% 100%; /* white */
+    --light-warning: 43 96% 56%; /* amber-500 */
+    --light-warning-foreground: 0 0% 100%; /* white */
+    --light-error: 0 84% 60%; /* Uses existing light-destructive */
+    --light-error-foreground: 0 0% 100%; /* Uses existing light-destructive-foreground */
+    --light-info: 221 83% 53%; /* blue-600 */
+    --light-info-foreground: 0 0% 100%; /* white */
   }
 }
 
@@ -72,6 +92,14 @@
     --border: var(--light-border);
     --input: var(--light-input);
     --ring: var(--light-ring);
+    --success: var(--light-success);
+    --success-foreground: var(--light-success-foreground);
+    --warning: var(--light-warning);
+    --warning-foreground: var(--light-warning-foreground);
+    --error: var(--light-error);
+    --error-foreground: var(--light-error-foreground);
+    --info: var(--light-info);
+    --info-foreground: var(--light-info-foreground);
   }
 }
 
@@ -157,6 +185,59 @@
 }
 
 @layer components {
+  /* Spacing tokens - consistent spacing system */
+  .space-section {
+    @apply py-8 px-4 sm:px-6 lg:px-8;
+  }
+  .space-component {
+    @apply p-4;
+  }
+  .space-element {
+    @apply p-2;
+  }
+  .space-tight {
+    @apply p-1;
+  }
+
+  /* Component-specific spacing utilities */
+  .space-card-content {
+    @apply p-6;
+  }
+  .space-card-header {
+    @apply p-4;
+  }
+  .space-button-group {
+    @apply gap-2;
+  }
+  .space-filter-group {
+    @apply gap-3;
+  }
+  .space-deck-item {
+    @apply p-3;
+  }
+
+  /* Responsive spacing utilities */
+  .space-responsive {
+    @apply p-3 sm:p-4 lg:p-6;
+  }
+  .space-responsive-x {
+    @apply px-3 sm:px-4 lg:px-6;
+  }
+  .space-responsive-y {
+    @apply py-3 sm:py-4 lg:py-6;
+  }
+
+  /* Grid and layout spacing */
+  .space-grid-tight {
+    @apply gap-2;
+  }
+  .space-grid-normal {
+    @apply gap-4;
+  }
+  .space-grid-loose {
+    @apply gap-6;
+  }
+
   /* Toolbar helpers */
   .toolbar {
     @apply flex items-center justify-between gap-2 flex-wrap;
@@ -234,16 +315,16 @@
   .filter-btn-metal {
     @apply border-2 border-faction-metal text-faction-metal hover:bg-faction-metal/10;
     transition: all 0.2s ease;
-    box-shadow: 0 0 0 rgba(71, 85, 105, 0);
+    box-shadow: 0 0 0 rgba(100, 116, 139, 0);
   }
 
   .filter-btn-metal.active {
     @apply bg-faction-metal text-white hover:bg-faction-metal/90;
-    box-shadow: 0 0 10px rgba(71, 85, 105, 0.3);
+    box-shadow: 0 0 10px rgba(100, 116, 139, 0.3);
   }
 
   .filter-btn-metal:hover {
-    box-shadow: 0 0 8px rgba(71, 85, 105, 0.2);
+    box-shadow: 0 0 8px rgba(100, 116, 139, 0.2);
   }
 
   .filter-btn-shard {
@@ -337,7 +418,7 @@
     content: '';
     position: absolute;
     inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(71, 85, 105, 0.4), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(100, 116, 139, 0.4), transparent 70%);
     border-radius: 16px;
     z-index: -1;
     opacity: 0;
@@ -464,7 +545,7 @@
 
   /* Faction badge styles */
   .faction-badge {
-    @apply px-3 py-1 rounded-md text-xs font-medium text-white;
+    @apply px-3 py-1 rounded-lg text-xs font-medium text-white;
     transition: all 0.2s ease;
   }
 
@@ -490,7 +571,7 @@
 
   .faction-badge-metal {
     @apply bg-faction-metal;
-    box-shadow: 0 0 10px rgba(71, 85, 105, 0.3);
+    box-shadow: 0 0 10px rgba(100, 116, 139, 0.3);
   }
 
   .faction-badge-shard {

@@ -27,17 +27,17 @@ export function GameCard({
   const getFactionColor = faction => {
     switch (faction) {
       case 'earth':
-        return '#B45309'; // Amber-700
+        return 'rgb(180 83 9)'; // Amber-700
       case 'wood':
-        return '#047857'; // Emerald-700
+        return 'rgb(4 120 87)'; // Emerald-700
       case 'fire':
-        return '#B91C1C'; // Red-700
+        return 'rgb(185 28 28)'; // Red-700
       case 'water':
-        return '#0369A1'; // Sky-700
+        return 'rgb(3 105 161)'; // Sky-700
       case 'metal':
-        return '#475569'; // Slate-600
+        return 'rgb(100 116 139)'; // Slate-500
       default:
-        return '#7C3AED'; // Violet-600 for shard/generic
+        return 'rgb(124 58 237)'; // Violet-600 for shard/generic
     }
   };
 
@@ -45,19 +45,19 @@ export function GameCard({
   const getFactionClass = faction => {
     switch (faction) {
       case 'earth':
-        return 'border-faction-earth shadow-[0_0_15px_rgba(180,83,9,0.2)] hover:shadow-[0_0_20px_rgba(180,83,9,0.4)]';
+        return 'border-faction-earth shadow-[0_0_15px_rgb(180_83_9_/_0.2)] hover:shadow-[0_0_20px_rgb(180_83_9_/_0.4)]';
       case 'wood':
-        return 'border-faction-wood shadow-[0_0_15px_rgba(4,120,87,0.2)] hover:shadow-[0_0_20px_rgba(4,120,87,0.4)]';
+        return 'border-faction-wood shadow-[0_0_15px_rgb(4_120_87_/_0.2)] hover:shadow-[0_0_20px_rgb(4_120_87_/_0.4)]';
       case 'fire':
-        return 'border-faction-fire shadow-[0_0_15px_rgba(185,28,28,0.2)] hover:shadow-[0_0_20px_rgba(185,28,28,0.4)]';
+        return 'border-faction-fire shadow-[0_0_15px_rgb(185_28_28_/_0.2)] hover:shadow-[0_0_20px_rgb(185_28_28_/_0.4)]';
       case 'water':
-        return 'border-faction-water shadow-[0_0_15px_rgba(3,105,161,0.2)] hover:shadow-[0_0_20px_rgba(3,105,161,0.4)]';
+        return 'border-faction-water shadow-[0_0_15px_rgb(3_105_161_/_0.2)] hover:shadow-[0_0_20px_rgb(3_105_161_/_0.4)]';
       case 'metal':
-        return 'border-faction-metal shadow-[0_0_15px_rgba(71,85,105,0.2)] hover:shadow-[0_0_20px_rgba(71,85,105,0.4)]';
+        return 'border-faction-metal shadow-[0_0_15px_rgb(100_116_139_/_0.2)] hover:shadow-[0_0_20px_rgb(100_116_139_/_0.4)]';
       case 'shard':
-        return 'border-faction-shard shadow-[0_0_15px_rgba(124,58,237,0.2)] hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]';
+        return 'border-faction-shard shadow-[0_0_15px_rgb(124_58_237_/_0.2)] hover:shadow-[0_0_20px_rgb(124_58_237_/_0.4)]';
       default:
-        return 'border-faction-shard shadow-[0_0_15px_rgba(124,58,237,0.2)] hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]';
+        return 'border-faction-shard shadow-[0_0_15px_rgb(124_58_237_/_0.2)] hover:shadow-[0_0_20px_rgb(124_58_237_/_0.4)]';
     }
   };
 
@@ -152,9 +152,9 @@ export function GameCard({
               {!imageLoaded && !imageError && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 animate-pulse">
                   <div
-                    className="w-12 h-12 rounded-full"
+                    className="w-12 h-12 rounded-lg bg-black/10 border-2"
                     style={{
-                      backgroundColor: `${getFactionColor(faction)}20`,
+                      backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 12%, transparent)`,
                       borderColor: getFactionColor(faction),
                     }}
                   ></div>
@@ -194,7 +194,9 @@ export function GameCard({
           {/* Cost Badge (always shown) */}
           <Badge
             className="card-badge card-badge-cost z-10 text-white border border-white/20"
-            style={{ backgroundColor: `${getFactionColor(faction)}CC` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent)`,
+            }}
           >
             {cost}
           </Badge>
@@ -202,10 +204,10 @@ export function GameCard({
           {/* Count Badge (shown if count > 1) - moved to upper right with improved styling */}
           {count > 1 && (
             <Badge
-              className="absolute top-1 right-1 px-3 py-1 rounded-md z-20 text-white font-bold"
+              className="absolute top-1 right-1 px-3 py-1 rounded-lg z-20 text-white font-bold"
               style={{
-                background: `linear-gradient(135deg, ${getFactionColor(faction)}, ${getFactionColor(faction)}CC)`,
-                boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                background: `linear-gradient(135deg, ${getFactionColor(faction)}, color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent))`,
+                boxShadow: '0 2px 4px rgb(0 0 0 / 0.3)',
               }}
             >
               {count}×
@@ -229,8 +231,10 @@ export function GameCard({
             <h3 className="font-bold text-white text-lg line-clamp-2">{name}</h3>
             {cost !== undefined && (
               <span
-                className="inline-flex items-center justify-center w-6 h-6 rounded-full text-white font-bold text-sm border border-white/20 flex-shrink-0 ml-2"
-                style={{ backgroundColor: `${getFactionColor(faction)}CC` }}
+                className="inline-flex items-center justify-center w-6 h-6 rounded-lg text-white font-bold text-sm border border-white/20 flex-shrink-0 ml-2"
+                style={{
+                  backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent)`,
+                }}
               >
                 {cost}
               </span>
@@ -238,17 +242,17 @@ export function GameCard({
           </div>
           <div className="flex flex-wrap gap-2 text-xs">
             <span
-              className="px-2 py-1 rounded capitalize border"
+              className="px-2 py-1 rounded-lg capitalize border"
               style={{
-                backgroundColor: `${getFactionColor(faction)}20`,
-                borderColor: `${getFactionColor(faction)}30`,
+                backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 12%, transparent)`,
+                borderColor: `color-mix(in srgb, ${getFactionColor(faction)} 20%, transparent)`,
                 color: getFactionColor(faction),
               }}
             >
               {faction}
             </span>
             {type && (
-              <span className="px-2 py-1 rounded bg-white/5 text-white/80 border border-white/10 capitalize">
+              <span className="px-2 py-1 rounded-lg bg-white/5 text-white/80 border border-white/10 capitalize">
                 {type}
               </span>
             )}

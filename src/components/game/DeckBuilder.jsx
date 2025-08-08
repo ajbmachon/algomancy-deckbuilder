@@ -451,7 +451,7 @@ export function DeckBuilder() {
             : !showFiltersDesktop && showDeckDesktop
               ? 'lg:grid-cols-[1fr_380px]'
               : 'lg:grid-cols-1'
-      } gap-6`}
+      } space-grid-loose`}
     >
       {/* Filters Sidebar */}
       <aside
@@ -459,12 +459,12 @@ export function DeckBuilder() {
         className={`hidden lg:block ${showFiltersDesktop ? '' : 'lg:hidden'}`}
       >
         <Card className="modern-card h-full max-h-[calc(100vh-8rem)] flex flex-col">
-          <CardHeader className="border-b border-border pb-3">
+          <CardHeader className="space-card-header border-b border-border">
             <CardTitle className="text-sm">Filters</CardTitle>
           </CardHeader>
-          <CardContent className="pt-4 flex-1 overflow-hidden">
+          <CardContent className="space-card-content flex-1 overflow-hidden">
             <ScrollArea className="h-full pr-2">
-              <div className="space-y-4">
+              <div className="space-filter-group flex flex-col">
                 <Collapsible defaultOpen>
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -476,7 +476,7 @@ export function DeckBuilder() {
                       </Button>
                     </CollapsibleTrigger>
                   </div>
-                  <CollapsibleContent className="mt-2 grid grid-cols-2 gap-2">
+                  <CollapsibleContent className="mt-2 grid grid-cols-2 space-grid-tight">
                     {factions.map(faction => (
                       <Button
                         key={faction}
@@ -506,7 +506,7 @@ export function DeckBuilder() {
                       </Button>
                     </CollapsibleTrigger>
                   </div>
-                  <CollapsibleContent className="mt-2 flex flex-wrap gap-2">
+                  <CollapsibleContent className="mt-2 flex flex-wrap space-grid-tight">
                     {costs.map(cost => (
                       <Button
                         key={cost}
@@ -535,7 +535,7 @@ export function DeckBuilder() {
                       </Button>
                     </CollapsibleTrigger>
                   </div>
-                  <CollapsibleContent className="mt-2 grid grid-cols-2 gap-2">
+                  <CollapsibleContent className="mt-2 grid grid-cols-2 space-grid-tight">
                     {types.map(type => (
                       <Button
                         key={type}
@@ -566,10 +566,10 @@ export function DeckBuilder() {
       </aside>
 
       {/* Card Pool Section */}
-      <div className="space-y-4">
+      <div className="space-filter-group flex flex-col">
         <Card className="modern-card overflow-hidden">
-          <CardHeader className="border-b border-border pb-3">
-            <CardTitle className="flex justify-between items-center flex-wrap gap-2">
+          <CardHeader className="space-card-header border-b border-border">
+            <CardTitle className="flex justify-between items-center flex-wrap space-button-group">
               <span className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -588,9 +588,9 @@ export function DeckBuilder() {
                   ({filteredPool.length})
                 </span>
               </span>
-              <div className="flex gap-2 flex-wrap items-center">
+              <div className="flex space-button-group flex-wrap items-center">
                 {/* Desktop layout toggles to maximize card grid */}
-                <div className="hidden lg:flex items-center gap-2 mr-2">
+                <div className="hidden lg:flex items-center space-button-group mr-2">
                   <Button
                     variant={maximized ? 'default' : 'outline'}
                     size="sm"
@@ -619,7 +619,7 @@ export function DeckBuilder() {
                   <Button
                     variant={showFiltersDesktop ? 'outline' : 'default'}
                     size="sm"
-                    className="border-white/20"
+                    className="border-border"
                     onClick={() => setShowFiltersDesktop(v => !v)}
                     title={showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
                   >
@@ -628,7 +628,7 @@ export function DeckBuilder() {
                   <Button
                     variant={showDeckDesktop ? 'outline' : 'default'}
                     size="sm"
-                    className="border-white/20"
+                    className="border-border"
                     onClick={() => setShowDeckDesktop(v => !v)}
                     title={showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
                   >
@@ -636,7 +636,7 @@ export function DeckBuilder() {
                   </Button>
                 </div>
 
-                <div className="hidden md:flex items-center gap-1 text-xs text-muted-foreground mr-2">
+                <div className="hidden md:flex items-center space-tight text-xs text-muted-foreground mr-2">
                   <span>Sort:</span>
                   <Button
                     variant="outline"
@@ -658,7 +658,7 @@ export function DeckBuilder() {
                     variant="outline"
                     size="sm"
                     onClick={() => setSortDir(sortDir === 'asc' ? 'desc' : 'asc')}
-                    className="border-white/20"
+                    className="border-border"
                   >
                     {sortDir === 'asc' ? 'Asc' : 'Desc'}
                   </Button>
@@ -682,7 +682,7 @@ export function DeckBuilder() {
               </div>
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-6">
+          <CardContent className="space-card-content">
             <div className={`${mobileFiltersOpen ? 'block' : 'hidden'} md:hidden mb-6`}>
               <Tabs defaultValue="factions" className="mb-6">
                 <TabsList className="fancy-tabs mb-4 w-full overflow-x-auto flex-nowrap md:flex-wrap whitespace-nowrap">
@@ -708,7 +708,7 @@ export function DeckBuilder() {
 
                 <TabsContent value="factions" className="space-y-4 card-fade-in">
                   <div
-                    className="flex gap-2 overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible"
+                    className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible"
                     ref={factionsContainerRef}
                   >
                     {factions.map(faction => (
@@ -751,7 +751,7 @@ export function DeckBuilder() {
 
                 <TabsContent value="cost" className="space-y-4 card-fade-in">
                   <div
-                    className="flex gap-2 overflow-x-auto pb-2 md:flex-wrap"
+                    className="flex space-grid-tight overflow-x-auto pb-2 md:flex-wrap"
                     ref={costsContainerRef}
                   >
                     {costs.map(cost => (
@@ -762,7 +762,7 @@ export function DeckBuilder() {
                         className={`min-h-[44px] min-w-[44px] flex-shrink-0 ${
                           activeFilters.cost === cost
                             ? 'bg-primary hover:bg-primary/90'
-                            : 'border-white/20 hover:bg-white/5'
+                            : 'border-border hover:bg-muted/20 hover:text-foreground'
                         }`}
                       >
                         {cost}
@@ -773,7 +773,7 @@ export function DeckBuilder() {
 
                 <TabsContent value="type" className="space-y-4 card-fade-in">
                   <div
-                    className="flex gap-2 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible"
+                    className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible"
                     ref={typesContainerRef}
                   >
                     {types.map(type => (
@@ -784,7 +784,7 @@ export function DeckBuilder() {
                         className={`capitalize min-h-[44px] min-w-[100px] md:min-w-0 flex-shrink-0 ${
                           activeFilters.types.includes(type)
                             ? 'bg-primary hover:bg-primary/90'
-                            : 'border-white/20 hover:bg-white/5'
+                            : 'border-border hover:bg-muted/20 hover:text-foreground'
                         }`}
                       >
                         {type}
@@ -817,12 +817,12 @@ export function DeckBuilder() {
       </div>
 
       {/* Deck Section */}
-      <div className={`space-y-4 ${showDeckDesktop ? '' : 'lg:hidden'}`}>
+      <div className={`space-filter-group flex flex-col ${showDeckDesktop ? '' : 'lg:hidden'}`}>
         <Card className="modern-card overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-30 pointer-events-none"></div>
 
-          <CardHeader className="border-b border-border relative z-10">
-            <CardTitle className="flex justify-between items-center flex-wrap gap-2">
+          <CardHeader className="space-card-header border-b border-border relative z-10">
+            <CardTitle className="flex justify-between items-center flex-wrap space-button-group">
               <span className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -842,7 +842,7 @@ export function DeckBuilder() {
                   ({deck.length})
                 </span>
               </span>
-              <div className="flex items-center gap-2 flex-wrap justify-end">
+              <div className="flex items-center space-button-group flex-wrap justify-end">
                 <Button
                   variant="outline"
                   size="sm"
@@ -916,21 +916,21 @@ export function DeckBuilder() {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="pt-6 relative z-10 flex-1 overflow-auto">
+          <CardContent className="space-card-content relative z-10 flex-1 overflow-auto">
             {deck.length > 0 ? (
               <>
                 <div className="mb-3 flex items-center justify-between">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-white/20"
+                    className="border-border"
                     onClick={() => setShowAnalytics(s => !s)}
                   >
                     {showAnalytics ? 'Hide Analytics' : 'Show Analytics'}
                   </Button>
                 </div>
                 {showAnalytics && (
-                  <div className="mb-6 grid grid-cols-2 gap-3 p-3 bg-muted/30 rounded-lg border border-border">
+                  <div className="mb-6 grid grid-cols-2 space-filter-group space-deck-item bg-muted/30 rounded-lg border border-border">
                     {/* Simple inline charts using CSS bars to avoid heavy deps at runtime */}
                     {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
                       <div key={faction} className="space-y-1">
@@ -950,7 +950,7 @@ export function DeckBuilder() {
                     ))}
                   </div>
                 )}
-                <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 gap-2 p-3 bg-muted/30 rounded-lg border border-border">
+                <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 space-grid-tight space-deck-item bg-muted/30 rounded-lg border border-border">
                   {/* Deck Stats */}
                   {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
                     <div key={faction} className="flex flex-col items-center">
@@ -970,7 +970,7 @@ export function DeckBuilder() {
                 </div>
 
                 {/* Deck list with controls */}
-                <div className="space-y-2">
+                <div className="space-grid-tight flex flex-col">
                   {Object.values(
                     deck.reduce((acc, entry) => {
                       const key = entry.card?.key || entry.key;
@@ -986,9 +986,9 @@ export function DeckBuilder() {
                     return (
                       <div
                         key={card.key}
-                        className="flex items-center justify-between gap-2 rounded-md border border-border bg-card p-2"
+                        className="flex items-center justify-between space-grid-tight rounded-md border border-border bg-card space-element"
                       >
-                        <div className="flex items-center gap-3 min-w-0">
+                        <div className="flex items-center space-filter-group min-w-0">
                           <img
                             src={`/card_images/${card.image_name}`}
                             alt=""
@@ -1001,7 +1001,7 @@ export function DeckBuilder() {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 shrink-0">
+                        <div className="flex items-center space-grid-tight shrink-0">
                           <Button
                             size="sm"
                             variant="outline"
@@ -1061,7 +1061,7 @@ export function DeckBuilder() {
                   Click on cards in the Card Pool to add them to your deck. You can add up to 2
                   copies of each card.
                 </p>
-                <div className="mt-6 flex justify-center gap-2">
+                <div className="mt-6 flex justify-center space-grid-tight">
                   {factions.map(faction => (
                     <span
                       key={faction}

@@ -3,6 +3,7 @@ import { DeckBuilder } from './components/game';
 import { Toaster } from './components/ui/toast';
 import CommandPalette from '@/components/layout/CommandPalette';
 import { Button } from '@/components/ui/button';
+import { Toggle } from '@/components/ui/toggle';
 import { Sun, Moon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { AppProvider } from './lib/stores/react/AppProvider';
@@ -57,23 +58,20 @@ function App() {
                 Search (⌘K)
               </Button>
 
-              <Button
+              <Toggle
                 variant="outline"
-                className="border-border hover:bg-muted/20 hover:text-foreground"
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-                title="Toggle light/dark theme"
+                pressed={theme === 'light'}
+                onPressedChange={pressed => setTheme(pressed ? 'light' : 'dark')}
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                className="border-border transition-all duration-200 hover:scale-105 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
               >
                 {theme === 'light' ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Moon className="w-4 h-4" /> Dark
-                  </span>
+                  <Sun className="w-4 h-4 transition-transform duration-200" />
                 ) : (
-                  <span className="inline-flex items-center gap-2">
-                    <Sun className="w-4 h-4" /> Light
-                  </span>
+                  <Moon className="w-4 h-4 transition-transform duration-200" />
                 )}
-              </Button>
+              </Toggle>
 
               <Separator orientation="vertical" className="h-8 bg-white/10" />
               <div className="flex flex-wrap gap-2">
