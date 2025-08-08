@@ -21,9 +21,10 @@ export function CardGrid({
   const stackedCards = stackCards(cards);
 
   // Determine grid columns based on compact mode
+  // Use explicit columns: 2 base, 3 md, 4 lg, 5 xl
   const gridClass = compact
-    ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3'
-    : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4';
+    ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'
+    : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4';
 
   // Disable grouping by type - display all cards in a simple grid
   const groupByType = false;

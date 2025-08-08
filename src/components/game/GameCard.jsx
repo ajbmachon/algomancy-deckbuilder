@@ -85,7 +85,7 @@ export function GameCard({
     'card-container relative group overflow-hidden border-2 transition-all duration-300',
     'cursor-pointer hover:scale-105 hover:-translate-y-2',
     'rounded-xl backdrop-blur-sm bg-black/20',
-    'w-full aspect-[2/3] max-w-[240px] mx-auto', // Slightly larger card tile
+    'w-full aspect-[2/3] max-w-[216px] mx-auto', // ~20% larger for readability on desktop
     'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background', // Focus state for accessibility
     getFactionClass(faction),
     getFactionGlowClass(faction),

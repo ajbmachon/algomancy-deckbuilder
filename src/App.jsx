@@ -3,6 +3,7 @@ import { DeckBuilder } from './components/game';
 import { Toaster } from './components/ui/toast';
 import CommandPalette from '@/components/layout/CommandPalette';
 import { Button } from '@/components/ui/button';
+import { Sun, Moon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { AppProvider } from './lib/stores/react/AppProvider';
 import { toast } from 'sonner';
@@ -10,6 +11,22 @@ import './styles/globals.css';
 
 function App() {
   const [cmdOpen, setCmdOpen] = React.useState(false);
+  const [theme, setTheme] = React.useState(() => {
+    if (typeof window === 'undefined') return 'dark';
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  React.useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+    } else {
+      root.classList.remove('light');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'));
 
   return (
     <AppProvider>
@@ -34,10 +51,28 @@ function App() {
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
-                className="border-white/20 hover:bg-white/5"
+                className="border-border hover:bg-muted/20 hover:text-foreground text-foreground"
                 onClick={() => setCmdOpen(true)}
               >
                 Search (⌘K)
+              </Button>
+
+              <Button
+                variant="outline"
+                className="border-border hover:bg-muted/20 hover:text-foreground"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                title="Toggle light/dark theme"
+              >
+                {theme === 'light' ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Moon className="w-4 h-4" /> Dark
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-2">
+                    <Sun className="w-4 h-4" /> Light
+                  </span>
+                )}
               </Button>
 
               <Separator orientation="vertical" className="h-8 bg-white/10" />
@@ -70,29 +105,32 @@ function App() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-4">
             <p>© {new Date().getFullYear()} Algomancy Deckbuilder</p>
             <div className="flex items-center gap-6">
-              <button
-                type="button"
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => toast.info('About', { description: 'This section is coming soon.' })}
-                className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
+                className="text-muted-foreground hover:text-foreground"
               >
                 About
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => toast.info('Rules', { description: 'This section is coming soon.' })}
-                className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
+                className="text-muted-foreground hover:text-foreground"
               >
                 Rules
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() =>
                   toast.info('Contact', { description: 'This section is coming soon.' })
                 }
-                className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
+                className="text-muted-foreground hover:text-foreground"
               >
                 Contact
-              </button>
+              </Button>
             </div>
           </div>
         </footer>

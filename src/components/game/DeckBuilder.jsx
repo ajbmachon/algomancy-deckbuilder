@@ -190,7 +190,20 @@ export function DeckBuilder() {
   const factions = [
     ...new Set(contextFilteredPool.flatMap(card => card.card.factions.map(f => f.toLowerCase()))),
   ].filter(faction => faction !== 'colorless');
-  const costs = [...new Set(contextFilteredPool.map(card => card.card.cost))].sort((a, b) => a - b);
+  // Ensure numeric costs are sorted even if provided as strings, with 'X' at the end
+  const rawCostsSet = new Set(contextFilteredPool.map(c => c.card.cost));
+  const numericSet = new Set();
+  let hasX = false;
+  for (const v of rawCostsSet) {
+    if (v === 'X' || v === 'x') {
+      hasX = true;
+      continue;
+    }
+    const n = typeof v === 'number' ? v : Number.parseInt(String(v), 10);
+    if (Number.isFinite(n)) numericSet.add(n);
+  }
+  const costs = [...numericSet].sort((a, b) => a - b);
+  if (hasX) costs.push('X');
 
   // Extract real card types (those with {braces}) from the cards
   const extractRealTypes = str => {
@@ -213,6 +226,62 @@ export function DeckBuilder() {
     .filter(([_, count]) => count > 1)
     .map(([type]) => type)
     .sort();
+
+  // Faction utility classes (explicit strings so Tailwind doesn't purge them)
+  const factionBgClass = f => {
+    switch (f) {
+      case 'earth':
+        return 'bg-faction-earth';
+      case 'wood':
+        return 'bg-faction-wood';
+      case 'fire':
+        return 'bg-faction-fire';
+      case 'water':
+        return 'bg-faction-water';
+      case 'metal':
+        return 'bg-faction-metal';
+      case 'hybrid':
+        return 'bg-faction-shard';
+      default:
+        return 'bg-primary';
+    }
+  };
+  const factionBg20Class = f => {
+    switch (f) {
+      case 'earth':
+        return 'bg-faction-earth/20';
+      case 'wood':
+        return 'bg-faction-wood/20';
+      case 'fire':
+        return 'bg-faction-fire/20';
+      case 'water':
+        return 'bg-faction-water/20';
+      case 'metal':
+        return 'bg-faction-metal/20';
+      case 'hybrid':
+        return 'bg-faction-shard/20';
+      default:
+        return 'bg-primary/20';
+    }
+  };
+  const factionTextClass = f => {
+    switch (f) {
+      case 'earth':
+        return 'text-faction-earth';
+      case 'wood':
+        return 'text-faction-wood';
+      case 'fire':
+        return 'text-faction-fire';
+      case 'water':
+        return 'text-faction-water';
+      case 'metal':
+        return 'text-faction-metal';
+      case 'hybrid':
+        return 'text-faction-shard';
+      default:
+        return 'text-primary';
+    }
+  };
 
   // Get faction icon
   const getFactionIcon = faction => {
@@ -389,12 +458,12 @@ export function DeckBuilder() {
         aria-label="Filters"
         className={`hidden lg:block ${showFiltersDesktop ? '' : 'lg:hidden'}`}
       >
-        <Card className="modern-card h-full">
-          <CardHeader className="border-b border-white/10 pb-3">
+        <Card className="modern-card h-full max-h-[calc(100vh-8rem)] flex flex-col">
+          <CardHeader className="border-b border-border pb-3">
             <CardTitle className="text-sm">Filters</CardTitle>
           </CardHeader>
-          <CardContent className="pt-4">
-            <ScrollArea className="h-[68vh] pr-2">
+          <CardContent className="pt-4 flex-1 overflow-hidden">
+            <ScrollArea className="h-full pr-2">
               <div className="space-y-4">
                 <Collapsible defaultOpen>
                   <div className="flex items-center justify-between">
@@ -402,7 +471,7 @@ export function DeckBuilder() {
                       Factions
                     </h3>
                     <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 px-2 border-white/20">
+                      <Button variant="outline" size="sm" className="h-7 px-2 border-border">
                         Toggle
                       </Button>
                     </CollapsibleTrigger>
@@ -426,13 +495,13 @@ export function DeckBuilder() {
                   </CollapsibleContent>
                 </Collapsible>
 
-                <Separator className="bg-white/10" />
+                <Separator className="bg-border" />
 
                 <Collapsible defaultOpen>
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Cost</h3>
                     <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 px-2 border-white/20">
+                      <Button variant="outline" size="sm" className="h-7 px-2 border-border">
                         Toggle
                       </Button>
                     </CollapsibleTrigger>
@@ -446,7 +515,7 @@ export function DeckBuilder() {
                         className={
                           activeFilters.cost === cost
                             ? 'bg-primary hover:bg-primary/90'
-                            : 'border-white/20 hover:bg-white/5'
+                            : 'border-border hover:bg-muted/20 hover:text-foreground'
                         }
                       >
                         {cost}
@@ -455,13 +524,13 @@ export function DeckBuilder() {
                   </CollapsibleContent>
                 </Collapsible>
 
-                <Separator className="bg-white/10" />
+                <Separator className="bg-border" />
 
                 <Collapsible defaultOpen>
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Type</h3>
                     <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 px-2 border-white/20">
+                      <Button variant="outline" size="sm" className="h-7 px-2 border-border">
                         Toggle
                       </Button>
                     </CollapsibleTrigger>
@@ -472,7 +541,7 @@ export function DeckBuilder() {
                         key={type}
                         variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
                         onClick={() => toggleTypeFilter(type)}
-                        className={`capitalize ${activeFilters.types.includes(type) ? 'bg-primary hover:bg-primary/90' : 'border-white/20 hover:bg-white/5'}`}
+                        className={`capitalize ${activeFilters.types.includes(type) ? 'bg-primary hover:bg-primary/90' : 'border-border hover:bg-muted/20 hover:text-foreground'}`}
                       >
                         {type}
                       </Button>
@@ -485,7 +554,7 @@ export function DeckBuilder() {
                     variant="outline"
                     size="sm"
                     onClick={clearFilters}
-                    className="border-white/20 w-full"
+                    className="border-border w-full"
                   >
                     Clear Filters
                   </Button>
@@ -499,7 +568,7 @@ export function DeckBuilder() {
       {/* Card Pool Section */}
       <div className="space-y-4">
         <Card className="modern-card overflow-hidden">
-          <CardHeader className="border-b border-white/10 pb-3">
+          <CardHeader className="border-b border-border pb-3">
             <CardTitle className="flex justify-between items-center flex-wrap gap-2">
               <span className="flex items-center gap-2">
                 <svg
@@ -525,7 +594,7 @@ export function DeckBuilder() {
                   <Button
                     variant={maximized ? 'default' : 'outline'}
                     size="sm"
-                    className="border-white/20"
+                    className="border-border hover:bg-muted/20 hover:text-foreground"
                     onClick={() => {
                       setMaximized(m => {
                         if (!m) {
@@ -573,7 +642,7 @@ export function DeckBuilder() {
                     variant="outline"
                     size="sm"
                     onClick={() => setSortBy('name')}
-                    className={`border-white/20 ${sortBy === 'name' ? 'bg-white/10' : ''}`}
+                    className={`border-border ${sortBy === 'name' ? 'bg-muted/30' : ''}`}
                   >
                     Name
                   </Button>
@@ -581,7 +650,7 @@ export function DeckBuilder() {
                     variant="outline"
                     size="sm"
                     onClick={() => setSortBy('cost')}
-                    className={`border-white/20 ${sortBy === 'cost' ? 'bg-white/10' : ''}`}
+                    className={`border-border ${sortBy === 'cost' ? 'bg-muted/30' : ''}`}
                   >
                     Cost
                   </Button>
@@ -598,7 +667,7 @@ export function DeckBuilder() {
                   variant="outline"
                   size="sm"
                   onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-                  className="md:hidden border-white/20 hover:bg-white/5 min-h-[44px] min-w-[44px]"
+                  className="md:hidden border-border hover:bg-muted/20 hover:text-foreground min-h-[44px] min-w-[44px]"
                 >
                   {mobileFiltersOpen ? 'Hide Filters' : 'Show Filters'}
                 </Button>
@@ -606,7 +675,7 @@ export function DeckBuilder() {
                   variant="outline"
                   size="sm"
                   onClick={clearFilters}
-                  className="border-white/20 hover:bg-white/5"
+                  className="border-border hover:bg-muted/20 hover:text-foreground"
                 >
                   Clear Filters
                 </Button>
@@ -733,7 +802,7 @@ export function DeckBuilder() {
               </Tabs>
             </div>
 
-            <Separator className="my-4 bg-white/10" />
+            <Separator className="my-4 bg-border" />
 
             <CardGrid
               cards={sortedFiltered}
@@ -752,8 +821,8 @@ export function DeckBuilder() {
         <Card className="modern-card overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-30 pointer-events-none"></div>
 
-          <CardHeader className="border-b border-white/10 relative z-10">
-            <CardTitle className="flex justify-between items-center">
+          <CardHeader className="border-b border-border relative z-10">
+            <CardTitle className="flex justify-between items-center flex-wrap gap-2">
               <span className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -773,21 +842,22 @@ export function DeckBuilder() {
                   ({deck.length})
                 </span>
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap justify-end">
                 <Button
                   variant="outline"
                   size="sm"
+                  className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
                   onClick={() => {
                     navigator.clipboard.writeText(JSON.stringify(deck, null, 2));
                     toast.success('Deck copied to clipboard');
                   }}
-                  className="border-white/20 hover:bg-white/5"
                 >
                   Copy
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
+                  className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
                   onClick={() => {
                     const name = window.prompt('Save deck as');
                     if (name) {
@@ -795,13 +865,13 @@ export function DeckBuilder() {
                       toast.success(`Saved deck '${name}'`);
                     }
                   }}
-                  className="border-white/20 hover:bg-white/5"
                 >
                   Save
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
+                  className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
                   onClick={() => {
                     const name = window.prompt('Load deck name');
                     if (name) {
@@ -823,23 +893,22 @@ export function DeckBuilder() {
                       }
                     }
                   }}
-                  className="border-white/20 hover:bg-white/5"
                 >
                   Load
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
+                  className="border-border hover:bg-muted/20 hover:text-foreground shrink-0"
                   onClick={clearDeck}
-                  className="border-white/20 hover:bg-white/5"
                 >
                   Clear
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
+                  className="border-border hover:bg-muted/20 hover:text-foreground shrink-0"
                   onClick={exportDeck}
-                  className="border-white/20 hover:bg-white/5"
                 >
                   Export
                 </Button>
@@ -847,7 +916,7 @@ export function DeckBuilder() {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="pt-6 relative z-10">
+          <CardContent className="pt-6 relative z-10 flex-1 overflow-auto">
             {deck.length > 0 ? (
               <>
                 <div className="mb-3 flex items-center justify-between">
@@ -861,7 +930,7 @@ export function DeckBuilder() {
                   </Button>
                 </div>
                 {showAnalytics && (
-                  <div className="mb-6 grid grid-cols-2 gap-3 p-3 bg-black/20 rounded-lg border border-white/5">
+                  <div className="mb-6 grid grid-cols-2 gap-3 p-3 bg-muted/30 rounded-lg border border-border">
                     {/* Simple inline charts using CSS bars to avoid heavy deps at runtime */}
                     {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
                       <div key={faction} className="space-y-1">
@@ -869,9 +938,9 @@ export function DeckBuilder() {
                           <span>{faction}</span>
                           <span>{count}</span>
                         </div>
-                        <div className="h-2 bg-white/10 rounded">
+                        <div className="h-2 bg-muted/30 rounded">
                           <div
-                            className={`h-full rounded bg-faction-${faction}`}
+                            className={`h-full rounded ${factionBgClass(faction)}`}
                             style={{
                               width: `${(count / Math.max(deckStats.totalCards, 1)) * 100}%`,
                             }}
@@ -881,19 +950,19 @@ export function DeckBuilder() {
                     ))}
                   </div>
                 )}
-                <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 gap-2 p-3 bg-black/20 rounded-lg border border-white/5">
+                <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 gap-2 p-3 bg-muted/30 rounded-lg border border-border">
                   {/* Deck Stats */}
                   {Object.entries(deckStats.factionCounts).map(([faction, count]) => (
                     <div key={faction} className="flex flex-col items-center">
                       <div
-                        className={`w-full h-1 rounded-full bg-faction-${faction}/20 mb-1 overflow-hidden`}
+                        className={`w-full h-1 rounded-full ${factionBg20Class(faction)} mb-1 overflow-hidden`}
                       >
                         <div
-                          className={`h-full bg-faction-${faction} rounded-full`}
+                          className={`h-full ${factionBgClass(faction)} rounded-full`}
                           style={{ width: `${(count / deckStats.totalCards) * 100}%` }}
                         />
                       </div>
-                      <span className={`text-xs capitalize text-faction-${faction}`}>
+                      <span className={`text-xs capitalize ${factionTextClass(faction)}`}>
                         {faction}: {count}
                       </span>
                     </div>
@@ -917,7 +986,7 @@ export function DeckBuilder() {
                     return (
                       <div
                         key={card.key}
-                        className="flex items-center justify-between gap-2 rounded-md border border-white/10 bg-black/30 p-2"
+                        className="flex items-center justify-between gap-2 rounded-md border border-border bg-card p-2"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <img
@@ -936,7 +1005,7 @@ export function DeckBuilder() {
                           <Button
                             size="sm"
                             variant="outline"
-                            className="h-8 w-8"
+                            className="h-8 w-8 hover:bg-muted/20 hover:text-foreground"
                             onClick={() => {
                               if (entries.length) removeCard(entries[0].id);
                             }}
@@ -947,7 +1016,7 @@ export function DeckBuilder() {
                           <Button
                             size="sm"
                             variant="outline"
-                            className="h-8 w-8"
+                            className="h-8 w-8 hover:bg-muted/20 hover:text-foreground"
                             onClick={() => {
                               if (canAdd) addCard(card);
                             }}

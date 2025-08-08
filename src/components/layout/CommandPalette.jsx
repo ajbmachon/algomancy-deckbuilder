@@ -7,7 +7,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { CardContext } from '@/lib/stores/react/CardProvider';
 import { DeckContext } from '@/lib/stores/react/DeckProvider';
 import { Badge } from '@/components/ui/badge';
@@ -36,9 +36,13 @@ export default function CommandPalette({ open, onOpenChange }) {
     const q = query.trim().toLowerCase();
     if (!q) return filteredPool.slice(0, 30);
     return filteredPool
-      .filter(
-        ({ card }) => card.name.toLowerCase().includes(q) || card.type.toLowerCase().includes(q)
-      )
+      .filter(({ card }) => {
+        const factions = Array.isArray(card.factions) ? card.factions.join(' ') : '';
+        const haystack = [card.name, card.type, card.text || '', String(card.cost ?? ''), factions]
+          .join(' \n ')
+          .toLowerCase();
+        return haystack.includes(q);
+      })
       .slice(0, 50);
   }, [filteredPool, query]);
 
@@ -51,11 +55,17 @@ export default function CommandPalette({ open, onOpenChange }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="p-0 overflow-hidden bg-popover/95">
+        <DialogTitle className="sr-only">Command Palette</DialogTitle>
+        <DialogDescription className="sr-only">
+          Search cards by name, type, rules text, faction, or cost
+        </DialogDescription>
         <Command className="rounded-lg">
           <CommandInput
             value={query}
             onValueChange={setQuery}
-            placeholder="Search cards by name or type..."
+            placeholder="Search cards by name, type, text, faction or cost..."
+            className="text-foreground placeholder:text-muted-foreground"
+            autoFocus
           />
           <CommandList>
             <CommandEmpty>No cards found.</CommandEmpty>
@@ -82,8 +92,22 @@ export default function CommandPalette({ open, onOpenChange }) {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <Badge className="bg-white/10 border-white/10">{c.cost}</Badge>
-                      <Badge className={`capitalize bg-faction-${faction} text-white`}>
+                      <Badge className="bg-muted/30 border-border">{c.cost}</Badge>
+                      <Badge
+                        className={`capitalize text-white ${
+                          faction === 'earth'
+                            ? 'bg-faction-earth'
+                            : faction === 'wood'
+                              ? 'bg-faction-wood'
+                              : faction === 'fire'
+                                ? 'bg-faction-fire'
+                                : faction === 'water'
+                                  ? 'bg-faction-water'
+                                  : faction === 'metal'
+                                    ? 'bg-faction-metal'
+                                    : 'bg-faction-shard'
+                        }`}
+                      >
                         {faction}
                       </Badge>
                     </div>

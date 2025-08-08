@@ -4,26 +4,74 @@
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    /* Dark, colorful theme tokens */
+    --background: 224 60% 6%;
+    /* Use a light foreground for dark mode so text is readable */
+    --foreground: 210 40% 96%;
+    --card: 228 50% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 228 50% 8%;
     --popover-foreground: 210 40% 98%;
-    --primary: 250 95% 64%;
+    --primary: 260 90% 66%; /* violet */
     --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 210 30% 18%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 250 95% 64%;
+    --muted: 220 25% 20%;
+    --muted-foreground: 215 18% 72%;
+    --accent: 200 90% 60%; /* sky */
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 72% 40%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 250 95% 64%;
-    --radius: 0.5rem;
+    --border: 220 25% 22%;
+    --input: 220 25% 22%;
+    --ring: 260 90% 66%;
+    --radius: 0.6rem;
+
+    /* Light mode tokens */
+    color-scheme: dark light;
+    --light-background: 210 40% 98%;
+    --light-foreground: 224 20% 9%;
+    --light-card: 0 0% 100%;
+    --light-card-foreground: 224 20% 9%;
+    --light-popover: 0 0% 100%;
+    --light-popover-foreground: 224 20% 9%;
+    --light-primary: 258 84% 54%;
+    --light-primary-foreground: 0 0% 100%;
+    --light-secondary: 214 32% 91%;
+    --light-secondary-foreground: 224 20% 26%;
+    --light-muted: 214 32% 91%;
+    --light-muted-foreground: 224 20% 26%;
+    --light-accent: 199 89% 48%;
+    --light-accent-foreground: 0 0% 100%;
+    --light-destructive: 0 84% 60%;
+    --light-destructive-foreground: 0 0% 100%;
+    --light-border: 214 32% 85%;
+    --light-input: 214 32% 85%;
+    --light-ring: 258 84% 54%;
+  }
+}
+
+@layer base {
+  .light {
+    --background: var(--light-background);
+    --foreground: var(--light-foreground);
+    --card: var(--light-card);
+    --card-foreground: var(--light-card-foreground);
+    --popover: var(--light-popover);
+    --popover-foreground: var(--light-popover-foreground);
+    --primary: var(--light-primary);
+    --primary-foreground: var(--light-primary-foreground);
+    --secondary: var(--light-secondary);
+    --secondary-foreground: var(--light-secondary-foreground);
+    --muted: var(--light-muted);
+    --muted-foreground: var(--light-muted-foreground);
+    --accent: var(--light-accent);
+    --accent-foreground: var(--light-accent-foreground);
+    --destructive: var(--light-destructive);
+    --destructive-foreground: var(--light-destructive-foreground);
+    --border: var(--light-border);
+    --input: var(--light-input);
+    --ring: var(--light-ring);
   }
 }
 
@@ -34,11 +82,56 @@
 
   body {
     @apply bg-background text-foreground;
+    position: relative;
     background-image:
-      radial-gradient(circle at 100% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 0% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+      radial-gradient(1000px 600px at 10% -10%, rgba(99, 102, 241, 0.2), rgba(0, 0, 0, 0) 60%),
+      radial-gradient(900px 550px at -10% 90%, rgba(52, 211, 153, 0.14), rgba(0, 0, 0, 0) 60%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Light mode background overrides */
+  .light body {
+    background-image:
+      radial-gradient(
+        1200px 700px at -10% -10%,
+        rgba(99, 102, 241, 0.2),
+        rgba(255, 255, 255, 0) 60%
+      ),
+      radial-gradient(
+        1000px 600px at 110% 110%,
+        rgba(56, 189, 248, 0.16),
+        rgba(255, 255, 255, 0) 60%
+      ),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(800px 500px at 120% 20%, rgba(56, 189, 248, 0.18), rgba(0, 0, 0, 0) 60%),
+      radial-gradient(700px 500px at 80% 110%, rgba(124, 58, 237, 0.12), rgba(0, 0, 0, 0) 60%);
+    filter: blur(0.5px);
+  }
+
+  .light body::before {
+    background:
+      radial-gradient(
+        900px 600px at 20% -10%,
+        rgba(99, 102, 241, 0.18),
+        rgba(255, 255, 255, 0) 60%
+      ),
+      radial-gradient(
+        800px 550px at 100% 120%,
+        rgba(56, 189, 248, 0.16),
+        rgba(255, 255, 255, 0) 60%
+      );
   }
 
   h1,
@@ -321,13 +414,14 @@
   .gradient-heading {
     @apply text-transparent bg-clip-text;
     background-image: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
-    filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.25));
+    filter: drop-shadow(0 4px 14px rgba(99, 102, 241, 0.3));
   }
 
   /* Improved tabs styling */
   .fancy-tabs {
     @apply bg-white/5 p-1 rounded-xl;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
   }
 
   .fancy-tab {
@@ -336,6 +430,9 @@
 
   .fancy-tab-active {
     @apply bg-white/10 shadow-lg text-white;
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.35),
+      0 0 16px rgba(99, 102, 241, 0.25);
   }
 
   /* Empty state styling */
@@ -352,15 +449,17 @@
 
   /* Card container with modern style */
   .modern-card {
-    @apply border border-white/15 shadow-xl bg-black/30 backdrop-blur-sm;
+    @apply border border-border shadow-xl bg-card backdrop-blur-md;
     transition: all 0.3s ease;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
   }
 
   .modern-card:hover {
-    @apply border-white/20;
+    @apply border-border;
     box-shadow:
       0 10px 30px rgba(0, 0, 0, 0.5),
-      0 0 15px rgba(139, 92, 246, 0.1);
+      0 0 25px rgba(99, 102, 241, 0.18),
+      0 0 20px rgba(56, 189, 248, 0.12);
   }
 
   /* Faction badge styles */
