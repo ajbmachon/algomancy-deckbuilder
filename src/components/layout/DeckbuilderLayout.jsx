@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 // Layout Context for managing panel states
 const LayoutContext = createContext({
@@ -87,11 +88,61 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
     typeof window !== 'undefined' ? window.innerWidth : 1440
   );
 
+  // Store trigger elements for focus restoration
+  const [filtersTriggerRef, setFiltersTriggerRef] = useState(null);
+  const [deckTriggerRef, setDeckTriggerRef] = useState(null);
+
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Enhanced keyboard navigation for mobile sheets and tablet overlay
+  useEffect(() => {
+    const handleKeyDown = e => {
+      // ESC key closes sheets/overlays
+      if (e.key === 'Escape') {
+        if (isMobile && mobileFiltersOpen) {
+          e.preventDefault();
+          toggleMobileFilters();
+          // Restore focus to trigger element
+          if (filtersTriggerRef) {
+            filtersTriggerRef.focus();
+          }
+        }
+        if (isMobile && mobileDeckOpen) {
+          e.preventDefault();
+          toggleMobileDeck();
+          // Restore focus to trigger element
+          if (deckTriggerRef) {
+            deckTriggerRef.focus();
+          }
+        }
+        if (isTablet && !rightPanelCollapsed) {
+          e.preventDefault();
+          toggleRightPanel();
+          // Focus will return naturally to previously focused element
+        }
+      }
+    };
+
+    if ((isMobile && (mobileFiltersOpen || mobileDeckOpen)) || (isTablet && !rightPanelCollapsed)) {
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [
+    mobileFiltersOpen,
+    mobileDeckOpen,
+    rightPanelCollapsed,
+    isMobile,
+    isTablet,
+    filtersTriggerRef,
+    deckTriggerRef,
+    toggleMobileFilters,
+    toggleMobileDeck,
+    toggleRightPanel,
+  ]);
 
   const isDesktop = windowWidth > 1400;
   const isTablet = windowWidth > 768 && windowWidth <= 1400;
@@ -105,15 +156,28 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
         <div className="flex-1 overflow-auto pb-20">{cardPool}</div>
 
         {/* Mobile bottom navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border z-40">
-          <div className="flex justify-around space-element">
+        <div className="fixed bottom-0 left-0 right-0 glass-medium shadow-xl border-t border-border z-40">
+          <nav
+            className="flex justify-around space-element"
+            role="navigation"
+            aria-label="Mobile navigation"
+          >
             <Button
               variant="ghost"
               size="sm"
+              ref={setFiltersTriggerRef}
               onClick={toggleMobileFilters}
               className="flex flex-col items-center space-element h-auto"
+              aria-label={`${mobileFiltersOpen ? 'Close' : 'Open'} filters panel`}
+              aria-expanded={mobileFiltersOpen}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -126,8 +190,11 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
             <Button
               variant="ghost"
               size="sm"
+              ref={setDeckTriggerRef}
               onClick={toggleMobileDeck}
               className="flex flex-col items-center space-element h-auto"
+              aria-label={`${mobileDeckOpen ? 'Close' : 'Open'} deck panel`}
+              aria-expanded={mobileDeckOpen}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -139,60 +206,38 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
               </svg>
               <span className="text-caption mt-1">Deck</span>
             </Button>
-          </div>
+          </nav>
         </div>
 
         {/* Mobile filter sheet */}
-        <div
-          className={cn(
-            'fixed inset-x-0 bottom-0 bg-background border-t border-border transform transition-transform duration-300 ease-in-out z-50',
-            mobileFiltersOpen ? 'translate-y-0' : 'translate-y-full'
-          )}
-          style={{ maxHeight: '80vh' }}
-        >
-          <div className="flex items-center justify-between space-component border-b border-border">
-            <h4>Filters</h4>
-            <Button variant="ghost" size="icon" onClick={toggleMobileFilters}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </Button>
-          </div>
-          <div className="overflow-auto space-component" style={{ maxHeight: 'calc(80vh - 4rem)' }}>
-            {filterPanel}
-          </div>
-        </div>
+        <Sheet open={mobileFiltersOpen} onOpenChange={toggleMobileFilters}>
+          <SheetContent side="bottom" className="max-h-[80vh] glass-popup shadow-xl">
+            <SheetHeader>
+              <SheetTitle>Filters</SheetTitle>
+            </SheetHeader>
+            <div
+              className="overflow-auto space-component"
+              style={{ maxHeight: 'calc(80vh - 6rem)' }}
+            >
+              {filterPanel}
+            </div>
+          </SheetContent>
+        </Sheet>
 
         {/* Mobile deck sheet */}
-        <div
-          className={cn(
-            'fixed inset-x-0 bottom-0 bg-background border-t border-border transform transition-transform duration-300 ease-in-out z-50',
-            mobileDeckOpen ? 'translate-y-0' : 'translate-y-full'
-          )}
-          style={{ maxHeight: '80vh' }}
-        >
-          <div className="flex items-center justify-between space-component border-b border-border">
-            <h4>Deck</h4>
-            <Button variant="ghost" size="icon" onClick={toggleMobileDeck}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </Button>
-          </div>
-          <div className="overflow-auto space-component" style={{ maxHeight: 'calc(80vh - 4rem)' }}>
-            {deckPanel}
-          </div>
-        </div>
+        <Sheet open={mobileDeckOpen} onOpenChange={toggleMobileDeck}>
+          <SheetContent side="bottom" className="max-h-[80vh] glass-popup shadow-xl">
+            <SheetHeader>
+              <SheetTitle>Deck</SheetTitle>
+            </SheetHeader>
+            <div
+              className="overflow-auto space-component"
+              style={{ maxHeight: 'calc(80vh - 6rem)' }}
+            >
+              {deckPanel}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     );
   }
@@ -209,7 +254,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
       {/* Left Panel - Filters */}
       <div
         className={cn(
-          'bg-card rounded-lg border border-border overflow-hidden transition-all duration-300',
+          'bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 shadow-lg',
           leftPanelCollapsed ? 'w-12' : 'w-80'
         )}
       >
@@ -237,7 +282,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
       </div>
 
       {/* Center Panel - Card Pool */}
-      <div className="bg-card rounded-lg border border-border overflow-hidden">
+      <div className="bg-card rounded-lg border border-border overflow-hidden shadow-lg">
         <div className="h-full overflow-auto">{cardPool}</div>
       </div>
 
@@ -245,7 +290,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
       {isDesktop && (
         <div
           className={cn(
-            'bg-card rounded-lg border border-border overflow-hidden transition-all duration-300',
+            'bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 shadow-lg',
             rightPanelCollapsed ? 'w-12' : 'w-96'
           )}
         >
@@ -280,9 +325,12 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
             'fixed right-0 top-0 bottom-0 bg-background border-l border-border transform transition-transform duration-300 ease-in-out z-40 w-96',
             rightPanelCollapsed ? 'translate-x-full' : 'translate-x-0'
           )}
+          role="dialog"
+          aria-modal={!rightPanelCollapsed}
+          aria-labelledby="tablet-deck-title"
         >
           <div className="flex items-center justify-between space-component border-b border-border">
-            <h4>Deck</h4>
+            <h4 id="tablet-deck-title">Deck</h4>
             <Button variant="ghost" size="icon" onClick={toggleRightPanel}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -306,7 +354,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
           onClick={toggleRightPanel}
           size="lg"
           className={cn(
-            'fixed right-4 bottom-4 space-component rounded-full shadow-lg transition-all z-30',
+            'fixed right-4 bottom-4 space-component rounded-full shadow-xl hover:shadow-2xl transition-all z-30',
             !rightPanelCollapsed && 'opacity-0 pointer-events-none'
           )}
         >

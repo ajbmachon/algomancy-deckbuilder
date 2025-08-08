@@ -56,6 +56,7 @@ export function DeckPanel({
                   navigator.clipboard.writeText(JSON.stringify(deck, null, 2));
                   toast.success('Deck copied to clipboard');
                 }}
+                aria-label="Copy deck to clipboard"
               >
                 Copy
               </Button>
@@ -70,6 +71,7 @@ export function DeckPanel({
                     toast.success(`Saved deck '${name}'`);
                   }
                 }}
+                aria-label="Save deck to local storage"
               >
                 Save
               </Button>
@@ -98,6 +100,7 @@ export function DeckPanel({
                     }
                   }
                 }}
+                aria-label="Load deck from local storage"
               >
                 Load
               </Button>
@@ -106,6 +109,7 @@ export function DeckPanel({
                 size="sm"
                 className="border-border hover:bg-muted/20 hover:text-foreground shrink-0"
                 onClick={clearDeck}
+                aria-label="Clear all cards from deck"
               >
                 Clear
               </Button>
@@ -114,6 +118,7 @@ export function DeckPanel({
                 size="sm"
                 className="border-border hover:bg-muted/20 hover:text-foreground shrink-0"
                 onClick={exportDeck}
+                aria-label="Export deck as text file"
               >
                 Export
               </Button>
@@ -130,7 +135,7 @@ export function DeckPanel({
           />
 
           {deck.length > 0 && (
-            <div className="space-grid-tight flex flex-col">
+            <div className="space-grid-tight flex flex-col" role="list" aria-label="Cards in deck">
               {Object.values(
                 deck.reduce((acc, entry) => {
                   const key = entry.card?.key || entry.key;
@@ -146,11 +151,13 @@ export function DeckPanel({
                   <div
                     key={card.key}
                     className="flex items-center justify-between space-grid-tight rounded-md border border-border bg-card space-element"
+                    role="listitem"
+                    aria-label={`${card.name}, ${count} ${count === 1 ? 'copy' : 'copies'}`}
                   >
                     <div className="flex items-center space-filter-group min-w-0">
                       <img
                         src={`/card_images/${card.image_name}`}
-                        alt=""
+                        alt={`${card.name} card`}
                         className="w-10 h-14 rounded object-cover"
                       />
                       <div className="min-w-0">
@@ -168,10 +175,13 @@ export function DeckPanel({
                         onClick={() => {
                           if (entries.length) removeCard(entries[0].id);
                         }}
+                        aria-label={`Remove one copy of ${card.name}`}
                       >
                         -
                       </Button>
-                      <span className="w-6 text-center text-sm">{count}</span>
+                      <span className="w-6 text-center text-sm" aria-label={`${count} copies`}>
+                        {count}
+                      </span>
                       <Button
                         size="sm"
                         variant="outline"
@@ -180,6 +190,7 @@ export function DeckPanel({
                           if (canAdd) addCard(card);
                         }}
                         disabled={!canAdd}
+                        aria-label={`Add one copy of ${card.name}${!canAdd ? ' (maximum 2 copies reached)' : ''}`}
                       >
                         +
                       </Button>
@@ -188,6 +199,7 @@ export function DeckPanel({
                         variant="outline"
                         className="h-8"
                         onClick={() => removeAllCopies(card.key)}
+                        aria-label={`Remove all copies of ${card.name} from deck`}
                       >
                         Remove
                       </Button>

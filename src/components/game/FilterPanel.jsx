@@ -42,12 +42,21 @@ export function FilterPanel({
                     Factions
                   </h3>
                   <CollapsibleTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-7 px-2 border-border">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-7 px-2 border-border"
+                      aria-label="Toggle factions filter section"
+                    >
                       Toggle
                     </Button>
                   </CollapsibleTrigger>
                 </div>
-                <CollapsibleContent className="mt-2 grid grid-cols-2 space-grid-tight">
+                <CollapsibleContent
+                  className="mt-2 grid grid-cols-2 space-grid-tight"
+                  role="group"
+                  aria-label="Faction filter options"
+                >
                   {factions.map(faction => (
                     <Button
                       key={faction}
@@ -58,6 +67,8 @@ export function FilterPanel({
                           ? `filter-btn-${faction} active`
                           : `filter-btn-${faction}`
                       }`}
+                      aria-pressed={activeFilters.factions.includes(faction)}
+                      aria-label={`${activeFilters.factions.includes(faction) ? 'Remove' : 'Add'} ${faction} faction filter`}
                     >
                       {getFactionIcon(faction)}
                       {faction}
@@ -72,12 +83,21 @@ export function FilterPanel({
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Cost</h3>
                   <CollapsibleTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-7 px-2 border-border">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-7 px-2 border-border"
+                      aria-label="Toggle cost filter section"
+                    >
                       Toggle
                     </Button>
                   </CollapsibleTrigger>
                 </div>
-                <CollapsibleContent className="mt-2 flex flex-wrap space-grid-tight">
+                <CollapsibleContent
+                  className="mt-2 flex flex-wrap space-grid-tight"
+                  role="radiogroup"
+                  aria-label="Card cost filter options"
+                >
                   {costs.map(cost => (
                     <Button
                       key={cost}
@@ -88,6 +108,9 @@ export function FilterPanel({
                           ? 'bg-primary hover:bg-primary/90'
                           : 'border-border hover:bg-muted/20 hover:text-foreground'
                       }
+                      role="radio"
+                      aria-checked={activeFilters.cost === cost}
+                      aria-label={`Filter by cost ${cost}`}
                     >
                       {cost}
                     </Button>
@@ -101,18 +124,29 @@ export function FilterPanel({
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Type</h3>
                   <CollapsibleTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-7 px-2 border-border">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-7 px-2 border-border"
+                      aria-label="Toggle card type filter section"
+                    >
                       Toggle
                     </Button>
                   </CollapsibleTrigger>
                 </div>
-                <CollapsibleContent className="mt-2 grid grid-cols-2 space-grid-tight">
+                <CollapsibleContent
+                  className="mt-2 grid grid-cols-2 space-grid-tight"
+                  role="group"
+                  aria-label="Card type filter options"
+                >
                   {types.map(type => (
                     <Button
                       key={type}
                       variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
                       onClick={() => toggleTypeFilter(type)}
                       className={`capitalize ${activeFilters.types.includes(type) ? 'bg-primary hover:bg-primary/90' : 'border-border hover:bg-muted/20 hover:text-foreground'}`}
+                      aria-pressed={activeFilters.types.includes(type)}
+                      aria-label={`${activeFilters.types.includes(type) ? 'Remove' : 'Add'} ${type} type filter`}
                     >
                       {type}
                     </Button>
@@ -126,6 +160,7 @@ export function FilterPanel({
                   size="sm"
                   onClick={clearFilters}
                   className="border-border w-full"
+                  aria-label="Clear all active filters"
                 >
                   Clear Filters
                 </Button>
@@ -143,22 +178,45 @@ export function FilterPanel({
   return (
     <div className="mb-6">
       <Tabs defaultValue="factions" className="mb-6">
-        <TabsList className="fancy-tabs mb-4 w-full overflow-x-auto flex-nowrap md:flex-wrap whitespace-nowrap">
-          <TabsTrigger value="factions" className="fancy-tab data-[state=active]:fancy-tab-active">
+        <TabsList
+          className="fancy-tabs mb-4 w-full overflow-x-auto flex-nowrap md:flex-wrap whitespace-nowrap"
+          role="tablist"
+          aria-label="Filter categories"
+        >
+          <TabsTrigger
+            value="factions"
+            className="fancy-tab data-[state=active]:fancy-tab-active"
+            role="tab"
+          >
             Factions
           </TabsTrigger>
-          <TabsTrigger value="cost" className="fancy-tab data-[state=active]:fancy-tab-active">
+          <TabsTrigger
+            value="cost"
+            className="fancy-tab data-[state=active]:fancy-tab-active"
+            role="tab"
+          >
             Cost
           </TabsTrigger>
-          <TabsTrigger value="type" className="fancy-tab data-[state=active]:fancy-tab-active">
+          <TabsTrigger
+            value="type"
+            className="fancy-tab data-[state=active]:fancy-tab-active"
+            role="tab"
+          >
             Type
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="factions" className="space-y-4 card-fade-in">
+        <TabsContent
+          value="factions"
+          className="space-y-4 card-fade-in"
+          role="tabpanel"
+          aria-labelledby="factions-tab"
+        >
           <div
             className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible"
             ref={factionsContainerRef}
+            role="group"
+            aria-label="Faction filter buttons"
           >
             {factions.map(faction => (
               <HoverCard key={faction} openDelay={300} closeDelay={100}>
@@ -171,6 +229,8 @@ export function FilterPanel({
                         ? `filter-btn-${faction} active`
                         : `filter-btn-${faction}`
                     }`}
+                    aria-pressed={activeFilters.factions.includes(faction)}
+                    aria-label={`${activeFilters.factions.includes(faction) ? 'Remove' : 'Add'} ${faction} faction filter`}
                   >
                     {getFactionIcon(faction)}
                     {faction}
@@ -196,10 +256,17 @@ export function FilterPanel({
           </div>
         </TabsContent>
 
-        <TabsContent value="cost" className="space-y-4 card-fade-in">
+        <TabsContent
+          value="cost"
+          className="space-y-4 card-fade-in"
+          role="tabpanel"
+          aria-labelledby="cost-tab"
+        >
           <div
             className="flex space-grid-tight overflow-x-auto pb-2 md:flex-wrap"
             ref={costsContainerRef}
+            role="radiogroup"
+            aria-label="Cost filter options"
           >
             {costs.map(cost => (
               <Button
@@ -211,6 +278,9 @@ export function FilterPanel({
                     ? 'bg-primary hover:bg-primary/90'
                     : 'border-border hover:bg-muted/20 hover:text-foreground'
                 }`}
+                role="radio"
+                aria-checked={activeFilters.cost === cost}
+                aria-label={`Filter by cost ${cost}`}
               >
                 {cost}
               </Button>
@@ -218,10 +288,17 @@ export function FilterPanel({
           </div>
         </TabsContent>
 
-        <TabsContent value="type" className="space-y-4 card-fade-in">
+        <TabsContent
+          value="type"
+          className="space-y-4 card-fade-in"
+          role="tabpanel"
+          aria-labelledby="type-tab"
+        >
           <div
             className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible"
             ref={typesContainerRef}
+            role="group"
+            aria-label="Card type filter buttons"
           >
             {types.map(type => (
               <Button
@@ -233,6 +310,8 @@ export function FilterPanel({
                     ? 'bg-primary hover:bg-primary/90'
                     : 'border-border hover:bg-muted/20 hover:text-foreground'
                 }`}
+                aria-pressed={activeFilters.types.includes(type)}
+                aria-label={`${activeFilters.types.includes(type) ? 'Remove' : 'Add'} ${type} type filter`}
               >
                 {type}
               </Button>

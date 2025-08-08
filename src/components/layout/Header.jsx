@@ -6,7 +6,10 @@ import { Separator } from '@/components/ui/separator';
 
 export function Header({ onSearchOpen, theme, onThemeToggle }) {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header
+      className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+      role="banner"
+    >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between space-x-4">
           {/* Left: Logo and Title */}
@@ -21,8 +24,14 @@ export function Header({ onSearchOpen, theme, onThemeToggle }) {
 
           {/* Center: Faction Indicators (Desktop only) */}
           <div className="hidden lg:flex items-center space-x-2">
-            <div className="flex items-center space-x-2 bg-muted/20 rounded-lg px-3 py-2 border border-border/30">
-              <span className="text-xs font-medium text-muted-foreground mr-1">Factions:</span>
+            <div
+              className="flex items-center space-x-2 bg-muted/20 rounded-lg px-3 py-2 border border-border/30"
+              role="group"
+              aria-label="Available card factions"
+            >
+              <span className="text-xs font-medium text-muted-foreground mr-1" id="faction-legend">
+                Factions:
+              </span>
               <FactionDot faction="earth" />
               <FactionDot faction="wood" />
               <FactionDot faction="fire" />
@@ -38,10 +47,14 @@ export function Header({ onSearchOpen, theme, onThemeToggle }) {
               size="sm"
               onClick={onSearchOpen}
               className="gap-2 text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+              aria-label="Open search (Cmd+K)"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-4 h-4" aria-hidden="true" />
               <span className="hidden sm:inline">Search</span>
-              <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+              <kbd
+                className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground"
+                aria-hidden="true"
+              >
                 ⌘K
               </kbd>
             </Button>
@@ -87,6 +100,8 @@ function FactionDot({ faction }) {
     <div
       className={`w-3 h-3 rounded-full ${factionColors[faction]} opacity-70`}
       title={factionNames[faction]}
+      role="img"
+      aria-label={`${factionNames[faction]} faction`}
     />
   );
 }

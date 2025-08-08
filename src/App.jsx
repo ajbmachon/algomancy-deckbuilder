@@ -39,11 +39,18 @@ function App() {
 
         <Header onSearchOpen={() => setCmdOpen(true)} theme={theme} onThemeToggle={toggleTheme} />
 
-        <main className="container mx-auto relative z-10 flex-grow p-4 md:p-8">
+        <main
+          className="container mx-auto relative z-10 flex-grow p-4 md:p-8"
+          role="main"
+          aria-label="Algomancy Deckbuilder"
+        >
           <DeckBuilder />
         </main>
 
-        <footer className="container mx-auto mt-12 pt-4 border-t border-white/10 text-caption text-muted-foreground">
+        <footer
+          className="container mx-auto mt-12 pt-4 border-t border-white/10 text-caption text-muted-foreground"
+          role="contentinfo"
+        >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-4">
             <p className="text-caption">© {new Date().getFullYear()} Algomancy Deckbuilder</p>
             <div className="flex items-center gap-6">
@@ -52,6 +59,7 @@ function App() {
                 size="sm"
                 onClick={() => toast.info('About', { description: 'This section is coming soon.' })}
                 className="text-muted-foreground hover:text-foreground"
+                aria-label="About Algomancy Deckbuilder (coming soon)"
               >
                 About
               </Button>
@@ -60,6 +68,7 @@ function App() {
                 size="sm"
                 onClick={() => toast.info('Rules', { description: 'This section is coming soon.' })}
                 className="text-muted-foreground hover:text-foreground"
+                aria-label="Game rules information (coming soon)"
               >
                 Rules
               </Button>
@@ -70,6 +79,7 @@ function App() {
                   toast.info('Contact', { description: 'This section is coming soon.' })
                 }
                 className="text-muted-foreground hover:text-foreground"
+                aria-label="Contact information (coming soon)"
               >
                 Contact
               </Button>
@@ -79,6 +89,9 @@ function App() {
 
         {/* Command Palette */}
         <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
+
+        {/* Live region for screen reader announcements */}
+        <div id="sr-live-region" aria-live="polite" aria-atomic="true" className="sr-only"></div>
 
         {/* Toast notifications */}
         <Toaster />

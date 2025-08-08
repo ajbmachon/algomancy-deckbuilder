@@ -45,19 +45,19 @@ export function GameCard({
   const getFactionClass = faction => {
     switch (faction) {
       case 'earth':
-        return 'border-faction-earth shadow-[0_0_15px_rgb(180_83_9_/_0.2)] hover:shadow-[0_0_20px_rgb(180_83_9_/_0.4)]';
+        return 'border-faction-earth shadow-card hover:shadow-card-hover';
       case 'wood':
-        return 'border-faction-wood shadow-[0_0_15px_rgb(4_120_87_/_0.2)] hover:shadow-[0_0_20px_rgb(4_120_87_/_0.4)]';
+        return 'border-faction-wood shadow-card hover:shadow-card-hover';
       case 'fire':
-        return 'border-faction-fire shadow-[0_0_15px_rgb(185_28_28_/_0.2)] hover:shadow-[0_0_20px_rgb(185_28_28_/_0.4)]';
+        return 'border-faction-fire shadow-card hover:shadow-card-hover';
       case 'water':
-        return 'border-faction-water shadow-[0_0_15px_rgb(3_105_161_/_0.2)] hover:shadow-[0_0_20px_rgb(3_105_161_/_0.4)]';
+        return 'border-faction-water shadow-card hover:shadow-card-hover';
       case 'metal':
-        return 'border-faction-metal shadow-[0_0_15px_rgb(100_116_139_/_0.2)] hover:shadow-[0_0_20px_rgb(100_116_139_/_0.4)]';
+        return 'border-faction-metal shadow-card hover:shadow-card-hover';
       case 'shard':
-        return 'border-faction-shard shadow-[0_0_15px_rgb(124_58_237_/_0.2)] hover:shadow-[0_0_20px_rgb(124_58_237_/_0.4)]';
+        return 'border-faction-shard shadow-card hover:shadow-card-hover';
       default:
-        return 'border-faction-shard shadow-[0_0_15px_rgb(124_58_237_/_0.2)] hover:shadow-[0_0_20px_rgb(124_58_237_/_0.4)]';
+        return 'border-faction-shard shadow-card hover:shadow-card-hover';
     }
   };
 
@@ -175,7 +175,7 @@ export function GameCard({
 
               <img
                 src={`/card_images/${image_name}`}
-                alt={`Card art for ${name}`}
+                alt={`Card art for ${name}, ${faction} faction card`}
                 className={cn(
                   'w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110',
                   !imageLoaded && 'opacity-0',
@@ -197,6 +197,7 @@ export function GameCard({
             style={{
               backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent)`,
             }}
+            aria-label={`Card cost: ${cost}`}
           >
             {cost}
           </Badge>
@@ -209,13 +210,17 @@ export function GameCard({
                 background: `linear-gradient(135deg, ${getFactionColor(faction)}, color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent))`,
                 boxShadow: '0 2px 4px rgb(0 0 0 / 0.3)',
               }}
+              aria-label={`${count} copies of this card`}
             >
               {count}×
             </Badge>
           )}
 
           {/* Card Name Overlay (visible on hover) */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-8 pb-2 px-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10">
+          <div
+            className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-8 pb-2 px-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10"
+            aria-hidden="true"
+          >
             <p className="text-caption text-center text-white font-medium truncate">{name}</p>
           </div>
         </Card>
@@ -223,8 +228,10 @@ export function GameCard({
       <HoverCardContent
         side="right"
         align="start"
-        className="card-tooltip max-w-[300px] max-h-[300px] overflow-y-auto bg-black/90 p-4 border border-white/10 shadow-xl backdrop-blur-sm"
+        className="card-tooltip max-w-[300px] max-h-[300px] overflow-y-auto glass-popup shadow-xl p-4"
         sideOffset={10}
+        role="tooltip"
+        aria-label={`Detailed information for ${name}`}
       >
         <div className="space-y-2">
           <div className="flex items-center justify-between">

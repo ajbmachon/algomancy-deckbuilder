@@ -19,18 +19,37 @@ export default function CommandPalette({ open, onOpenChange }) {
   const { filteredPool } = useContext(CardContext);
   const { addCard } = useContext(DeckContext);
   const [query, setQuery] = useState('');
+  const [previousActiveElement, setPreviousActiveElement] = useState(null);
 
   useEffect(() => {
     function onKey(e) {
       if ((e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey)) || e.key === '/') {
         e.preventDefault();
+        // Store the currently focused element for restoration
+        setPreviousActiveElement(document.activeElement);
         onOpenChange?.(true);
       }
-      if (e.key === 'Escape') onOpenChange?.(false);
+      if (e.key === 'Escape' && open) {
+        onOpenChange?.(false);
+      }
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onOpenChange]);
+  }, [onOpenChange, open]);
+
+  // Handle focus restoration when dialog closes
+  useEffect(() => {
+    if (!open && previousActiveElement) {
+      // Small delay to ensure dialog is fully closed
+      const timeoutId = setTimeout(() => {
+        if (previousActiveElement && previousActiveElement.focus) {
+          previousActiveElement.focus();
+        }
+        setPreviousActiveElement(null);
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [open, previousActiveElement]);
 
   const items = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -52,14 +71,22 @@ export default function CommandPalette({ open, onOpenChange }) {
     setQuery('');
   }
 
+  // Enhanced dialog close handler for focus restoration
+  function handleOpenChange(isOpen) {
+    if (!isOpen) {
+      setQuery(''); // Clear query when closing
+    }
+    onOpenChange?.(isOpen);
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="p-0 overflow-hidden bg-popover/95">
         <DialogTitle className="sr-only">Command Palette</DialogTitle>
         <DialogDescription className="sr-only">
           Search cards by name, type, rules text, faction, or cost
         </DialogDescription>
-        <Command className="rounded-lg">
+        <Command className="rounded-lg bg-transparent border-0">
           <CommandInput
             value={query}
             onValueChange={setQuery}

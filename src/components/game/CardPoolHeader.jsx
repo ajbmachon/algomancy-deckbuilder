@@ -73,6 +73,11 @@ export function CardPoolHeader({
                 });
               }}
               title={maximized ? 'Restore Layout' : 'Maximize Cards'}
+              aria-label={
+                maximized
+                  ? 'Restore layout to show filters and deck panels'
+                  : 'Maximize card grid by hiding panels'
+              }
             >
               {maximized ? 'Restore Layout' : 'Maximize Cards'}
             </Button>
@@ -82,6 +87,8 @@ export function CardPoolHeader({
               className="border-border"
               onClick={() => setShowFiltersDesktop(v => !v)}
               title={showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
+              aria-label={`${showFiltersDesktop ? 'Hide' : 'Show'} filters panel`}
+              aria-pressed={showFiltersDesktop}
             >
               {showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
             </Button>
@@ -91,6 +98,8 @@ export function CardPoolHeader({
               className="border-border"
               onClick={() => setShowDeckDesktop(v => !v)}
               title={showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
+              aria-label={`${showDeckDesktop ? 'Hide' : 'Show'} deck panel`}
+              aria-pressed={showDeckDesktop}
             >
               {showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
             </Button>
@@ -108,6 +117,8 @@ export function CardPoolHeader({
             size="sm"
             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
             className="md:hidden border-border hover:bg-muted/20 hover:text-foreground min-h-[44px] min-w-[44px]"
+            aria-label={`${mobileFiltersOpen ? 'Hide' : 'Show'} mobile filters`}
+            aria-expanded={mobileFiltersOpen}
           >
             {mobileFiltersOpen ? 'Hide Filters' : 'Show Filters'}
           </Button>
@@ -116,6 +127,7 @@ export function CardPoolHeader({
             size="sm"
             onClick={clearFilters}
             className="border-border hover:bg-muted/20 hover:text-foreground"
+            aria-label="Clear all active filters"
           >
             Clear Filters
           </Button>
