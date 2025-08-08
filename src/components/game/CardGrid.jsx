@@ -55,6 +55,7 @@ export function CardGrid({
           text={card.text}
           disabled={disabled}
           onClick={() => onCardClick(card, entries)}
+          title={card.name}
           className={wasRecentlyAdded ? 'recently-added' : ''}
         />
       </div>
