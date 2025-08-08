@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Toggle } from '@/components/ui/toggle';
-import { Sun, Moon, Search } from 'lucide-react';
+import { Sun, Moon, Search, Dices, Sparkles } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 export function Header({ onSearchOpen, theme, onThemeToggle }) {
@@ -14,11 +14,26 @@ export function Header({ onSearchOpen, theme, onThemeToggle }) {
         <div className="flex h-16 items-center justify-between space-x-4">
           {/* Left: Logo and Title */}
           <div className="flex items-center space-x-6">
-            <div className="flex flex-col">
-              <h1 className="text-2xl font-bold text-foreground">Algomancy Deckbuilder</h1>
-              <p className="text-sm text-muted-foreground hidden sm:block">
-                Build your deck with up to 2 copies of each card
-              </p>
+            <div className="flex items-center gap-3">
+              {/* Icon with animated glow */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-accent/40 rounded-lg blur-md animate-pulse"></div>
+                <div className="relative bg-gradient-to-br from-primary to-accent p-2 rounded-lg shadow-lg">
+                  <Dices className="w-6 h-6 text-white" aria-hidden="true" />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-2xl font-bold">
+                  <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
+                    Algomancy
+                  </span>
+                  <span className="text-foreground ml-2 font-light">Deckbuilder</span>
+                </h1>
+                <p className="text-xs text-muted-foreground hidden sm:block font-medium tracking-wide flex items-center gap-1">
+                  <Sparkles className="w-3 h-3" />
+                  Craft your perfect strategy • Max 2 cards each
+                </p>
+              </div>
             </div>
           </div>
 

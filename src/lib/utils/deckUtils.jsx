@@ -230,9 +230,14 @@ export const applyFilters = (contextFilteredPool, activeFilters) => {
     );
   }
 
-  // Filter by cost
+  // Filter by cost (handle type coercion - cost might be string or number)
   if (activeFilters.cost !== null) {
-    filtered = filtered.filter(card => card.card.cost === activeFilters.cost);
+    filtered = filtered.filter(card => {
+      const cardCost = typeof card.card.cost === 'number' ? card.card.cost : String(card.card.cost);
+      const filterCost =
+        typeof activeFilters.cost === 'number' ? activeFilters.cost : String(activeFilters.cost);
+      return String(cardCost) === String(filterCost);
+    });
   }
 
   // Filter by types (multiple selection)

@@ -7,11 +7,13 @@ import { Button } from '../ui/button';
 export function SortControls({ sortBy, sortDir, setSortBy, setSortDir }) {
   return (
     <div
-      className="hidden md:flex items-center space-tight text-xs text-muted-foreground mr-2"
+      className="hidden md:flex items-center gap-2 text-xs text-muted-foreground mr-2"
       role="group"
       aria-label="Sort controls"
     >
-      <span id="sort-label">Sort:</span>
+      <span id="sort-label" className="mr-1">
+        Sort:
+      </span>
       <Button
         variant="outline"
         size="sm"

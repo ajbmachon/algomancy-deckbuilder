@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
@@ -22,6 +22,70 @@ export function GameCard({
 }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [tooltipSide, setTooltipSide] = useState('right');
+  const cardRef = useRef(null);
+
+  // Dynamic tooltip positioning based on card position in viewport
+  useEffect(() => {
+    const updateTooltipPosition = () => {
+      if (cardRef.current) {
+        const rect = cardRef.current.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+
+        // For mobile viewports, use top positioning
+        if (viewportWidth < 768) {
+          setTooltipSide('top');
+        } else {
+          // Desktop logic: Check multiple conditions for better positioning
+          // 1. If card center is past 50% of viewport
+          const cardCenterX = rect.left + rect.width / 2;
+          const isPastCenter = cardCenterX > viewportWidth * 0.5;
+
+          // 2. If card would cause tooltip overflow (be conservative)
+          const tooltipWidth = 350; // Approximate max tooltip width
+          const wouldOverflow = rect.right + tooltipWidth > viewportWidth - 20;
+
+          // Show on left if either condition is true
+          setTooltipSide(isPastCenter || wouldOverflow ? 'left' : 'right');
+        }
+      }
+    };
+
+    // Update on mount, resize, and scroll
+    updateTooltipPosition();
+    window.addEventListener('resize', updateTooltipPosition);
+    window.addEventListener('scroll', updateTooltipPosition, true);
+
+    return () => {
+      window.removeEventListener('resize', updateTooltipPosition);
+      window.removeEventListener('scroll', updateTooltipPosition, true);
+    };
+  }, []);
+
+  // Handle mouse enter to recalculate position on every hover
+  const handleMouseEnter = () => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+
+      // For mobile viewports, use top positioning
+      if (viewportWidth < 768) {
+        setTooltipSide('top');
+      } else {
+        // Desktop logic: Check multiple conditions for better positioning
+        // 1. If card center is past 50% of viewport
+        const cardCenterX = rect.left + rect.width / 2;
+        const isPastCenter = cardCenterX > viewportWidth * 0.5;
+
+        // 2. If card would cause tooltip overflow (be conservative)
+        const tooltipWidth = 350; // Approximate max tooltip width
+        const wouldOverflow = rect.right + tooltipWidth > viewportWidth - 20;
+
+        // Show on left if either condition is true
+        setTooltipSide(isPastCenter || wouldOverflow ? 'left' : 'right');
+      }
+    }
+  };
 
   // Use faction colors from tailwind config
   const getFactionColor = faction => {
@@ -136,9 +200,11 @@ export function GameCard({
     <HoverCard openDelay={200} closeDelay={100}>
       <HoverCardTrigger asChild>
         <Card
+          ref={cardRef}
           className={`${cardClasses} ${deckCardClass}`}
           onClick={!disabled ? onClick : undefined}
           onKeyDown={handleKeyDown}
+          onMouseEnter={handleMouseEnter}
           tabIndex={disabled ? -1 : 0}
           role="button"
           aria-disabled={disabled}
@@ -226,7 +292,7 @@ export function GameCard({
         </Card>
       </HoverCardTrigger>
       <HoverCardContent
-        side="right"
+        side={tooltipSide}
         align="start"
         className="card-tooltip max-w-[300px] max-h-[300px] overflow-y-auto glass-popup shadow-xl p-4"
         sideOffset={10}

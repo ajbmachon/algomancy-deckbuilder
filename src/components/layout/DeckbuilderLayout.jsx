@@ -282,7 +282,7 @@ export function DeckbuilderLayout({ filterPanel, cardPool, deckPanel, className 
       </div>
 
       {/* Center Panel - Card Pool */}
-      <div className="bg-card rounded-lg border border-border overflow-hidden shadow-lg">
+      <div className="bg-card rounded-lg border border-border shadow-lg">
         <div className="h-full overflow-auto">{cardPool}</div>
       </div>
 
