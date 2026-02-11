@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { toast } from 'sonner';
 import { DeckStats } from './DeckStats';
+import { SaveDeckDialog } from './SaveDeckDialog';
+import { DecklistView } from './DecklistView';
 
 /**
  * Deck management UI and deck list display
@@ -21,6 +23,8 @@ export function DeckPanel({
   setShowAnalytics,
   factions,
 }) {
+  const [saveDialogOpen, setSaveDialogOpen] = useState(false);
+  const [decklistViewOpen, setDecklistViewOpen] = useState(false);
   return (
     <div className={`space-filter-group flex flex-col ${showDeckDesktop ? '' : 'lg:hidden'}`}>
       <Card className="modern-card overflow-hidden relative">
@@ -64,13 +68,7 @@ export function DeckPanel({
                 variant="outline"
                 size="sm"
                 className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
-                onClick={() => {
-                  const name = window.prompt('Save deck as');
-                  if (name) {
-                    localStorage.setItem(`algomancy:deck:${name}`, JSON.stringify(deck));
-                    toast.success(`Saved deck '${name}'`);
-                  }
-                }}
+                onClick={() => setSaveDialogOpen(true)}
                 aria-label="Save deck to local storage"
               >
                 Save
@@ -79,27 +77,7 @@ export function DeckPanel({
                 variant="outline"
                 size="sm"
                 className="shrink-0 border-border hover:bg-muted/20 hover:text-foreground"
-                onClick={() => {
-                  const name = window.prompt('Load deck name');
-                  if (name) {
-                    const data = localStorage.getItem(`algomancy:deck:${name}`);
-                    if (!data) {
-                      toast.error(`No saved deck '${name}' found`);
-                      return;
-                    }
-                    try {
-                      const parsed = JSON.parse(data);
-                      if (Array.isArray(parsed)) {
-                        setDeck(parsed);
-                        toast.success(`Loaded deck '${name}'`);
-                      } else {
-                        toast.error('Invalid deck data');
-                      }
-                    } catch (e) {
-                      toast.error('Failed to load deck');
-                    }
-                  }
-                }}
+                onClick={() => setDecklistViewOpen(true)}
                 aria-label="Load deck from local storage"
               >
                 Load
@@ -211,6 +189,16 @@ export function DeckPanel({
           )}
         </CardContent>
       </Card>
+
+      {/* Save Deck Dialog */}
+      <SaveDeckDialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen} deck={deck} />
+
+      {/* Decklist View Dialog */}
+      <DecklistView
+        open={decklistViewOpen}
+        onOpenChange={setDecklistViewOpen}
+        onLoadDeck={setDeck}
+      />
     </div>
   );
 }

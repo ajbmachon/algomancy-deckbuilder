@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Toggle } from '@/components/ui/toggle';
-import { Sun, Moon, Search, Dices, Sparkles } from 'lucide-react';
+import { Sun, Moon, Search, Dices, Sparkles, Library } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { DecklistView } from '@/components/game/DecklistView';
+import { useDeck } from '@/lib/stores/react/DeckProvider';
 
 export function Header({ onSearchOpen, theme, onThemeToggle }) {
+  const [decklistOpen, setDecklistOpen] = useState(false);
+  const { setDeck } = useDeck();
   return (
     <header
       className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
@@ -60,6 +64,17 @@ export function Header({ onSearchOpen, theme, onThemeToggle }) {
             <Button
               variant="outline"
               size="sm"
+              onClick={() => setDecklistOpen(true)}
+              className="gap-2 text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+              aria-label="View saved decklists"
+            >
+              <Library className="w-4 h-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Decklists</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
               onClick={onSearchOpen}
               className="gap-2 text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
               aria-label="Open search (Cmd+K)"
@@ -90,6 +105,9 @@ export function Header({ onSearchOpen, theme, onThemeToggle }) {
           </div>
         </div>
       </div>
+
+      {/* Decklist View Dialog */}
+      <DecklistView open={decklistOpen} onOpenChange={setDecklistOpen} onLoadDeck={setDeck} />
     </header>
   );
 }

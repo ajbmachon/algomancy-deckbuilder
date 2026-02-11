@@ -1,7 +1,16 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useState, useEffect, useCallback, useContext } from 'react';
 
 // Create the context
 export const DeckContext = createContext(null);
+
+// Custom hook to use deck context
+export function useDeck() {
+  const context = useContext(DeckContext);
+  if (!context) {
+    throw new Error('useDeck must be used within a DeckProvider');
+  }
+  return context;
+}
 
 export function DeckProvider({ children }) {
   // Initialize deck from localStorage if available
