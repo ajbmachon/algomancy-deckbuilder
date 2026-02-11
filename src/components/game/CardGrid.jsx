@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { stackCards, isCardAtMaxCount } from '@/lib/utils/stackCards';
 
 /**
- * Grid component for displaying cards
+ * Responsive card grid — maximizes card display area
  */
 export function CardGrid({
   cards = [],
@@ -19,34 +19,25 @@ export function CardGrid({
   loading = false,
   ...props
 }) {
-  // Stack duplicate cards
   const stackedCards = stackCards(cards);
 
-  // Determine grid columns based on compact mode
-  // Use explicit columns: 2 base, 3 md, 4 lg, 5 xl
-  const gridClass = compact
-    ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-filter-group'
-    : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 space-grid-normal';
+  const gridClass =
+    'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3';
 
-  // Disable grouping by type - display all cards in a simple grid
-  const groupByType = false;
-
-  // Render a card with consistent props
   const renderCard = stackedCard => {
     const { card, count, entries } = stackedCard;
     const disabled =
       disabledCards.includes(card.name) || isCardAtMaxCount(card.name, currentDeck, maxCardCount);
-
-    // Get faction from the first faction in the array, or default to empty string
     const faction = card.factions && card.factions.length > 0 ? card.factions[0].toLowerCase() : '';
-
-    // Check if this card was recently added (for highlighting)
     const wasRecentlyAdded = isRecentlyAdded && isRecentlyAdded(card.name);
 
     return (
       <div
         key={card.name}
-        className={`transition-all duration-300 ${wasRecentlyAdded ? 'scale-105 -translate-y-2' : ''}`}
+        className={cn(
+          'transition-all duration-300',
+          wasRecentlyAdded && 'scale-[1.03] -translate-y-1'
+        )}
       >
         <GameCard
           name={card.name}
@@ -59,46 +50,26 @@ export function CardGrid({
           disabled={disabled}
           onClick={() => onCardClick(card, entries)}
           title={card.name}
-          className={wasRecentlyAdded ? 'recently-added' : ''}
         />
       </div>
     );
   };
 
-  // Show loading state
   if (loading) {
     return <LoadingCardGrid count={12} className={cn('grid', gridClass, className)} {...props} />;
   }
 
-  if (!groupByType) {
+  if (stackedCards.length === 0) {
     return (
-      <div className={cn('grid', gridClass, className)} {...props}>
-        {stackedCards.map(renderCard)}
+      <div className="flex items-center justify-center py-16">
+        <p className="text-sm text-muted-foreground">No cards match your filters</p>
       </div>
     );
   }
 
-  // If grouping by type - this code is currently unreachable since groupByType is false
-  // Kept for future implementation but with proper variable declarations
-  /* 
   return (
-    <div className="space-y-6">
-      {Object.keys(groupedCards).map(type => (
-        <div key={type} className="space-y-2">
-          <h5 className="text-overline text-muted-foreground flex items-center">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
-            {type}
-            <span className="ml-2 text-caption">({groupedCards[type].length})</span>
-          </h5>
-          <div className={cn('grid', gridClass)}>
-            {groupedCards[type].map(renderCard)}
-          </div>
-        </div>
-      ))}
+    <div className={cn('grid', gridClass, className)} {...props}>
+      {stackedCards.map(renderCard)}
     </div>
   );
-  */
-
-  // This code is unreachable, but we return something to satisfy the compiler
-  return null;
 }

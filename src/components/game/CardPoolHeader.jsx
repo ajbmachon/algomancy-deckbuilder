@@ -1,138 +1,110 @@
 import React from 'react';
-import { CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { SortControls } from './SortControls';
+import {
+  PanelLeftClose,
+  PanelLeftOpen,
+  PanelRightClose,
+  PanelRightOpen,
+  Filter,
+  X,
+} from 'lucide-react';
 
 /**
- * Card pool header with controls and sorting
+ * Compact toolbar above the card grid
  */
 export function CardPoolHeader({
   filteredPoolCount,
-  // Layout controls
-  maximized,
-  setMaximized,
   showFiltersDesktop,
   setShowFiltersDesktop,
   showDeckDesktop,
   setShowDeckDesktop,
-  previousLayoutRef,
-  // Mobile filters
-  mobileFiltersOpen,
-  setMobileFiltersOpen,
-  // Sorting
   sortBy,
   sortDir,
   setSortBy,
   setSortDir,
-  // Clear filters
   clearFilters,
+  hasActiveFilters,
+  onMobileFilters,
 }) {
   return (
-    <CardHeader className="space-card-header border-b border-border">
-      <CardTitle className="flex justify-between items-center flex-wrap space-button-group">
-        <span className="flex items-center gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 text-primary"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-          </svg>
-          <span className="font-bold bg-gradient-to-r from-primary/90 to-accent bg-clip-text text-transparent">
-            Card Pool
-          </span>
-          <span className="ml-2 text-sm font-normal text-muted-foreground">
-            ({filteredPoolCount})
-          </span>
-        </span>
-        <div className="flex space-button-group flex-wrap items-center">
-          {/* Desktop layout toggles to maximize card grid */}
-          <div className="hidden lg:flex items-center space-button-group mr-2">
-            <Button
-              variant={maximized ? 'default' : 'outline'}
-              size="sm"
-              className="border-border hover:bg-muted/20 hover:text-foreground"
-              onClick={() => {
-                setMaximized(m => {
-                  if (!m) {
-                    previousLayoutRef.current = {
-                      filters: showFiltersDesktop,
-                      deck: showDeckDesktop,
-                    };
-                    setShowFiltersDesktop(false);
-                    setShowDeckDesktop(false);
-                    return true;
-                  } else {
-                    setShowFiltersDesktop(previousLayoutRef.current.filters);
-                    setShowDeckDesktop(previousLayoutRef.current.deck);
-                    return false;
-                  }
-                });
-              }}
-              title={maximized ? 'Restore Layout' : 'Maximize Cards'}
-              aria-label={
-                maximized
-                  ? 'Restore layout to show filters and deck panels'
-                  : 'Maximize card grid by hiding panels'
-              }
-            >
-              {maximized ? 'Restore Layout' : 'Maximize Cards'}
-            </Button>
-            <Button
-              variant={showFiltersDesktop ? 'outline' : 'default'}
-              size="sm"
-              className="border-border"
-              onClick={() => setShowFiltersDesktop(v => !v)}
-              title={showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
-              aria-label={`${showFiltersDesktop ? 'Hide' : 'Show'} filters panel`}
-              aria-pressed={showFiltersDesktop}
-            >
-              {showFiltersDesktop ? 'Hide Filters' : 'Show Filters'}
-            </Button>
-            <Button
-              variant={showDeckDesktop ? 'outline' : 'default'}
-              size="sm"
-              className="border-border"
-              onClick={() => setShowDeckDesktop(v => !v)}
-              title={showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
-              aria-label={`${showDeckDesktop ? 'Hide' : 'Show'} deck panel`}
-              aria-pressed={showDeckDesktop}
-            >
-              {showDeckDesktop ? 'Hide Deck' : 'Show Deck'}
-            </Button>
-          </div>
-
-          <SortControls
-            sortBy={sortBy}
-            sortDir={sortDir}
-            setSortBy={setSortBy}
-            setSortDir={setSortDir}
-          />
-
+    <div className="shrink-0 flex items-center justify-between gap-2 px-3 py-2 border-b border-border bg-card/30">
+      <div className="flex items-center gap-2 min-w-0">
+        {/* Desktop panel toggles */}
+        <div className="hidden lg:flex items-center gap-1">
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-            className="md:hidden border-border hover:bg-muted/20 hover:text-foreground min-h-[44px] min-w-[44px]"
-            aria-label={`${mobileFiltersOpen ? 'Hide' : 'Show'} mobile filters`}
-            aria-expanded={mobileFiltersOpen}
+            className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground"
+            onClick={() => setShowFiltersDesktop(v => !v)}
+            aria-label={showFiltersDesktop ? 'Hide filters' : 'Show filters'}
           >
-            {mobileFiltersOpen ? 'Hide Filters' : 'Show Filters'}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={clearFilters}
-            className="border-border hover:bg-muted/20 hover:text-foreground"
-            aria-label="Clear all active filters"
-          >
-            Clear Filters
+            {showFiltersDesktop ? (
+              <PanelLeftClose className="w-4 h-4" />
+            ) : (
+              <PanelLeftOpen className="w-4 h-4" />
+            )}
           </Button>
         </div>
-      </CardTitle>
-    </CardHeader>
+
+        {/* Mobile filter button */}
+        {onMobileFilters && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="lg:hidden h-7 gap-1 text-xs text-muted-foreground hover:text-foreground px-2"
+            onClick={onMobileFilters}
+            aria-label="Open filters"
+          >
+            <Filter className="w-3.5 h-3.5" />
+            Filters
+            {hasActiveFilters && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+          </Button>
+        )}
+
+        <span className="text-xs text-muted-foreground tabular-nums">
+          {filteredPoolCount} cards
+        </span>
+
+        {hasActiveFilters && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-6 gap-1 text-[10px] text-muted-foreground hover:text-foreground px-1.5"
+            onClick={clearFilters}
+            aria-label="Clear all filters"
+          >
+            <X className="w-3 h-3" />
+            Clear
+          </Button>
+        )}
+      </div>
+
+      <div className="flex items-center gap-1">
+        <SortControls
+          sortBy={sortBy}
+          sortDir={sortDir}
+          setSortBy={setSortBy}
+          setSortDir={setSortDir}
+        />
+
+        {/* Desktop deck toggle */}
+        <div className="hidden lg:flex items-center">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground"
+            onClick={() => setShowDeckDesktop(v => !v)}
+            aria-label={showDeckDesktop ? 'Hide deck' : 'Show deck'}
+          >
+            {showDeckDesktop ? (
+              <PanelRightClose className="w-4 h-4" />
+            ) : (
+              <PanelRightOpen className="w-4 h-4" />
+            )}
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }

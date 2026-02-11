@@ -3,9 +3,7 @@ import { DeckBuilder } from './components/game';
 import { Toaster } from './components/ui/toast';
 import CommandPalette from '@/components/layout/CommandPalette';
 import { Header } from '@/components/layout/Header';
-import { Button } from '@/components/ui/button';
 import { AppProvider } from './lib/stores/react/AppProvider';
-import { toast } from 'sonner';
 import './styles/globals.css';
 
 function App() {
@@ -29,63 +27,12 @@ function App() {
 
   return (
     <AppProvider>
-      <div className="min-h-screen flex flex-col">
-        {/* Background gradients */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-[-1]">
-          <div className="absolute top-0 left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full filter blur-[80px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/5 rounded-full filter blur-[80px]" />
-          <div className="absolute top-[30%] right-[20%] w-[30%] h-[30%] bg-faction-fire/5 rounded-full filter blur-[120px]" />
-        </div>
-
+      <div className="h-screen flex flex-col overflow-hidden relative z-10">
         <Header onSearchOpen={() => setCmdOpen(true)} theme={theme} onThemeToggle={toggleTheme} />
 
-        <main
-          className="container mx-auto relative z-10 flex-grow p-4 md:p-8"
-          role="main"
-          aria-label="Algomancy Deckbuilder"
-        >
+        <main className="flex-1 overflow-hidden" role="main" aria-label="Algomancy Deckbuilder">
           <DeckBuilder />
         </main>
-
-        <footer
-          className="container mx-auto mt-12 pt-4 border-t border-white/10 text-caption text-muted-foreground"
-          role="contentinfo"
-        >
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-4">
-            <p className="text-caption">© {new Date().getFullYear()} Algomancy Deckbuilder</p>
-            <div className="flex items-center gap-6">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => toast.info('About', { description: 'This section is coming soon.' })}
-                className="text-muted-foreground hover:text-foreground"
-                aria-label="About Algomancy Deckbuilder (coming soon)"
-              >
-                About
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => toast.info('Rules', { description: 'This section is coming soon.' })}
-                className="text-muted-foreground hover:text-foreground"
-                aria-label="Game rules information (coming soon)"
-              >
-                Rules
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() =>
-                  toast.info('Contact', { description: 'This section is coming soon.' })
-                }
-                className="text-muted-foreground hover:text-foreground"
-                aria-label="Contact information (coming soon)"
-              >
-                Contact
-              </Button>
-            </div>
-          </div>
-        </footer>
 
         {/* Command Palette */}
         <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />

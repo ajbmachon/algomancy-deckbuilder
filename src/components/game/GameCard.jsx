@@ -5,7 +5,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/h
 import { cn } from '@/lib/utils';
 
 /**
- * Game card component for Algomancy
+ * Game card component — refined for the Ethereal Forge aesthetic
  */
 export function GameCard({
   name,
@@ -25,317 +25,197 @@ export function GameCard({
   const [tooltipSide, setTooltipSide] = useState('right');
   const cardRef = useRef(null);
 
-  // Dynamic tooltip positioning based on card position in viewport
+  const updateTooltipPosition = () => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const vw = window.innerWidth;
+    if (vw < 768) {
+      setTooltipSide('top');
+    } else {
+      const wouldOverflow = rect.right + 300 > vw - 20;
+      const isPastCenter = rect.left + rect.width / 2 > vw * 0.5;
+      setTooltipSide(isPastCenter || wouldOverflow ? 'left' : 'right');
+    }
+  };
+
   useEffect(() => {
-    const updateTooltipPosition = () => {
-      if (cardRef.current) {
-        const rect = cardRef.current.getBoundingClientRect();
-        const viewportWidth = window.innerWidth;
-
-        // For mobile viewports, use top positioning
-        if (viewportWidth < 768) {
-          setTooltipSide('top');
-        } else {
-          // Desktop logic: Check multiple conditions for better positioning
-          // 1. If card center is past 50% of viewport
-          const cardCenterX = rect.left + rect.width / 2;
-          const isPastCenter = cardCenterX > viewportWidth * 0.5;
-
-          // 2. If card would cause tooltip overflow (be conservative)
-          const tooltipWidth = 350; // Approximate max tooltip width
-          const wouldOverflow = rect.right + tooltipWidth > viewportWidth - 20;
-
-          // Show on left if either condition is true
-          setTooltipSide(isPastCenter || wouldOverflow ? 'left' : 'right');
-        }
-      }
-    };
-
-    // Update on mount, resize, and scroll
     updateTooltipPosition();
     window.addEventListener('resize', updateTooltipPosition);
-    window.addEventListener('scroll', updateTooltipPosition, true);
-
-    return () => {
-      window.removeEventListener('resize', updateTooltipPosition);
-      window.removeEventListener('scroll', updateTooltipPosition, true);
-    };
+    return () => window.removeEventListener('resize', updateTooltipPosition);
   }, []);
 
-  // Handle mouse enter to recalculate position on every hover
-  const handleMouseEnter = () => {
-    if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-
-      // For mobile viewports, use top positioning
-      if (viewportWidth < 768) {
-        setTooltipSide('top');
-      } else {
-        // Desktop logic: Check multiple conditions for better positioning
-        // 1. If card center is past 50% of viewport
-        const cardCenterX = rect.left + rect.width / 2;
-        const isPastCenter = cardCenterX > viewportWidth * 0.5;
-
-        // 2. If card would cause tooltip overflow (be conservative)
-        const tooltipWidth = 350; // Approximate max tooltip width
-        const wouldOverflow = rect.right + tooltipWidth > viewportWidth - 20;
-
-        // Show on left if either condition is true
-        setTooltipSide(isPastCenter || wouldOverflow ? 'left' : 'right');
-      }
-    }
-  };
-
-  // Use faction colors from tailwind config
   const getFactionColor = faction => {
-    switch (faction) {
-      case 'earth':
-        return 'rgb(180 83 9)'; // Amber-700
-      case 'wood':
-        return 'rgb(4 120 87)'; // Emerald-700
-      case 'fire':
-        return 'rgb(185 28 28)'; // Red-700
-      case 'water':
-        return 'rgb(3 105 161)'; // Sky-700
-      case 'metal':
-        return 'rgb(100 116 139)'; // Slate-500
-      default:
-        return 'rgb(124 58 237)'; // Violet-600 for shard/generic
-    }
+    const colors = {
+      earth: 'rgb(198 122 26)',
+      wood: 'rgb(22 163 74)',
+      fire: 'rgb(220 38 38)',
+      water: 'rgb(2 132 199)',
+      metal: 'rgb(148 163 184)',
+      shard: 'rgb(168 85 247)',
+    };
+    return colors[faction] || colors.shard;
   };
 
-  // Get the faction color class
-  const getFactionClass = faction => {
-    switch (faction) {
-      case 'earth':
-        return 'border-faction-earth shadow-card hover:shadow-card-hover';
-      case 'wood':
-        return 'border-faction-wood shadow-card hover:shadow-card-hover';
-      case 'fire':
-        return 'border-faction-fire shadow-card hover:shadow-card-hover';
-      case 'water':
-        return 'border-faction-water shadow-card hover:shadow-card-hover';
-      case 'metal':
-        return 'border-faction-metal shadow-card hover:shadow-card-hover';
-      case 'shard':
-        return 'border-faction-shard shadow-card hover:shadow-card-hover';
-      default:
-        return 'border-faction-shard shadow-card hover:shadow-card-hover';
-    }
-  };
-
-  // Get faction glow class
   const getFactionGlowClass = faction => {
-    switch (faction) {
-      case 'earth':
-        return 'card-earth-glow';
-      case 'wood':
-        return 'card-wood-glow';
-      case 'fire':
-        return 'card-fire-glow';
-      case 'water':
-        return 'card-water-glow';
-      case 'metal':
-        return 'card-metal-glow';
-      case 'shard':
-        return 'card-shard-glow';
-      default:
-        return 'card-shard-glow';
-    }
+    const map = {
+      earth: 'card-earth-glow',
+      wood: 'card-wood-glow',
+      fire: 'card-fire-glow',
+      water: 'card-water-glow',
+      metal: 'card-metal-glow',
+      shard: 'card-shard-glow',
+    };
+    return map[faction] || map.shard;
   };
 
-  const cardClasses = cn(
-    'card-container relative group overflow-hidden border-2 transition-all duration-300',
-    'cursor-pointer hover:scale-105 hover:-translate-y-2',
-    'rounded-xl backdrop-blur-sm bg-black/20',
-    'w-full aspect-[2/3] max-w-[216px] mx-auto', // ~20% larger for readability on desktop
-    'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background', // Focus state for accessibility
-    getFactionClass(faction),
-    getFactionGlowClass(faction),
-    disabled && 'opacity-50 pointer-events-none saturate-0',
-    className
-  );
-
-  // Apply special glow effect for deck cards
-  const isDeckCard = count > 1;
-  const deckCardClass = isDeckCard ? 'deck-card-glow' : '';
-
-  // Handle image load success
-  const handleImageLoaded = () => setImageLoaded(true);
-
-  // Handle image load error
-  const handleImageError = () => setImageError(true);
-
-  // Handle keyboard navigation
-  const handleKeyDown = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault(); // Prevent scroll on space press
-      if (!disabled && onClick) onClick();
-    }
-  };
-
-  // Generate ARIA label for accessibility
-  const getAriaLabel = () => {
-    let label = `${name}, ${faction} faction`;
-    if (cost !== undefined) label += `, cost: ${cost}`;
-    if (type) label += `, type: ${type}`;
-    if (count > 1) label += `, ${count} copies`;
-    if (disabled) label += ', disabled';
-    return label;
-  };
-
-  // Format card text to highlight keywords like "augment" in bold
   const formatCardText = text => {
     if (!text) return '';
-
-    // Replace [Switch 1] with <strong>augment</strong>, etc.
-    // Add more keyword replacements as needed
     return text
       .replace(/\[Switch\s*(\d+)\]/g, '<strong>augment</strong>')
       .replace(/\{(\w+)\}/g, '<strong>$1</strong>');
   };
+
+  const cardClasses = cn(
+    'card-container relative group overflow-hidden border',
+    'cursor-pointer',
+    'rounded-lg bg-black/30',
+    'w-full aspect-[2/3]',
+    'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-background',
+    getFactionGlowClass(faction),
+    disabled && 'opacity-40 pointer-events-none saturate-0',
+    className
+  );
+
+  const factionColor = getFactionColor(faction);
 
   return (
     <HoverCard openDelay={200} closeDelay={100}>
       <HoverCardTrigger asChild>
         <Card
           ref={cardRef}
-          className={`${cardClasses} ${deckCardClass}`}
+          className={cardClasses}
+          style={{ borderColor: `color-mix(in srgb, ${factionColor} 30%, transparent)` }}
           onClick={!disabled ? onClick : undefined}
-          onKeyDown={handleKeyDown}
-          onMouseEnter={handleMouseEnter}
+          onKeyDown={e => {
+            if ((e.key === 'Enter' || e.key === ' ') && !disabled && onClick) {
+              e.preventDefault();
+              onClick();
+            }
+          }}
+          onMouseEnter={updateTooltipPosition}
           tabIndex={disabled ? -1 : 0}
           role="button"
           aria-disabled={disabled}
-          aria-label={getAriaLabel()}
+          aria-label={`${name}, ${faction} faction${cost !== undefined ? `, cost ${cost}` : ''}${count > 1 ? `, ${count} copies` : ''}`}
           {...props}
         >
-          {/* Card Image with shimmer effect */}
-          <div className="h-full w-full overflow-hidden rounded-lg flex items-center justify-center">
-            <div className="relative h-full w-full overflow-hidden">
-              {/* Image placeholder while loading */}
-              {!imageLoaded && !imageError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40 animate-pulse">
-                  <div
-                    className="w-12 h-12 rounded-lg bg-black/10 border-2"
-                    style={{
-                      backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 12%, transparent)`,
-                      borderColor: getFactionColor(faction),
-                    }}
-                  ></div>
-                </div>
+          {/* Image */}
+          <div className="h-full w-full overflow-hidden">
+            {!imageLoaded && !imageError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-card animate-pulse">
+                <div
+                  className="w-8 h-8 rounded bg-muted/50"
+                  style={{ borderColor: factionColor }}
+                />
+              </div>
+            )}
+
+            {imageError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-card p-2">
+                <span className="text-[10px] text-center text-muted-foreground font-medium">
+                  {name}
+                </span>
+              </div>
+            )}
+
+            <img
+              src={`/card_images/${image_name}`}
+              alt={`${name}`}
+              className={cn(
+                'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110',
+                !imageLoaded && 'opacity-0',
+                imageError && 'hidden'
               )}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageError(true)}
+            />
 
-              {/* Fallback for image errors */}
-              {imageError && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-2">
-                  <span
-                    className="text-caption text-center font-medium"
-                    style={{ color: getFactionColor(faction) }}
-                  >
-                    {name}
-                  </span>
-                </div>
-              )}
-
-              <img
-                src={`/card_images/${image_name}`}
-                alt={`Card art for ${name}, ${faction} faction card`}
-                className={cn(
-                  'w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110',
-                  !imageLoaded && 'opacity-0',
-                  imageError && 'hidden'
-                )}
-                loading="lazy"
-                onLoad={handleImageLoaded}
-                onError={handleImageError}
-              />
-
-              {/* Overlay shimmer effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            </div>
+            {/* Subtle shimmer on hover */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
 
-          {/* Cost Badge (always shown) */}
+          {/* Cost badge */}
           <Badge
-            className="card-badge card-badge-cost z-10 text-white border border-white/20"
+            className="card-badge card-badge-cost z-10 text-white text-[10px] border-0"
             style={{
-              backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent)`,
+              backgroundColor: `color-mix(in srgb, ${factionColor} 85%, black)`,
             }}
-            aria-label={`Card cost: ${cost}`}
           >
             {cost}
           </Badge>
 
-          {/* Count Badge (shown if count > 1) - moved to upper right with improved styling */}
+          {/* Count badge */}
           {count > 1 && (
             <Badge
-              className="absolute top-1 right-1 px-3 py-1 rounded-lg z-20 text-white font-bold"
+              className="absolute top-1 right-1 px-1.5 py-0.5 rounded z-20 text-white text-[10px] font-bold border-0"
               style={{
-                background: `linear-gradient(135deg, ${getFactionColor(faction)}, color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent))`,
-                boxShadow: '0 2px 4px rgb(0 0 0 / 0.3)',
+                background: factionColor,
+                boxShadow: `0 0 8px color-mix(in srgb, ${factionColor} 50%, transparent)`,
               }}
-              aria-label={`${count} copies of this card`}
             >
-              {count}×
+              {count}x
             </Badge>
           )}
 
-          {/* Card Name Overlay (visible on hover) */}
-          <div
-            className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-8 pb-2 px-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10"
-            aria-hidden="true"
-          >
-            <p className="text-caption text-center text-white font-medium truncate">{name}</p>
+          {/* Name overlay on hover */}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent pt-6 pb-1.5 px-1.5 translate-y-full group-hover:translate-y-0 transition-transform duration-250 z-10">
+            <p className="text-[10px] text-center text-white font-medium truncate">{name}</p>
           </div>
         </Card>
       </HoverCardTrigger>
+
       <HoverCardContent
         side={tooltipSide}
         align="start"
-        className="card-tooltip max-w-[300px] max-h-[300px] overflow-y-auto glass-popup shadow-xl p-4"
-        sideOffset={10}
+        className="card-tooltip max-w-[280px] max-h-[280px] overflow-y-auto p-3"
+        sideOffset={8}
         role="tooltip"
-        aria-label={`Detailed information for ${name}`}
       >
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <h4 className="font-bold text-white line-clamp-2">{name}</h4>
+          <div className="flex items-start justify-between gap-2">
+            <h4 className="font-display font-bold text-sm text-foreground leading-tight">{name}</h4>
             {cost !== undefined && (
               <span
-                className="inline-flex items-center justify-center w-6 h-6 rounded-lg text-white font-bold text-sm border border-white/20 flex-shrink-0 ml-2"
-                style={{
-                  backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 80%, transparent)`,
-                }}
+                className="inline-flex items-center justify-center w-5 h-5 rounded text-white font-bold text-[10px] shrink-0"
+                style={{ backgroundColor: factionColor }}
               >
                 {cost}
               </span>
             )}
           </div>
-          <div className="flex flex-wrap gap-2 text-caption">
+          <div className="flex flex-wrap gap-1.5">
             <span
-              className="px-2 py-1 rounded-lg capitalize border"
+              className="px-1.5 py-0.5 rounded text-[10px] capitalize font-medium"
               style={{
-                backgroundColor: `color-mix(in srgb, ${getFactionColor(faction)} 12%, transparent)`,
-                borderColor: `color-mix(in srgb, ${getFactionColor(faction)} 20%, transparent)`,
-                color: getFactionColor(faction),
+                backgroundColor: `color-mix(in srgb, ${factionColor} 15%, transparent)`,
+                color: factionColor,
               }}
             >
               {faction}
             </span>
             {type && (
-              <span className="px-2 py-1 rounded-lg bg-white/5 text-white/80 border border-white/10 capitalize text-caption">
+              <span className="px-1.5 py-0.5 rounded text-[10px] bg-muted/50 text-muted-foreground capitalize">
                 {type}
               </span>
             )}
           </div>
           {text && (
-            <div className="mt-3 border-t border-white/10 pt-2">
+            <div className="border-t border-border/50 pt-2 mt-2">
               <p
-                className="text-body-sm text-white/90"
+                className="text-xs text-muted-foreground leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: formatCardText(text) }}
-              ></p>
+              />
             </div>
           )}
         </div>

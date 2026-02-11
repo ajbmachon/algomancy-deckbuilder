@@ -2,75 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   ETHEREAL FORGE — Design System
+   A luminous dark aesthetic for card game UI
+   ============================================ */
+
 @layer base {
   :root {
-    /* Smooth transitions for CSS custom properties */
-    transition: all 300ms ease;
+    /* Warm obsidian dark theme */
+    --background: 220 20% 4%;
+    --foreground: 40 20% 90%;
+    --card: 220 16% 7%;
+    --card-foreground: 40 15% 92%;
+    --popover: 220 18% 8%;
+    --popover-foreground: 40 15% 92%;
+    --primary: 38 92% 55%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 220 12% 14%;
+    --secondary-foreground: 40 15% 85%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 8% 55%;
+    --accent: 174 72% 46%;
+    --accent-foreground: 220 20% 4%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 12% 14%;
+    --input: 220 12% 14%;
+    --ring: 38 92% 55%;
+    --radius: 0.5rem;
 
-    /* Dark, colorful theme tokens */
-    --background: 224 60% 6%;
-    /* Use a light foreground for dark mode so text is readable */
-    --foreground: 210 40% 96%;
-    --card: 228 50% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 228 50% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 260 90% 66%; /* violet */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 30% 18%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 220 25% 20%;
-    --muted-foreground: 215 18% 72%;
-    --accent: 200 90% 60%; /* sky */
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 72% 40%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 25% 22%;
-    --input: 220 25% 22%;
-    --ring: 260 90% 66%;
-    --radius: 0.6rem;
+    /* Semantic */
+    --success: 142 76% 36%;
+    --success-foreground: 138 76% 97%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 220 20% 4%;
+    --error: 0 84% 60%;
+    --error-foreground: 0 0% 98%;
+    --info: 174 72% 46%;
+    --info-foreground: 220 20% 4%;
 
-    /* Semantic colors */
-    --success: 142 76% 36%; /* green-600 */
-    --success-foreground: 138 76% 97%; /* green-50 */
-    --warning: 43 96% 56%; /* amber-500 */
-    --warning-foreground: 48 100% 96%; /* amber-50 */
-    --error: 0 84% 60%; /* Uses existing destructive */
-    --error-foreground: 0 0% 98%; /* Uses existing destructive-foreground */
-    --info: 221 83% 53%; /* blue-600 */
-    --info-foreground: 214 100% 97%; /* blue-50 */
-
-    /* Light mode tokens */
-    color-scheme: dark light;
-    --light-background: 210 40% 98%;
-    --light-foreground: 224 20% 9%;
+    /* Light mode */
+    --light-background: 40 25% 97%;
+    --light-foreground: 220 20% 10%;
     --light-card: 0 0% 100%;
-    --light-card-foreground: 224 20% 9%;
+    --light-card-foreground: 220 20% 10%;
     --light-popover: 0 0% 100%;
-    --light-popover-foreground: 224 20% 9%;
-    --light-primary: 258 84% 54%;
+    --light-popover-foreground: 220 20% 10%;
+    --light-primary: 38 85% 48%;
     --light-primary-foreground: 0 0% 100%;
-    --light-secondary: 214 32% 91%;
-    --light-secondary-foreground: 224 20% 26%;
-    --light-muted: 214 32% 91%;
-    --light-muted-foreground: 224 20% 26%;
-    --light-accent: 199 89% 48%;
+    --light-secondary: 40 15% 92%;
+    --light-secondary-foreground: 220 15% 25%;
+    --light-muted: 40 15% 92%;
+    --light-muted-foreground: 220 10% 40%;
+    --light-accent: 174 65% 40%;
     --light-accent-foreground: 0 0% 100%;
     --light-destructive: 0 84% 60%;
     --light-destructive-foreground: 0 0% 100%;
-    --light-border: 214 32% 85%;
-    --light-input: 214 32% 85%;
-    --light-ring: 258 84% 54%;
-
-    /* Light mode semantic colors */
-    --light-success: 142 71% 45%; /* green-600 */
-    --light-success-foreground: 0 0% 100%; /* white */
-    --light-warning: 43 96% 56%; /* amber-500 */
-    --light-warning-foreground: 0 0% 100%; /* white */
-    --light-error: 0 84% 60%; /* Uses existing light-destructive */
-    --light-error-foreground: 0 0% 100%; /* Uses existing light-destructive-foreground */
-    --light-info: 221 83% 53%; /* blue-600 */
-    --light-info-foreground: 0 0% 100%; /* white */
+    --light-border: 40 15% 88%;
+    --light-input: 40 15% 88%;
+    --light-ring: 38 85% 48%;
+    --light-success: 142 71% 45%;
+    --light-success-foreground: 0 0% 100%;
+    --light-warning: 38 85% 48%;
+    --light-warning-foreground: 0 0% 100%;
+    --light-error: 0 84% 60%;
+    --light-error-foreground: 0 0% 100%;
+    --light-info: 174 65% 40%;
+    --light-info-foreground: 0 0% 100%;
   }
 }
 
@@ -107,114 +105,39 @@
 }
 
 @layer base {
-  /* Global smooth theme transitions */
   * {
     @apply border-border;
-    transition:
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
   }
 
-  /* Smooth transitions for all theme-dependent elements */
   html {
-    transition:
-      background-color 300ms ease,
-      color 300ms ease;
-  }
-
-  /* Enhanced transitions for interactive elements */
-  button,
-  input,
-  select,
-  textarea,
-  [role='button'],
-  [role='tab'],
-  [role='menuitem'] {
-    transition: all 250ms ease;
-  }
-
-  /* Smooth transitions for borders and shadows */
-  .border,
-  [class*='border-'],
-  [class*='shadow-'],
-  [class*='ring-'] {
-    transition:
-      border-color 250ms ease,
-      box-shadow 250ms ease;
-  }
-
-  /* Card and container transitions */
-  .card,
-  .modern-card,
-  [class*='bg-card'],
-  [class*='bg-popover'],
-  [class*='bg-background'] {
-    transition:
-      background-color 250ms ease,
-      border-color 250ms ease,
-      box-shadow 250ms ease;
+    font-family: 'Manrope', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-background text-foreground;
-    position: relative;
-    background-image:
-      radial-gradient(1000px 600px at 10% -10%, rgba(99, 102, 241, 0.2), rgba(0, 0, 0, 0) 60%),
-      radial-gradient(900px 550px at -10% 90%, rgba(52, 211, 153, 0.14), rgba(0, 0, 0, 0) 60%),
-      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     min-height: 100vh;
     overflow-x: hidden;
-    transition:
-      background-color 300ms ease,
-      background-image 300ms ease,
-      color 250ms ease;
+    position: relative;
   }
 
-  /* Light mode background overrides */
-  .light body {
-    background-image:
-      radial-gradient(
-        1200px 700px at -10% -10%,
-        rgba(99, 102, 241, 0.2),
-        rgba(255, 255, 255, 0) 60%
-      ),
-      radial-gradient(
-        1000px 600px at 110% 110%,
-        rgba(56, 189, 248, 0.16),
-        rgba(255, 255, 255, 0) 60%
-      ),
-      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
-  }
-
+  /* Atmospheric glow */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(800px 500px at 120% 20%, rgba(56, 189, 248, 0.18), rgba(0, 0, 0, 0) 60%),
-      radial-gradient(700px 500px at 80% 110%, rgba(124, 58, 237, 0.12), rgba(0, 0, 0, 0) 60%);
-    filter: blur(0.5px);
-    transition:
-      background 300ms ease,
-      opacity 300ms ease;
+      radial-gradient(ellipse 80% 60% at 10% 0%, rgba(198, 122, 26, 0.06), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 100%, rgba(20, 184, 166, 0.04), transparent 60%);
+    z-index: 0;
   }
 
   .light body::before {
     background:
-      radial-gradient(
-        900px 600px at 20% -10%,
-        rgba(99, 102, 241, 0.18),
-        rgba(255, 255, 255, 0) 60%
-      ),
-      radial-gradient(
-        800px 550px at 100% 120%,
-        rgba(56, 189, 248, 0.16),
-        rgba(255, 255, 255, 0) 60%
-      );
+      radial-gradient(ellipse 80% 60% at 10% 0%, rgba(198, 122, 26, 0.08), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 100%, rgba(20, 184, 166, 0.06), transparent 60%);
   }
 
   h1,
@@ -223,73 +146,51 @@
   h4,
   h5,
   h6 {
+    font-family: 'Playfair Display', Georgia, serif;
     @apply font-bold tracking-tight;
   }
 
   h1 {
-    @apply text-3xl md:text-4xl;
-  }
-
-  h2 {
     @apply text-2xl md:text-3xl;
   }
-
-  h3 {
+  h2 {
     @apply text-xl md:text-2xl;
   }
-
-  h4 {
-    @apply text-lg md:text-xl font-semibold;
+  h3 {
+    @apply text-lg md:text-xl;
   }
-
-  h5 {
+  h4 {
     @apply text-base md:text-lg font-semibold;
   }
-
-  h6 {
+  h5 {
     @apply text-sm md:text-base font-semibold;
   }
-
-  /* Typography utilities with smooth transitions */
-  .text-caption {
-    @apply text-xs leading-4 text-muted-foreground;
-    transition: color 250ms ease;
-  }
-
-  .text-overline {
-    @apply text-xs uppercase tracking-wider font-medium;
-    transition: color 250ms ease;
-  }
-
-  .text-body-sm {
-    @apply text-sm leading-relaxed;
-    transition: color 250ms ease;
-  }
-
-  .text-body {
-    @apply text-base leading-relaxed;
-    transition: color 250ms ease;
-  }
-
-  .text-body-lg {
-    @apply text-lg leading-relaxed;
-    transition: color 250ms ease;
-  }
-
-  /* Smooth transitions for muted text elements */
-  .text-muted-foreground,
-  [class*='text-muted'] {
-    transition: color 250ms ease;
+  h6 {
+    @apply text-xs md:text-sm font-semibold;
   }
 }
 
 @layer components {
-  /* Spacing tokens - consistent spacing system */
+  /* Typography */
+  .text-caption {
+    @apply text-xs leading-4 text-muted-foreground;
+  }
+  .text-overline {
+    @apply text-[10px] uppercase tracking-[0.15em] font-semibold;
+  }
+  .text-body-sm {
+    @apply text-sm leading-relaxed;
+  }
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+
+  /* Spacing */
   .space-section {
-    @apply py-8 px-4 sm:px-6 lg:px-8;
+    @apply py-6 px-3 sm:px-4 lg:px-6;
   }
   .space-component {
-    @apply p-4;
+    @apply p-3;
   }
   .space-element {
     @apply p-2;
@@ -297,763 +198,260 @@
   .space-tight {
     @apply p-1;
   }
-
-  /* Component-specific spacing utilities */
   .space-card-content {
-    @apply p-6;
+    @apply p-3 md:p-4;
   }
   .space-card-header {
-    @apply p-4;
+    @apply px-3 py-2 md:px-4 md:py-3;
   }
   .space-button-group {
-    @apply gap-2;
+    @apply gap-1.5;
   }
   .space-filter-group {
-    @apply gap-3;
-  }
-  .space-deck-item {
-    @apply p-3;
-  }
-
-  /* Responsive spacing utilities */
-  .space-responsive {
-    @apply p-3 sm:p-4 lg:p-6;
-  }
-  .space-responsive-x {
-    @apply px-3 sm:px-4 lg:px-6;
-  }
-  .space-responsive-y {
-    @apply py-3 sm:py-4 lg:py-6;
-  }
-
-  /* Grid and layout spacing */
-  .space-grid-tight {
     @apply gap-2;
   }
+  .space-deck-item {
+    @apply p-2;
+  }
+  .space-grid-tight {
+    @apply gap-1.5;
+  }
   .space-grid-normal {
-    @apply gap-4;
+    @apply gap-3;
   }
   .space-grid-loose {
-    @apply gap-6;
+    @apply gap-4;
   }
 
-  /* Toolbar helpers */
   .toolbar {
     @apply flex items-center justify-between gap-2 flex-wrap;
   }
   .kbd {
-    @apply rounded border border-white/10 px-1.5 py-0.5 text-xs text-muted-foreground bg-white/5;
-  }
-}
-
-@layer components {
-  .card-fade-in {
-    animation: cardFadeIn 0.3s ease-out;
+    @apply rounded border border-border/50 px-1.5 py-0.5 text-[10px] text-muted-foreground bg-muted/30 font-mono;
   }
 
+  /* Card surface */
+  .modern-card {
+    @apply border border-border bg-card rounded-lg;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  }
+
+  /* Faction filter buttons */
   .filter-btn-earth {
-    @apply border-2 border-faction-earth text-faction-earth hover:bg-faction-earth/10;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-    box-shadow: 0 0 0 rgba(180, 83, 9, 0);
+    @apply border border-faction-earth/40 text-faction-earth;
   }
-
   .filter-btn-earth.active {
-    @apply bg-faction-earth text-white hover:bg-faction-earth/90;
-    box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
+    @apply bg-faction-earth text-white;
+    box-shadow: 0 0 12px rgba(198, 122, 26, 0.3);
   }
-
-  .filter-btn-earth:hover {
-    box-shadow: 0 0 8px rgba(180, 83, 9, 0.2);
-  }
-
   .filter-btn-wood {
-    @apply border-2 border-faction-wood text-faction-wood hover:bg-faction-wood/10;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-    box-shadow: 0 0 0 rgba(4, 120, 87, 0);
+    @apply border border-faction-wood/40 text-faction-wood;
   }
-
   .filter-btn-wood.active {
-    @apply bg-faction-wood text-white hover:bg-faction-wood/90;
-    box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
+    @apply bg-faction-wood text-white;
+    box-shadow: 0 0 12px rgba(22, 163, 74, 0.3);
   }
-
-  .filter-btn-wood:hover {
-    box-shadow: 0 0 8px rgba(4, 120, 87, 0.2);
-  }
-
   .filter-btn-fire {
-    @apply border-2 border-faction-fire text-faction-fire hover:bg-faction-fire/10;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-    box-shadow: 0 0 0 rgba(185, 28, 28, 0);
+    @apply border border-faction-fire/40 text-faction-fire;
   }
-
   .filter-btn-fire.active {
-    @apply bg-faction-fire text-white hover:bg-faction-fire/90;
-    box-shadow: 0 0 10px rgba(185, 28, 28, 0.3);
+    @apply bg-faction-fire text-white;
+    box-shadow: 0 0 12px rgba(220, 38, 38, 0.3);
   }
-
-  .filter-btn-fire:hover {
-    box-shadow: 0 0 8px rgba(185, 28, 28, 0.2);
-  }
-
   .filter-btn-water {
-    @apply border-2 border-faction-water text-faction-water hover:bg-faction-water/10;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-    box-shadow: 0 0 0 rgba(3, 105, 161, 0);
+    @apply border border-faction-water/40 text-faction-water;
   }
-
   .filter-btn-water.active {
-    @apply bg-faction-water text-white hover:bg-faction-water/90;
-    box-shadow: 0 0 10px rgba(3, 105, 161, 0.3);
+    @apply bg-faction-water text-white;
+    box-shadow: 0 0 12px rgba(2, 132, 199, 0.3);
   }
-
-  .filter-btn-water:hover {
-    box-shadow: 0 0 8px rgba(3, 105, 161, 0.2);
-  }
-
   .filter-btn-metal {
-    @apply border-2 border-faction-metal text-faction-metal hover:bg-faction-metal/10;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-    box-shadow: 0 0 0 rgba(100, 116, 139, 0);
+    @apply border border-faction-metal/40 text-faction-metal;
   }
-
   .filter-btn-metal.active {
-    @apply bg-faction-metal text-white hover:bg-faction-metal/90;
-    box-shadow: 0 0 10px rgba(100, 116, 139, 0.3);
+    @apply bg-faction-metal text-white;
+    box-shadow: 0 0 12px rgba(148, 163, 184, 0.3);
   }
-
-  .filter-btn-metal:hover {
-    box-shadow: 0 0 8px rgba(100, 116, 139, 0.2);
-  }
-
   .filter-btn-shard {
-    @apply border-2 border-faction-shard text-faction-shard hover:bg-faction-shard/10;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-    box-shadow: 0 0 0 rgba(124, 58, 237, 0);
+    @apply border border-faction-shard/40 text-faction-shard;
   }
-
   .filter-btn-shard.active {
-    @apply bg-faction-shard text-white hover:bg-faction-shard/90;
-    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+    @apply bg-faction-shard text-white;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
   }
 
-  .filter-btn-shard:hover {
-    box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
-  }
-
-  /* Enhanced cards styling */
+  /* Game card container */
   .card-container {
-    @apply relative rounded-xl overflow-hidden;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    @apply relative rounded-lg overflow-hidden;
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.25s ease;
     will-change: transform;
   }
-
   .card-container:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-4px) scale(1.03);
   }
 
-  /* Card faction specific glow styles */
-  .card-earth-glow::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.4), transparent 70%);
-    border-radius: 16px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  /* Faction glow on card hover */
+  .card-earth-glow:hover {
+    box-shadow: 0 4px 20px rgba(198, 122, 26, 0.25);
+  }
+  .card-wood-glow:hover {
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.25);
+  }
+  .card-fire-glow:hover {
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
+  }
+  .card-water-glow:hover {
+    box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
+  }
+  .card-metal-glow:hover {
+    box-shadow: 0 4px 20px rgba(148, 163, 184, 0.2);
+  }
+  .card-shard-glow:hover {
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.25);
   }
 
-  .card-earth-glow:hover::before {
-    opacity: 1;
-  }
-
-  .card-wood-glow::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(4, 120, 87, 0.4), transparent 70%);
-    border-radius: 16px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-wood-glow:hover::before {
-    opacity: 1;
-  }
-
-  .card-fire-glow::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.4), transparent 70%);
-    border-radius: 16px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-fire-glow:hover::before {
-    opacity: 1;
-  }
-
-  .card-water-glow::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(3, 105, 161, 0.4), transparent 70%);
-    border-radius: 16px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-water-glow:hover::before {
-    opacity: 1;
-  }
-
-  .card-metal-glow::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(100, 116, 139, 0.4), transparent 70%);
-    border-radius: 16px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-metal-glow:hover::before {
-    opacity: 1;
-  }
-
-  .card-shard-glow::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.4), transparent 70%);
-    border-radius: 16px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-shard-glow:hover::before {
-    opacity: 1;
-  }
-
-  /* Card deck glow effect */
-  .deck-card-glow::before {
-    content: '';
-    position: absolute;
-    inset: -5px;
-    background: conic-gradient(
-      from 180deg at 50% 50%,
-      #8b5cf6 0deg,
-      #5eead4 60deg,
-      #6366f1 120deg,
-      #8b5cf6 180deg,
-      #5eead4 240deg,
-      #6366f1 300deg,
-      #8b5cf6 360deg
-    );
-    border-radius: 18px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .deck-card-glow:hover::before {
-    opacity: 1;
-    animation: rotate 3s linear infinite;
-  }
-
-  /* Card tooltip styling */
+  /* Card tooltip */
   .card-tooltip {
-    @apply bg-black/90 p-4 rounded-lg border border-white/10 shadow-xl backdrop-blur-sm;
-    max-width: 300px;
+    @apply bg-popover/95 p-3 rounded-lg border border-border shadow-2xl backdrop-blur-md;
+    max-width: 280px;
   }
 
-  /* Card badge styling */
+  /* Card badges */
   .card-badge {
-    @apply absolute rounded-full flex items-center justify-center
-    font-bold shadow-lg border border-white/20;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
+    @apply absolute rounded-md flex items-center justify-center font-bold shadow-md;
   }
-
   .card-badge-cost {
-    @apply top-2 left-2 w-7 h-7 text-sm;
+    @apply top-1.5 left-1.5 w-6 h-6 text-xs;
   }
-
   .card-badge-count {
-    @apply top-2 right-2 px-2 py-1 text-xs;
+    @apply top-1.5 right-1.5 px-1.5 py-0.5 text-[10px];
   }
 
-  /* Subtle header text with reduced gradient */
-  .gradient-heading {
-    @apply text-transparent bg-clip-text;
-    background-image: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
-    filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.2));
-  }
-
-  /* More subtle header option */
-  .subtle-heading {
-    @apply text-foreground;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Improved tabs styling */
-  .fancy-tabs {
-    @apply bg-white/5 p-1 rounded-xl;
-    backdrop-filter: blur(10px);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-    transition:
-      background-color 250ms ease,
-      border-color 250ms ease,
-      box-shadow 250ms ease;
-  }
-
-  .fancy-tab {
-    @apply px-4 py-2 rounded-lg transition-all duration-300;
-    transition:
-      all 300ms ease,
-      background-color 250ms ease,
-      color 250ms ease;
-  }
-
-  .fancy-tab-active {
-    @apply bg-white/10 shadow-lg text-white;
-    box-shadow:
-      0 10px 20px rgba(0, 0, 0, 0.35),
-      0 0 16px rgba(99, 102, 241, 0.25);
-  }
-
-  /* Empty state styling */
-  .empty-state {
-    @apply text-center py-12 text-muted-foreground border border-dashed
-    border-white/10 rounded-lg transition-all duration-300;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
-    transition:
-      all 300ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
-  }
-
-  .empty-state:hover {
-    @apply border-white/20;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
-  }
-
-  /* Card container with modern style */
-  .modern-card {
-    @apply border border-border shadow-xl bg-card backdrop-blur-md;
-    transition:
-      all 300ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      box-shadow 250ms ease;
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-  }
-
-  .modern-card:hover {
-    @apply border-border;
-    box-shadow:
-      0 10px 30px rgba(0, 0, 0, 0.5),
-      0 0 25px rgba(99, 102, 241, 0.18),
-      0 0 20px rgba(56, 189, 248, 0.12);
-  }
-
-  /* Faction badge styles - more subtle version */
+  /* Faction badges (small) */
   .faction-badge {
-    @apply px-3 py-1 rounded-lg text-xs font-medium;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      border-color 250ms ease,
-      color 250ms ease;
+    @apply px-2 py-0.5 rounded text-[10px] font-semibold;
     border: 1px solid;
   }
-
   .faction-badge-earth {
-    @apply bg-amber-600/20 text-amber-200 border-amber-600/30;
+    @apply bg-faction-earth/15 text-faction-earth border-faction-earth/25;
   }
-
   .faction-badge-wood {
-    @apply bg-emerald-600/20 text-emerald-200 border-emerald-600/30;
+    @apply bg-faction-wood/15 text-faction-wood border-faction-wood/25;
   }
-
   .faction-badge-fire {
-    @apply bg-red-600/20 text-red-200 border-red-600/30;
+    @apply bg-faction-fire/15 text-faction-fire border-faction-fire/25;
   }
-
   .faction-badge-water {
-    @apply bg-blue-600/20 text-blue-200 border-blue-600/30;
+    @apply bg-faction-water/15 text-faction-water border-faction-water/25;
   }
-
   .faction-badge-metal {
-    @apply bg-slate-500/20 text-slate-200 border-slate-500/30;
+    @apply bg-faction-metal/15 text-faction-metal border-faction-metal/25;
   }
-
   .faction-badge-shard {
-    @apply bg-violet-600/20 text-violet-200 border-violet-600/30;
+    @apply bg-faction-shard/15 text-faction-shard border-faction-shard/25;
   }
 
-  /* Original bright faction badges for active states */
-  .faction-badge-bright {
-    @apply px-3 py-1 rounded-lg text-xs font-medium text-white;
-    transition:
-      all 200ms ease,
-      background-color 250ms ease,
-      color 250ms ease,
-      box-shadow 200ms ease;
+  /* Empty state */
+  .empty-state {
+    @apply text-center py-8 text-muted-foreground border border-dashed border-border rounded-lg;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
   }
 
-  .faction-badge-bright.faction-badge-earth {
-    @apply bg-faction-earth;
-    box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
+  /* Gradient heading */
+  .gradient-heading {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
   }
 
-  .faction-badge-bright.faction-badge-wood {
-    @apply bg-faction-wood;
-    box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
+  /* Fancy tabs */
+  .fancy-tabs {
+    @apply bg-muted/30 p-0.5 rounded-lg;
+  }
+  .fancy-tab {
+    @apply px-3 py-1.5 rounded-md transition-all duration-200 text-sm;
+  }
+  .fancy-tab-active {
+    @apply bg-card shadow-sm text-foreground;
   }
 
-  .faction-badge-bright.faction-badge-fire {
-    @apply bg-faction-fire;
-    box-shadow: 0 0 10px rgba(185, 28, 28, 0.3);
-  }
-
-  .faction-badge-bright.faction-badge-water {
-    @apply bg-faction-water;
-    box-shadow: 0 0 10px rgba(3, 105, 161, 0.3);
-  }
-
-  .faction-badge-bright.faction-badge-metal {
-    @apply bg-faction-metal;
-    box-shadow: 0 0 10px rgba(100, 116, 139, 0.3);
-  }
-
-  .faction-badge-bright.faction-badge-shard {
-    @apply bg-faction-shard;
-    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
-  }
-
-  /* Consistent Shadow System */
-  .shadow-xs {
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  }
-
-  .shadow-sm {
-    box-shadow:
-      0 1px 3px 0 rgb(0 0 0 / 0.1),
-      0 1px 2px -1px rgb(0 0 0 / 0.1);
-  }
-
-  .shadow-md {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-  }
-
-  .shadow-lg {
-    box-shadow:
-      0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
-
-  .shadow-xl {
-    box-shadow:
-      0 20px 25px -5px rgb(0 0 0 / 0.1),
-      0 8px 10px -6px rgb(0 0 0 / 0.1);
-  }
-
-  .shadow-card {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  }
-
-  .shadow-card-hover {
-    box-shadow:
-      0 15px 25px -5px rgba(0, 0, 0, 0.5),
-      0 0 10px 0 rgba(139, 92, 246, 0.3);
-  }
-
-  /* Dark mode shadow adaptations */
-  .dark .shadow-xs {
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  }
-
-  .dark .shadow-sm {
-    box-shadow:
-      0 1px 3px 0 rgb(0 0 0 / 0.4),
-      0 1px 2px -1px rgb(0 0 0 / 0.3);
-  }
-
-  .dark .shadow-md {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.4),
-      0 2px 4px -2px rgb(0 0 0 / 0.3);
-  }
-
-  .dark .shadow-lg {
-    box-shadow:
-      0 10px 15px -3px rgb(0 0 0 / 0.5),
-      0 4px 6px -4px rgb(0 0 0 / 0.4);
-  }
-
-  .dark .shadow-xl {
-    box-shadow:
-      0 20px 25px -5px rgb(0 0 0 / 0.6),
-      0 8px 10px -6px rgb(0 0 0 / 0.5);
-  }
-
-  /* Light mode shadow adaptations */
-  .light .shadow-xs {
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  }
-
-  .light .shadow-sm {
-    box-shadow:
-      0 1px 3px 0 rgb(0 0 0 / 0.08),
-      0 1px 2px -1px rgb(0 0 0 / 0.06);
-  }
-
-  .light .shadow-md {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.08),
-      0 2px 4px -2px rgb(0 0 0 / 0.06);
-  }
-
-  .light .shadow-lg {
-    box-shadow:
-      0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.08);
-  }
-
-  .light .shadow-xl {
-    box-shadow:
-      0 20px 25px -5px rgb(0 0 0 / 0.12),
-      0 8px 10px -6px rgb(0 0 0 / 0.1);
-  }
-
-  .light .shadow-card {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
-  }
-
-  .light .shadow-card-hover {
-    box-shadow:
-      0 15px 25px -5px rgba(0, 0, 0, 0.2),
-      0 0 10px 0 rgba(139, 92, 246, 0.2);
-  }
-
-  /* Gradient animation for header */
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 3s ease infinite;
-  }
-
-  /* Glass Morphism Effects */
-  .glass-light {
-    @apply bg-white/10 backdrop-blur-sm border border-white/20;
-  }
-
-  .glass-medium {
-    @apply bg-white/20 backdrop-blur-md border border-white/30;
-  }
-
-  .glass-strong {
-    @apply bg-white/30 backdrop-blur-lg border border-white/40;
-  }
-
-  /* Dark mode glass adaptations */
-  .dark .glass-light {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10;
-  }
-
-  .dark .glass-medium {
-    @apply bg-white/10 backdrop-blur-md border border-white/15;
-  }
-
-  .dark .glass-strong {
-    @apply bg-white/15 backdrop-blur-lg border border-white/20;
-  }
-
-  /* Light mode glass adaptations */
-  .light .glass-light {
-    @apply bg-black/5 backdrop-blur-sm border border-black/10;
-  }
-
-  .light .glass-medium {
-    @apply bg-black/10 backdrop-blur-md border border-black/15;
-  }
-
-  .light .glass-strong {
-    @apply bg-black/15 backdrop-blur-lg border border-black/20;
-  }
-
-  /* Specialized glass effects for overlays */
-  .glass-overlay {
-    @apply glass-medium shadow-xl;
-    backdrop-filter: blur(20px) saturate(180%);
-  }
-
+  /* Glass effects */
   .glass-popup {
-    @apply glass-strong shadow-2xl;
-    backdrop-filter: blur(16px) saturate(160%);
+    @apply bg-popover/95 backdrop-blur-lg border border-border shadow-2xl;
+  }
+  .glass-medium {
+    @apply bg-background/80 backdrop-blur-md border border-border;
+  }
+
+  /* Card fade-in animation */
+  .card-fade-in > * {
+    animation: cardFadeIn 0.25s ease-out both;
+  }
+  .card-fade-in > *:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .card-fade-in > *:nth-child(2) {
+    animation-delay: 20ms;
+  }
+  .card-fade-in > *:nth-child(3) {
+    animation-delay: 40ms;
+  }
+  .card-fade-in > *:nth-child(4) {
+    animation-delay: 60ms;
+  }
+  .card-fade-in > *:nth-child(5) {
+    animation-delay: 80ms;
+  }
+  .card-fade-in > *:nth-child(6) {
+    animation-delay: 100ms;
+  }
+  .card-fade-in > *:nth-child(7) {
+    animation-delay: 120ms;
+  }
+  .card-fade-in > *:nth-child(8) {
+    animation-delay: 140ms;
+  }
+  .card-fade-in > *:nth-child(n + 9) {
+    animation-delay: 160ms;
   }
 }
 
+/* Keyframes */
 @keyframes cardFadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.6;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* Scrollbar styling with smooth transitions */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  transition: background-color 250ms ease;
+  background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  transition: background-color 250ms ease;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced header logo animation */
-.header-logo {
-  transition: all 300ms ease;
-}
-
-.header-logo:hover {
-  transform: scale(1.05) rotate(5deg);
-}
-
-.header-logo:hover .logo-glow {
-  opacity: 1;
-}
-
-/* Animated gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #8b5cf6, #06b6d4, #10b981);
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Screen reader only utility class for accessibility */
+/* SR only */
 .sr-only {
   position: absolute;
   width: 1px;

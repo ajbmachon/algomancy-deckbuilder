@@ -1,15 +1,12 @@
-import React, { useRef } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import React from 'react';
 import { Button } from '../ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Separator } from '../ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 import { getFactionIcon } from '@/lib/utils/deckUtils.jsx';
+import { X } from 'lucide-react';
 
 /**
- * Filter panel component for desktop and mobile layouts
+ * Filter panel — desktop sidebar or mobile sheet content
  */
 export function FilterPanel({
   factions,
@@ -23,264 +20,173 @@ export function FilterPanel({
   isDesktop = false,
   isOpen = false,
 }) {
-  const factionsContainerRef = useRef(null);
-  const costsContainerRef = useRef(null);
-  const typesContainerRef = useRef(null);
-
   if (isDesktop) {
     return (
-      <Card className="modern-card h-full max-h-[calc(100vh-8rem)] flex flex-col">
-        <CardHeader className="space-card-header border-b border-border">
-          <CardTitle className="text-sm">Filters</CardTitle>
-        </CardHeader>
-        <CardContent className="space-card-content flex-1 overflow-hidden">
-          <ScrollArea className="h-full pr-2">
-            <div className="space-filter-group flex flex-col">
-              <Collapsible defaultOpen>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
-                    Factions
-                  </h3>
-                  <CollapsibleTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-7 px-2 border-border"
-                      aria-label="Toggle factions filter section"
-                    >
-                      Toggle
-                    </Button>
-                  </CollapsibleTrigger>
-                </div>
-                <CollapsibleContent
-                  className="mt-2 grid grid-cols-2 space-grid-tight"
-                  role="group"
-                  aria-label="Faction filter options"
-                >
-                  {factions.map(faction => (
-                    <Button
-                      key={faction}
-                      variant="outline"
-                      onClick={() => toggleFactionFilter(faction)}
-                      className={`capitalize ${
-                        activeFilters.factions.includes(faction)
-                          ? `filter-btn-${faction} active`
-                          : `filter-btn-${faction}`
-                      }`}
-                      aria-pressed={activeFilters.factions.includes(faction)}
-                      aria-label={`${activeFilters.factions.includes(faction) ? 'Remove' : 'Add'} ${faction} faction filter`}
-                    >
-                      {getFactionIcon(faction)}
-                      {faction}
-                    </Button>
-                  ))}
-                </CollapsibleContent>
-              </Collapsible>
+      <div className="p-3 space-y-4">
+        <div className="flex items-center justify-between">
+          <span className="text-overline text-muted-foreground">Filters</span>
+          {(activeFilters.factions.length > 0 ||
+            activeFilters.cost !== null ||
+            activeFilters.types.length > 0) && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearFilters}
+              className="h-5 text-[10px] text-muted-foreground hover:text-foreground px-1"
+              aria-label="Clear all filters"
+            >
+              <X className="w-3 h-3 mr-0.5" />
+              Clear
+            </Button>
+          )}
+        </div>
 
-              <Separator className="bg-border" />
+        {/* Factions */}
+        <div>
+          <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-2 block">
+            Factions
+          </span>
+          <div className="grid grid-cols-2 gap-1.5" role="group" aria-label="Faction filters">
+            {factions.map(faction => (
+              <Button
+                key={faction}
+                variant="outline"
+                size="sm"
+                onClick={() => toggleFactionFilter(faction)}
+                className={`h-8 text-xs capitalize justify-start gap-1 ${
+                  activeFilters.factions.includes(faction)
+                    ? `filter-btn-${faction} active`
+                    : `filter-btn-${faction}`
+                }`}
+                aria-pressed={activeFilters.factions.includes(faction)}
+              >
+                {getFactionIcon(faction)}
+                {faction}
+              </Button>
+            ))}
+          </div>
+        </div>
 
-              <Collapsible defaultOpen>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Cost</h3>
-                  <CollapsibleTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-7 px-2 border-border"
-                      aria-label="Toggle cost filter section"
-                    >
-                      Toggle
-                    </Button>
-                  </CollapsibleTrigger>
-                </div>
-                <CollapsibleContent
-                  className="mt-2 flex flex-wrap space-grid-tight"
-                  role="radiogroup"
-                  aria-label="Card cost filter options"
-                >
-                  {costs.map(cost => (
-                    <Button
-                      key={cost}
-                      variant={activeFilters.cost === cost ? 'default' : 'outline'}
-                      onClick={() => setCostFilter(cost)}
-                      className={
-                        activeFilters.cost === cost
-                          ? 'bg-primary hover:bg-primary/90'
-                          : 'border-border hover:bg-muted/20 hover:text-foreground'
-                      }
-                      role="radio"
-                      aria-checked={activeFilters.cost === cost}
-                      aria-label={`Filter by cost ${cost}`}
-                    >
-                      {cost}
-                    </Button>
-                  ))}
-                </CollapsibleContent>
-              </Collapsible>
+        <Separator className="bg-border/50" />
 
-              <Separator className="bg-border" />
+        {/* Cost */}
+        <div>
+          <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-2 block">
+            Cost
+          </span>
+          <div className="flex flex-wrap gap-1" role="radiogroup" aria-label="Cost filters">
+            {costs.map(cost => (
+              <Button
+                key={cost}
+                variant={activeFilters.cost === cost ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setCostFilter(cost)}
+                className={`h-7 w-7 p-0 text-xs ${
+                  activeFilters.cost === cost
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                role="radio"
+                aria-checked={activeFilters.cost === cost}
+              >
+                {cost}
+              </Button>
+            ))}
+          </div>
+        </div>
 
-              <Collapsible defaultOpen>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs uppercase tracking-wide text-muted-foreground">Type</h3>
-                  <CollapsibleTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-7 px-2 border-border"
-                      aria-label="Toggle card type filter section"
-                    >
-                      Toggle
-                    </Button>
-                  </CollapsibleTrigger>
-                </div>
-                <CollapsibleContent
-                  className="mt-2 grid grid-cols-2 space-grid-tight"
-                  role="group"
-                  aria-label="Card type filter options"
-                >
-                  {types.map(type => (
-                    <Button
-                      key={type}
-                      variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
-                      onClick={() => toggleTypeFilter(type)}
-                      className={`capitalize ${activeFilters.types.includes(type) ? 'bg-primary hover:bg-primary/90' : 'border-border hover:bg-muted/20 hover:text-foreground'}`}
-                      aria-pressed={activeFilters.types.includes(type)}
-                      aria-label={`${activeFilters.types.includes(type) ? 'Remove' : 'Add'} ${type} type filter`}
-                    >
-                      {type}
-                    </Button>
-                  ))}
-                </CollapsibleContent>
-              </Collapsible>
+        <Separator className="bg-border/50" />
 
-              <div className="pt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={clearFilters}
-                  className="border-border w-full"
-                  aria-label="Clear all active filters"
-                >
-                  Clear Filters
-                </Button>
-              </div>
-            </div>
-          </ScrollArea>
-        </CardContent>
-      </Card>
+        {/* Type */}
+        <div>
+          <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-2 block">
+            Type
+          </span>
+          <div className="flex flex-wrap gap-1" role="group" aria-label="Type filters">
+            {types.map(type => (
+              <Button
+                key={type}
+                variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => toggleTypeFilter(type)}
+                className={`h-7 text-xs capitalize px-2 ${
+                  activeFilters.types.includes(type)
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                aria-pressed={activeFilters.types.includes(type)}
+              >
+                {type}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
     );
   }
 
-  // Mobile layout
+  // Mobile layout — always shown when rendered (controlled by parent sheet)
   if (!isOpen) return null;
 
   return (
-    <div className="mb-6">
-      <Tabs defaultValue="factions" className="mb-6">
-        <TabsList
-          className="fancy-tabs mb-4 w-full overflow-x-auto flex-nowrap md:flex-wrap whitespace-nowrap"
-          role="tablist"
-          aria-label="Filter categories"
-        >
+    <div className="px-3">
+      <Tabs defaultValue="factions">
+        <TabsList className="fancy-tabs mb-3 w-full" role="tablist" aria-label="Filter categories">
           <TabsTrigger
             value="factions"
-            className="fancy-tab data-[state=active]:fancy-tab-active"
-            role="tab"
+            className="fancy-tab data-[state=active]:fancy-tab-active flex-1"
           >
             Factions
           </TabsTrigger>
           <TabsTrigger
             value="cost"
-            className="fancy-tab data-[state=active]:fancy-tab-active"
-            role="tab"
+            className="fancy-tab data-[state=active]:fancy-tab-active flex-1"
           >
             Cost
           </TabsTrigger>
           <TabsTrigger
             value="type"
-            className="fancy-tab data-[state=active]:fancy-tab-active"
-            role="tab"
+            className="fancy-tab data-[state=active]:fancy-tab-active flex-1"
           >
             Type
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent
-          value="factions"
-          className="space-y-4 card-fade-in"
-          role="tabpanel"
-          aria-labelledby="factions-tab"
-        >
-          <div
-            className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible"
-            ref={factionsContainerRef}
-            role="group"
-            aria-label="Faction filter buttons"
-          >
+        <TabsContent value="factions">
+          <div className="grid grid-cols-3 gap-2" role="group" aria-label="Faction filter buttons">
             {factions.map(faction => (
-              <HoverCard key={faction} openDelay={300} closeDelay={100}>
-                <HoverCardTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={() => toggleFactionFilter(faction)}
-                    className={`capitalize flex items-center flex-shrink-0 min-h-[44px] min-w-[100px] md:min-w-0 ${
-                      activeFilters.factions.includes(faction)
-                        ? `filter-btn-${faction} active`
-                        : `filter-btn-${faction}`
-                    }`}
-                    aria-pressed={activeFilters.factions.includes(faction)}
-                    aria-label={`${activeFilters.factions.includes(faction) ? 'Remove' : 'Add'} ${faction} faction filter`}
-                  >
-                    {getFactionIcon(faction)}
-                    {faction}
-                  </Button>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80 p-4">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold capitalize">{faction} Faction</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Filter cards from the {faction} faction.
-                      {faction === 'earth' &&
-                        ' Earth focuses on stability and resource generation.'}
-                      {faction === 'wood' && ' Wood excels at growth and sustainability.'}
-                      {faction === 'fire' && ' Fire specializes in direct damage and aggression.'}
-                      {faction === 'water' &&
-                        ' Water manipulates flow and adapts to circumstances.'}
-                      {faction === 'metal' && ' Metal provides strength and structural integrity.'}
-                    </p>
-                  </div>
-                </HoverCardContent>
-              </HoverCard>
+              <Button
+                key={faction}
+                variant="outline"
+                onClick={() => toggleFactionFilter(faction)}
+                className={`capitalize min-h-[44px] text-sm gap-1 ${
+                  activeFilters.factions.includes(faction)
+                    ? `filter-btn-${faction} active`
+                    : `filter-btn-${faction}`
+                }`}
+                aria-pressed={activeFilters.factions.includes(faction)}
+              >
+                {getFactionIcon(faction)}
+                {faction}
+              </Button>
             ))}
           </div>
         </TabsContent>
 
-        <TabsContent
-          value="cost"
-          className="space-y-4 card-fade-in"
-          role="tabpanel"
-          aria-labelledby="cost-tab"
-        >
-          <div
-            className="flex space-grid-tight overflow-x-auto pb-2 md:flex-wrap"
-            ref={costsContainerRef}
-            role="radiogroup"
-            aria-label="Cost filter options"
-          >
+        <TabsContent value="cost">
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Cost filter options">
             {costs.map(cost => (
               <Button
                 key={cost}
                 variant={activeFilters.cost === cost ? 'default' : 'outline'}
                 onClick={() => setCostFilter(cost)}
-                className={`min-h-[44px] min-w-[44px] flex-shrink-0 ${
+                className={`min-h-[44px] min-w-[44px] ${
                   activeFilters.cost === cost
-                    ? 'bg-primary hover:bg-primary/90'
-                    : 'border-border hover:bg-muted/20 hover:text-foreground'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
                 role="radio"
                 aria-checked={activeFilters.cost === cost}
-                aria-label={`Filter by cost ${cost}`}
               >
                 {cost}
               </Button>
@@ -288,44 +194,38 @@ export function FilterPanel({
           </div>
         </TabsContent>
 
-        <TabsContent
-          value="type"
-          className="space-y-4 card-fade-in"
-          role="tabpanel"
-          aria-labelledby="type-tab"
-        >
-          <div
-            className="flex space-grid-tight overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible"
-            ref={typesContainerRef}
-            role="group"
-            aria-label="Card type filter buttons"
-          >
+        <TabsContent value="type">
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Card type filter buttons">
             {types.map(type => (
               <Button
                 key={type}
                 variant={activeFilters.types.includes(type) ? 'default' : 'outline'}
                 onClick={() => toggleTypeFilter(type)}
-                className={`capitalize min-h-[44px] min-w-[100px] md:min-w-0 flex-shrink-0 ${
+                className={`capitalize min-h-[44px] ${
                   activeFilters.types.includes(type)
-                    ? 'bg-primary hover:bg-primary/90'
-                    : 'border-border hover:bg-muted/20 hover:text-foreground'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
                 aria-pressed={activeFilters.types.includes(type)}
-                aria-label={`${activeFilters.types.includes(type) ? 'Remove' : 'Add'} ${type} type filter`}
               >
                 {type}
               </Button>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground mt-2">
-            {types.length === 0
-              ? 'No common types found'
-              : activeFilters.types.length > 0
-                ? `Filtering for cards with: ${activeFilters.types.join(', ')}`
-                : 'Select multiple types to filter cards'}
-          </p>
         </TabsContent>
       </Tabs>
+
+      <div className="mt-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={clearFilters}
+          className="w-full"
+          aria-label="Clear all active filters"
+        >
+          Clear Filters
+        </Button>
+      </div>
     </div>
   );
 }
